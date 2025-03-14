@@ -10,7 +10,7 @@ Untuk menjawab tantangan ini, kami ingin melakukan pengembangan website pariwisa
 
 Nama|Username Github|Posisi
 ---|---|---
-Tri Brotoharsono|tbshnu|Pembimbing
+Tri Brotoharsono|tbshno|Pembimbing
 Rizza Indah Mega Mandasari|rizzamandasari|Reviewer
 Muhammad Ihsan Firjatulloh Al Khasaf|mihsnfaa|Mahasiswa
 Rizqy Nurfauzella|RizqyNurfauzella|Mahasiswa

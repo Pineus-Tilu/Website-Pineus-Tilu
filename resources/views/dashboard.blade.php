@@ -1,65 +1,141 @@
 <x-app-layout>
+    <!-- Tambahkan Tailwind untuk animasi yang lebih halus -->
+    <style>
+        [data-carousel-item] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        [data-carousel-item].active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            opacity: 0.5;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: scale(1);
+        }
+        .indicator.active {
+            opacity: 1;
+            transform: scale(1.5);
+            background-color: #ffffff;
+        }
+    </style>
 
-<!-- Container Hero dengan Slider sebagai background -->
-<div class="w-full h-[600px] relative">
-    <!-- Slider -->
-    <div id="default-carousel" class="relative w-full h-full" data-carousel="slide">
-        
-        <!-- Overlay Hero Content -->
-        <div class="absolute inset-0 flex items-center justify-center px-4 z-40 pointer-events-none">
-            <div class="bg-[#0f172a]/70 p-7 rounded-lg text-center">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">Get Your Trip</h1>
-                <p class="text-gray-200 max-w-2xl mx-auto mb-4">
-                    Getyourtrip.com adalah platform informasi dan pemesanan perjalanan di Bandung yang membantu Anda merencanakan perjalanan dengan mudah dan menyenangkan.
-                </p>
-                <a href="#" class="text-white underline hover:text-blue-300">Learn More</a>
+    <!-- Container Hero dengan Slider -->
+    <div class="w-full h-[600px] relative overflow-hidden">
+        <div id="default-carousel" class="relative w-full h-full">
+            
+            <!-- Overlay Hero Content -->
+            <div class="absolute inset-0 flex items-center justify-center px-4 z-40 pointer-events-none">
+                <div class="bg-[#0f172a]/70 p-7 rounded-lg text-center">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">Get Your Trip</h1>
+                    <p class="text-gray-200 max-w-2xl mx-auto mb-4">
+                        Getyourtrip.com adalah platform informasi dan pemesanan perjalanan di Bandung yang membantu Anda merencanakan perjalanan dengan mudah dan menyenangkan.
+                    </p>
+                    <a href="#" class="text-white underline hover:text-blue-300">Learn More</a>
+                </div>
             </div>
-        </div>
 
-        <!-- Carousel wrapper -->
-        <div class="h-full overflow-hidden rounded-lg relative">
-            <!-- Item 1 -->
-            <div class="duration-700 ease-in-out" data-carousel-item>
-                <img src="https://dev.ayoglamping.com/wp-content/uploads/2023/07/pineus-5.jpg" 
-                    class="absolute w-full h-full object-cover z-10" 
-                    alt="Glamping di Bandung 1">
+            <!-- Carousel wrapper -->
+            <div class="h-full overflow-hidden rounded-lg relative">
+                <!-- Item 1 -->
+                <div class="active" data-carousel-item>
+                    <img src="https://images.pexels.com/photos/1450340/pexels-photo-1450340.jpeg?cs=srgb&dl=pexels-asadphoto-1450340.jpg&fm=jpg" 
+                        class="absolute w-full h-full object-cover" 
+                        alt="Glamping di Bandung 1">
+                </div>
+                <!-- Item 2 -->
+                <div data-carousel-item>
+                    <img src="https://deras.co.id/wp-content/uploads/2017/08/69253731-swiss-wallpapers.jpg" 
+                        class="absolute w-full h-full object-cover" 
+                        alt="Glamping di Bandung 2">
+                </div>
+                <!-- Item 3 -->
+                <div data-carousel-item>
+                    <img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?cs=srgb&dl=pexels-apasaric-1285625.jpg&fm=jpg" 
+                        class="absolute w-full h-full object-cover" 
+                        alt="Glamping di Bandung 3">
+                </div>
             </div>
-            <!-- Item 2 -->
-            <div class="duration-700 ease-in-out" data-carousel-item>
-                <img src="https://jabarekspres.com/wp-content/uploads/2021/08/Obyek-Wisata-Pineus-Tilu-Riverside-Camping-e1627950952356.jpg" 
-                    class="absolute w-full h-full object-cover z-10" 
-                    alt="Glamping di Bandung 2">
-            </div>
-            <!-- Item 3 -->
-            <div class="duration-700 ease-in-out" data-carousel-item>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrjMmIfE8lH62v5l69luXn3HYx3cMhhjk3Ww&s" 
-                    class="absolute w-full h-full object-cover z-10" 
-                    alt="Glamping di Bandung 3">
-            </div>
-        </div>
 
-        <!-- Slider controls -->
-        <button type="button" class="absolute top-1/2 start-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto" data-carousel-prev>
-            <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-            </svg>
-        </button>
-        <button type="button" class="absolute top-1/2 end-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto" data-carousel-next>
-            <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-        </button>
+            <!-- Slider controls -->
+            <button id="prev" class="absolute top-1/2 start-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto">
+                <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                </svg>
+            </button>
+            <button id="next" class="absolute top-1/2 end-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto">
+                <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                </svg>
+            </button>
 
-        <!-- Slider indicators -->
-        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
-            <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 2" data-carousel-slide-to="2"></button>
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+                <button class="indicator active" data-carousel-slide-to="0"></button>
+                <button class="indicator" data-carousel-slide-to="1"></button>
+                <button class="indicator" data-carousel-slide-to="2"></button>
+            </div>
         </div>
     </div>
-</div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll("[data-carousel-item]");
+            let indicators = document.querySelectorAll("[data-carousel-slide-to]");
+            let currentIndex = 0;
+            let totalSlides = slides.length;
+            
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove("active");
+                    slide.style.transform = "translateX(100%)";
+                    slide.style.opacity = "0";
+                    indicators[i].classList.remove("active");
+                });
 
+                slides[index].classList.add("active");
+                slides[index].style.transform = "translateX(0)";
+                slides[index].style.opacity = "1";
+                indicators[index].classList.add("active");
+            }
+
+            document.getElementById("prev").addEventListener("click", function () {
+                currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+                showSlide(currentIndex);
+            });
+
+            document.getElementById("next").addEventListener("click", function () {
+                currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+                showSlide(currentIndex);
+            });
+
+            // Klik indikator untuk langsung menuju slide tertentu
+            indicators.forEach((indicator, i) => {
+                indicator.addEventListener("click", function () {
+                    currentIndex = i;
+                    showSlide(currentIndex);
+                });
+            });
+
+            // Auto-slide setiap 5 detik
+            setInterval(function () {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                showSlide(currentIndex);
+            }, 5000);
+
+            // Tampilkan slide pertama saat halaman dimuat
+            showSlide(currentIndex);
+        });
+    </script>
 
     <!-- Tentang Destinasi -->
     <section id="about" class="py-20 bg-gray-100">

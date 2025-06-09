@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -7,15 +8,26 @@ use Illuminate\Http\Request;
 
 
 // Halaman Public
-Route::get('/', fn () => view('welcome'));
-Route::get('/about', fn () => view('about'));
-Route::get('/review', fn () => view('review'));
-Route::get('/faq', fn () => view('faq'));
-Route::get('/contact', fn () => view('contact'));
-Route::get('/explore', fn () => view('explore'));
+Route::get('/', fn() => view('dashboard'));
+Route::get('/tentang', fn() => view('tentang'));
+Route::get('/kontak', fn() => view('kontak'));
+Route::get('/reservasi', fn() => view('reservasi'));
+Route::get('/fasilitas/{slug?}', function ($slug = 'pineus-tilu-1') {
+    $data = config('fasilitas');
+
+    if (!array_key_exists($slug, $data)) {
+        abort(404);
+    }
+
+    return view('fasilitas', [
+        'slug' => $slug,
+        'data' => $data[$slug],
+    ]);
+});
+
 
 // Dashboard untuk user login & verified
-Route::get('/dashboard', fn () => view('dashboard'))
+Route::get('/dashboard', fn() => view('dashboard'))
     ->middleware(['auth', 'verified'])->name('dashboard');
 
 // Group untuk halaman login-required
@@ -30,4 +42,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Route auth (login/register/logout)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

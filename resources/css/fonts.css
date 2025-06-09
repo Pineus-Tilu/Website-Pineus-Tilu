@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'JapaneseBrush';
+  src: url('/fonts/japanesebrush.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'VeteranTypewriter';
+  src: url('/fonts/veterantypewriter.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

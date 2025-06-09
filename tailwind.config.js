@@ -13,6 +13,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                japanese: ['JapaneseBrush', 'sans-serif'],
+                typewriter: ['VeteranTypewriter', 'monospace'],
             },
         },
     },

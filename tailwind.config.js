@@ -14,6 +14,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 japanese: ['JapaneseBrush', 'sans-serif'],
+                jp_brush: ['JapaneseBrush', 'monospace'],
                 typewriter: ['VeteranTypewriter', 'monospace'],
             },
         },
@@ -21,3 +22,4 @@ export default {
 
     plugins: [forms],
 };
+

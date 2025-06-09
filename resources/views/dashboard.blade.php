@@ -3,9 +3,9 @@
 @section('content')
     <!-- Hero Section -->
     <section
-        class="flex flex-col items-center justify-center min-h-[60vh] px-4 py-16 text-white bg-center bg-cover text-center"
+        class="flex flex-col items-center justify-center min-h-[80vh] px-4 py-16 text-white bg-center bg-cover text-center"
         style="background-image: url('/images/hero.jpg');">
-        <h1 class="text-4xl font-bold tracking-wide md:text-5xl font-japanese">PINEUS TILU</h1>
+        <h1 class="text-4xl font-bold tracking-wide md:text-5xl jp-brush">PINEUS TILU</h1>
         <p class="max-w-2xl mt-4 text-base md:text-xl font-typewriter">
             adalah sebuah Glamping yang berada di tepi sungai, dikelilingi hutan pinus Rahong. Menawarkan suasana nyaman
             dengan udara sejuk khas pegunungan.
@@ -91,7 +91,7 @@
     <section class="py-12 bg-[#006C43]">
         <div class="container px-4 mx-auto text-center text-white">
             <h2 class="mb-6 text-3xl font-bold font-japanese font-cursive">Denah Pineus Tilu</h2>
-            <img src="/images/denah.png" alt="Denah Pineus Tilu" class="w-full mx-auto rounded-lg shadow-lg md:w-2/3">
+            <img src="/images/denah.jpeg" alt="Denah Pineus Tilu" class="w-full mx-auto rounded-lg shadow-lg md:w-2/3">
         </div>
     </section>
 
@@ -100,7 +100,7 @@
         <div class="container px-4 mx-auto">
             <h2 class="mb-6 text-2xl font-bold text-center text-green-800 font-japanese font-cursive">Our Location</h2>
             <p class="max-w-2xl mx-auto mb-4 text-center text-gray-700 font-typewriter">
-                Hutan Rahong, Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378. "Pineus Tilu terletak di
+                Hutan Rahong, Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378. <br><br>"Pineus Tilu terletak di
                 Hutan Rahong, dikelilingi oleh hutan pinus dan sungai, memberikan pengalaman camping dengan kenyamanan ruang
                 yang tak terbatas"
             </p>

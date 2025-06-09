@@ -17,6 +17,34 @@
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!-- Ganti Font -->
+    <style>
+        @font-face {
+            font-family: 'jp_brush';
+            src: url("{{ asset('fonts/japanesebrush.ttf') }}") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'veterantypewriter';
+            src: url("{{ asset('fonts/veterantypewriter.ttf') }}") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .veteran {
+            font-family: 'veterantypewriter', sans-serif;
+        }
+        .jp-brush {
+            font-family: 'jp_brush', sans-serif;
+        }
+
+        
+    </style>
+    <!-- Ganti Font -->
+
+
 </head>
 
 <body class="font-sans antialiased">

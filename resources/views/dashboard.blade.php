@@ -1,19 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Hero Section -->
     <section
-        class="flex flex-col items-center justify-center min-h-[80vh] px-4 py-16 text-white bg-center bg-cover text-center"
-        style="background-image: url('/images/hero.jpg');">
-        <h1 class="text-4xl font-bold tracking-wide md:text-5xl jp-brush">PINEUS TILU</h1>
-        <p class="max-w-2xl mt-4 text-base md:text-xl font-typewriter">
-            adalah sebuah Glamping yang berada di tepi sungai, dikelilingi hutan pinus Rahong. Menawarkan suasana nyaman
-            dengan udara sejuk khas pegunungan.
-        </p>
-        <a href="/reservasi"
-            class="px-6 py-2 mt-6 font-semibold text-white transition duration-300 bg-[#006C43] rounded-full shadow-lg hover:bg-green-600">
-            Pesan Sekarang!
-        </a>
+        class="relative flex items-center justify-center min-h-screen px-4 py-32 text-white bg-center bg-cover pt-[100px] sm:pt-[120px] md:pt-[140px] lg:pt-[160px]"
+        style="background-image: url('/images/PT4.jpg');">
+        <!-- Overlay -->
+        <div class="absolute inset-0 z-0 bg-black bg-opacity-60"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl px-4 text-center">
+            <!-- Heading -->
+            <h1
+                class="relative flex items-center justify-center mb-6 text-5xl font-bold leading-none tracking-wider sm:text-6xl md:text-8xl jp-brush whitespace-nowrap">
+                PINEUS TILU
+            </h1>
+
+            <!-- Description -->
+            <p class="max-w-2xl mx-auto mb-10 text-base leading-relaxed sm:text-lg md:text-xl font-typewriter">
+                adalah sebuah Glamping yang menjadi Pelopor atau Pionir di keindahan alam hutan pinus Rahong,
+                dengan pemandangan sungai Palayangan yang menjadi daya tarik khusus untuk aktivitas Rafting
+                di Pangalengan, Kabupaten Bandung, Indonesia.
+            </p>
+
+            <!-- Button -->
+            <a href="/reservasi"
+                class="inline-block px-8 py-4 text-lg font-bold transition-all duration-300 rounded-xl shadow-lg sm:px-10 sm:py-5 sm:text-2xl bg-[#006C43] text-white hover:bg-green-700 font-typewriter">
+                Pesan Sekarang!
+            </a>
+        </div>
     </section>
 
 
@@ -100,7 +114,8 @@
         <div class="container px-4 mx-auto">
             <h2 class="mb-6 text-2xl font-bold text-center text-green-800 font-japanese font-cursive">Our Location</h2>
             <p class="max-w-2xl mx-auto mb-4 text-center text-gray-700 font-typewriter">
-                Hutan Rahong, Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378. <br><br>"Pineus Tilu terletak di
+                Hutan Rahong, Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378. <br><br>"Pineus Tilu terletak
+                di
                 Hutan Rahong, dikelilingi oleh hutan pinus dan sungai, memberikan pengalaman camping dengan kenyamanan ruang
                 yang tak terbatas"
             </p>
@@ -109,53 +124,7 @@
                     class="w-full h-64 border rounded-lg md:w-2/3"></iframe>
             </div>
         </div>
+
+        @include('layouts.footer')
     </section>
-
-    <!-- Footer -->
-    <footer class="py-6 bg-white text-green">
-        <div class="container px-4 mx-auto text-sm text-center">
-            <p class="mb-2">&copy; 2024 Pineus Tilu. All Rights Reserved.</p>
-            <div class="flex justify-center gap-6">
-                <div>
-                    <p>Contact:</p>
-                    <p>+62 877-5355-3227</p>
-                    <p>pineustilu@gmail.com</p>
-                </div>
-                <div>
-                    <p>Follow us:</p>
-                    <a href="https://instagram.com/pineustilu" target="_blank">@pineustilu</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Swiper Initialization Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            new Swiper('.mySwiper', {
-                slidesPerView: 2, // tampil 2 slide
-                spaceBetween: 20,
-                loop: true, // loop tanpa batas
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 1
-                    }, // mobile tampil 1 slide
-                    640: {
-                        slidesPerView: 2
-                    },
-                    1024: {
-                        slidesPerView: 2
-                    },
-                },
-            });
-        });
-    </script>
 @endsection

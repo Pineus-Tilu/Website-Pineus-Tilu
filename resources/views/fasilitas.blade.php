@@ -2,12 +2,17 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative">
-    <img src="{{ asset('images/' . $data['hero']) }}" alt="{{ $data['title'] }}" class="w-full h-[300px] object-cover">
-    <h1 class="absolute text-4xl font-bold text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 md:text-6xl drop-shadow-lg">
-        {{ strtoupper($data['title']) }}
-    </h1>
+<section class="relative h-[300px] pt-[120px]">
+    <img src="{{ asset('images/' . $data['hero']) }}" alt="{{ $data['title'] }}" class="absolute top-0 left-0 z-0 object-cover w-full h-full">
+    
+    <div class="relative z-10 flex items-center justify-center h-full">
+        <h1 class="text-4xl font-bold text-white md:text-6xl drop-shadow-lg">
+            {{ strtoupper($data['title']) }}
+        </h1>
+    </div>
 </section>
+
+
 
 <!-- Denah Section -->
 <section class="py-10 text-center bg-white">

@@ -6,7 +6,7 @@
         </div>
 
         <!-- Desktop Menu -->
-        <ul class="items-center hidden space-x-8 text-[22px] font-medium text-green-800 font-typewriter md:flex">
+        <ul class="items-center hidden space-x-8 text-[20px] font-medium text-green-800 font-typewriter md:flex">
             <li>
                 <a href="/" class="{{ request()->is('/') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">
                     Beranda

@@ -13,10 +13,14 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css','resources/js/swiper-init.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css', 'resources/js/swiper-init.js'])
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!-- Lightbox2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
+
 
     <!-- Ganti Font -->
     <style>
@@ -26,23 +30,22 @@
             font-weight: normal;
             font-style: normal;
         }
+
         @font-face {
             font-family: 'veterantypewriter';
             src: url("{{ asset('fonts/veterantypewriter.ttf') }}") format('truetype');
             font-weight: normal;
             font-style: normal;
         }
-        
+
         .veteran {
             font-family: 'veterantypewriter', sans-serif;
         }
+
         .jp-brush {
             font-family: 'jp_brush', sans-serif;
         }
-
-        
     </style>
-    <!-- Ganti Font -->
 
 
 </head>
@@ -64,47 +67,17 @@
         <main>
             @yield('content')
         </main>
+
+        {{-- Footer --}}
+        @include('layouts.footer')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <!-- Script untuk dropdown menu -->
-    <script>
-        // Toggle dropdown menu di desktop
-        const dropdownToggle = document.getElementById('dropdownToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        if (dropdownToggle && dropdownMenu) {
-            dropdownToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdownMenu.classList.toggle('hidden');
-            });
-
-            // Close dropdown jika klik di luar
-            window.addEventListener('click', function(e) {
-                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                    dropdownMenu.classList.add('hidden');
-                }
-            });
-        }
-
-        // Toggle mobile menu
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Toggle dropdown di mobile
-        const mobileDropdownToggle = document.getElementById('mobile-dropdown-toggle');
-        const mobileDropdown = document.getElementById('mobile-dropdown');
-        if (mobileDropdownToggle && mobileDropdown) {
-            mobileDropdownToggle.addEventListener('click', () => {
-                mobileDropdown.classList.toggle('hidden');
-            });
-        }
-    </script>
+    <!-- Lightbox2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{ asset('js/ui-helper.js') }}" defer></script>
 
 </body>
 

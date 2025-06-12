@@ -5,6 +5,7 @@ import.meta.glob([
 ]);
 
 import './bootstrap';
+import './ui-helper';
 
 import Alpine from 'alpinejs';
 

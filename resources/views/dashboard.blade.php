@@ -1,258 +1,130 @@
-<x-app-layout>
-    <!-- Tambahkan Tailwind untuk animasi yang lebih halus -->
-    <style>
-        [data-carousel-item] {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        [data-carousel-item].active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .indicator {
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            opacity: 0.5;
-            border-radius: 50%;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            transform: scale(1);
-        }
-        .indicator.active {
-            opacity: 1;
-            transform: scale(1.5);
-            background-color: #ffffff;
-        }
-    </style>
+@extends('layouts.app')
 
-    <!-- Container Hero dengan Slider -->
-    <div class="w-full h-[600px] relative overflow-hidden">
-        <div id="default-carousel" class="relative w-full h-full">
-            
-            <!-- Overlay Hero Content -->
-            <div class="absolute inset-0 flex items-center justify-center px-4 z-40 pointer-events-none">
-                <div class="bg-[#0f172a]/70 p-7 rounded-lg text-center">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">Get Your Trip</h1>
-                    <p class="text-gray-200 max-w-2xl mx-auto mb-4">
-                        Getyourtrip.com adalah platform informasi dan pemesanan perjalanan di Bandung yang membantu Anda merencanakan perjalanan dengan mudah dan menyenangkan.
-                    </p>
-                    <a href="#" class="text-white underline hover:text-blue-300">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Carousel wrapper -->
-            <div class="h-full overflow-hidden rounded-lg relative">
-                <!-- Item 1 -->
-                <div class="active" data-carousel-item>
-                    <img src="https://images.pexels.com/photos/1450340/pexels-photo-1450340.jpeg?cs=srgb&dl=pexels-asadphoto-1450340.jpg&fm=jpg" 
-                        class="absolute w-full h-full object-cover" 
-                        alt="Glamping di Bandung 1">
-                </div>
-                <!-- Item 2 -->
-                <div data-carousel-item>
-                    <img src="https://deras.co.id/wp-content/uploads/2017/08/69253731-swiss-wallpapers.jpg" 
-                        class="absolute w-full h-full object-cover" 
-                        alt="Glamping di Bandung 2">
-                </div>
-                <!-- Item 3 -->
-                <div data-carousel-item>
-                    <img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?cs=srgb&dl=pexels-apasaric-1285625.jpg&fm=jpg" 
-                        class="absolute w-full h-full object-cover" 
-                        alt="Glamping di Bandung 3">
-                </div>
-            </div>
-
-            <!-- Slider controls -->
-            <button id="prev" class="absolute top-1/2 start-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto">
-                <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                </svg>
-            </button>
-            <button id="next" class="absolute top-1/2 end-4 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-white/30 hover:bg-white/50 pointer-events-auto">
-                <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                </svg>
-            </button>
-
-            <!-- Slider indicators -->
-            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
-                <button class="indicator active" data-carousel-slide-to="0"></button>
-                <button class="indicator" data-carousel-slide-to="1"></button>
-                <button class="indicator" data-carousel-slide-to="2"></button>
-            </div>
+@section('content')
+    <!-- Hero Section -->
+    <section
+        class="relative flex items-center justify-center min-h-screen px-4 py-32 text-white bg-center bg-cover pt-[100px] sm:pt-[120px] md:pt-[140px] lg:pt-[160px]"
+        style="background-image: url('/images/PT4.jpg');">
+        <div class="absolute inset-0 z-0 bg-black bg-opacity-60"></div>
+        <div class="relative z-10 max-w-4xl px-4 text-center">
+            <h1 class="mb-6 text-5xl font-bold tracking-wider sm:text-6xl md:text-8xl jp-brush">PINEUS TILU</h1>
+            <!-- Description -->
+            <p class="max-w-2xl mx-auto mb-10 text-base leading-relaxed sm:text-lg md:text-xl font-typewriter">
+                adalah sebuah Glamping yang menjadi Pelopor atau Pionir di keindahan alam hutan pinus Rahong,
+                dengan pemandangan sungai Palayangan yang menjadi daya tarik khusus untuk aktivitas Rafting
+                di Pangalengan, Kabupaten Bandung, Indonesia.
+            </p>
+            <a href="/reservasi"
+                class="inline-block px-8 py-4 text-lg font-bold transition duration-300 rounded-xl shadow-lg sm:px-10 sm:py-5 sm:text-2xl bg-[#006C43] hover:bg-green-700 font-typewriter">
+                Pesan Sekarang!
+            </a>
         </div>
-    </div>
+    </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let slides = document.querySelectorAll("[data-carousel-item]");
-            let indicators = document.querySelectorAll("[data-carousel-slide-to]");
-            let currentIndex = 0;
-            let totalSlides = slides.length;
-            
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.remove("active");
-                    slide.style.transform = "translateX(100%)";
-                    slide.style.opacity = "0";
-                    indicators[i].classList.remove("active");
-                });
+    <!-- Swiper Section -->
+    <section class="bg-[#006C43] py-16 px-4 md:px-8 text-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="mb-10 text-3xl font-bold tracking-widest font-japanese md:text-4xl">Pineus Tilu</h2>
 
-                slides[index].classList.add("active");
-                slides[index].style.transform = "translateX(0)";
-                slides[index].style.opacity = "1";
-                indicators[index].classList.add("active");
-            }
+            <div class="swiper mySwiper font-typewriter">
+                <div class="swiper-wrapper">
+                    @php
+                        $slides = [
+                            ['img' => 'pineus-tilu-1.jpg', 'title' => 'Pineus Tilu I'],
+                            ['img' => 'pineus-tilu-2.jpg', 'title' => 'Pineus Tilu II'],
+                            ['img' => 'pineus-tilu-3-vip.jpg', 'title' => 'Pineus Tilu III (VIP)'],
+                            ['img' => 'pineus-tilu-3-cabin.jpg', 'title' => 'Pineus Tilu III (Cabin)'],
+                            ['img' => 'pineus-tilu-4.jpg', 'title' => 'Pineus Tilu IV'],
+                        ];
+                    @endphp
 
-            document.getElementById("prev").addEventListener("click", function () {
-                currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-                showSlide(currentIndex);
-            });
+                    @foreach ($slides as $slide)
+                        <div class="overflow-hidden bg-white rounded-lg shadow-lg swiper-slide">
+                            <img src="{{ asset('images/' . $slide['img']) }}" alt="{{ $slide['title'] }}"
+                                class="object-cover w-full h-64 sm:h-80" />
+                            <div class="p-4 font-semibold text-center text-black">{{ $slide['title'] }}</div>
+                        </div>
+                    @endforeach
+                </div>
 
-            document.getElementById("next").addEventListener("click", function () {
-                currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-                showSlide(currentIndex);
-            });
-
-            // Klik indikator untuk langsung menuju slide tertentu
-            indicators.forEach((indicator, i) => {
-                indicator.addEventListener("click", function () {
-                    currentIndex = i;
-                    showSlide(currentIndex);
-                });
-            });
-
-            // Auto-slide setiap 5 detik
-            setInterval(function () {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                showSlide(currentIndex);
-            }, 5000);
-
-            // Tampilkan slide pertama saat halaman dimuat
-            showSlide(currentIndex);
-        });
-    </script>
-
-    <!-- Tentang Destinasi -->
-    <section id="about" class="py-20 bg-gray-100">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
-            <div class="md:col-span-2">
-                <h2 class="text-xl italic mb-4">About Tour Website</h2>
-                <p class="text-gray-600 mb-4">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring...</p>
-                <p class="text-sm text-gray-500">I am so happy, my dear friend...</p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">Learn More</a>
-            </div>
-            <div>
-                <img src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png" alt="Profile" class="w-20 h-20 rounded-full mb-4 mx-auto">
-                <p class="text-center italic font-semibold">Rizqy Nurfauzella</p>
-                <p class="text-center text-sm text-gray-600 mt-2">
-                    “Everyone realizes why a new common language would be desirable...”
-                </p>
-                <a href="#" class="block mt-4 text-center text-blue-600 hover:underline">More About Rizqy Nurfauzella</a>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
 
-<!-- Testimoni -->
-<section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="flex items-start space-x-4">
-            <!-- Avatar -->
-            <img src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png" 
-                 alt="Testimonial Avatar" 
-                 class="w-12 h-12 rounded-full object-cover">
-            <!-- Quote -->
-            <blockquote class="italic text-gray-500 text-lg">
-                <span class="text-4xl text-gray-300 absolute -top-2 -left-4">“</span>
-                This is a testimonial related to travel, and some dummy text to make it long.
-            </blockquote>
-        </div>
-    </div>
-</section>
+    <!-- Awal Mula Pineus Tilu -->
+    <section class="py-12 bg-white">
+        <div class="container px-4 mx-auto">
+            <h2 class="mb-6 text-3xl font-bold text-center text-green-800 font-japanese">Awal mula Pineus Tilu</h2>
+            <p class="max-w-4xl mx-auto leading-relaxed text-justify text-gray-700 font-typewriter">
+                Dari mencari pengalaman baru, jadi punya tempat nge-camp.<br><br>
 
-<!-- Info Paket & Section -->
-<section class="bg-gray-100 py-20">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6">
-        <!-- Kiri - Info Paket -->
-        <div class="bg-gray-300 p-10">
-            <h3 class="text-sm font-semibold tracking-wide uppercase text-gray-600">
-                This is title of the travel package that is being featured here.
-            </h3>
-            <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
-        </div>
-        <!-- Kanan - Section -->
-        <div class="space-y-6">
-            <div class="bg-gray-300 p-6">
-                <h3 class="italic text-gray-600">About Producer</h3>
-                <p class="text-xs text-gray-500">This is a title to explain the product produced or created by the person on the left.</p>
-                <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
-            </div>
-            <div class="bg-gray-300 p-6">
-                <h3 class="text-sm font-semibold tracking-wide uppercase text-gray-600">
-                    This section is featuring soul section and some text to make title longer.
-                </h3>
-                <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">Read More</a>
-            </div>
-        </div>
-    </div>
-</section>
+                Pada masa awal pandemi Mei 2020, saya dan keluarga praktis tak pernah keluar rumah. Di akhir Agustus, karena
+                bosan, kami nekat jalan-jalan ke daerah sepi—gunung dan hutan. Setelah menjelajah Ciwidey dan Pangalengan,
+                malam itu kami bingung mencari penginapan. Hotel tidak ada yang cocok. Akhirnya, kami ditawari untuk
+                menginap di tepi Sungai Palayangan dengan tenda Arpenaz Family 4.0. <br><br>
+                Pengalaman pertama tidur di tengah hutan dengan suara sungai yang menenangkan ternyata luar biasa. Hawa
+                dingin menusuk, tapi justru membuat tidur nyenyak. Pagi harinya, pemandangan sinar matahari di antara
+                pepohonan pinus sangat indah dan menyentuh.<br><br>
+                Setelah itu saya berpikir, “Andai punya tempat sendiri di sini…” Tak lama, saya mendapatkan lahan di sekitar
+                sungai dan langsung menyetujuinya untuk dikelola sebagai area camping. Dari situlah lahir PINEUS TILU
+                Riverside Camping Ground—tempat yang menawarkan pengalaman ruang yang menenangkan, visual alami yang indah,
+                dan suasana privat dengan tiga pohon pinus ikonik yang menjorok ke sungai.<br><br>
+                Kami memulai dengan 7 deck kayu untuk 9 tenda, menggunakan tipe Arpenaz Family 4.0 dan 4.2.
+                Silakan rasakan sendiri sensasi ruang luar biasa ini di tepi Sungai Palayangan.<br><br>
+                Feel the awesome space, feel the incredible experience.
 
 
-    <!-- Our Stories -->
-    <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-center text-2xl font-semibold mb-10 italic">Our Stories</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                @foreach (range(1, 3) as $i)
-                    <div>
-                        <div class="bg-gray-200 h-40 mb-4"></div>
-                        <p class="text-sm text-gray-500">10 April, 2025</p>
-                        <p class="text-gray-700 text-sm mt-1">This is title of the travel package that is being featured here.</p>
-                    </div>
-                @endforeach
-            </div>
+            </p>
+
+            <p class="max-w-4xl mx-auto mt-6 font-bold text-gray-700 font-typewriter">
+                Bandung, 24 Juni 2021<br>
+                BSBarchitect<br>
+                PINEUS TILU Riverside Camping Ground
+            </p>
         </div>
     </section>
 
-<!-- Testimoni -->
-<section class="bg-gray-100 py-20">
-    <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-center text-2xl font-semibold mb-10 italic text-gray-500">
-            What people are saying about us
-        </h2>
-        <div class="grid md:grid-cols-2 gap-10">
-            <!-- Testimoni 1 -->
-            <div class="flex items-start space-x-4">
-                <img src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png" 
-                     alt="Avatar Sofia Brichet" 
-                     class="w-12 h-12 rounded-full object-cover">
-                <div>
-                    <blockquote class="italic text-gray-600 text-sm relative">
-                        <span class="text-4xl text-gray-300 absolute -top-2 -left-4">“</span>
-                        This is a testimonial Cras dapibus. Vivamus elementum semper nisi. 
-                        Aenean vulputate eleifend tellus.
-                    </blockquote>
-                    <p class="mt-4 font-semibold text-gray-700 uppercase text-xs">Rizqy Nurfauzella</p>
-                    <p class="text-xs text-gray-500 italic">Some Company Name</p>
+   <!-- Denah Pineus Tilu -->
+<section class="py-12 bg-[#006C43]">
+    <div x-data="{ open: false, scale: 1, zoomIn() { this.scale += 0.1 }, zoomOut() { this.scale = Math.max(0.1, this.scale - 0.1) }, resetZoom() { this.scale = 1 } }"
+         class="container px-4 mx-auto text-center text-white">
+        <h2 class="mb-6 text-3xl font-bold font-japanese font-cursive">Denah Pineus Tilu</h2>
+
+        <!-- Thumbnail -->
+        <img @click="open = true"
+             src="{{ asset('images/denah.jpeg') }}"
+             alt="Denah Pineus Tilu"
+             class="w-full max-w-3xl mx-auto transition-transform duration-300 rounded-lg shadow-lg cursor-pointer hover:scale-105" />
+
+        <!-- Modal -->
+        <div x-show="open"
+             x-transition
+             @click.self="open = false"
+             class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+             style="display: none;">
+            <div class="relative">
+                <!-- Tombol Close -->
+                <button @click="open = false"
+                        class="absolute p-2 text-white bg-black bg-opacity-50 rounded-full top-2 right-2 hover:bg-opacity-75">
+                    ✕
+                </button>
+
+                <!-- Tombol Zoom -->
+                <div class="absolute space-x-2 top-2 left-2">
+                    <button @click="zoomIn" class="px-2 text-black bg-white rounded">+</button>
+                    <button @click="zoomOut" class="px-2 text-black bg-white rounded">−</button>
+                    <button @click="resetZoom" class="px-2 text-black bg-white rounded">⟳</button>
                 </div>
-            </div>
-            <!-- Testimoni 2 -->
-            <div class="flex items-start space-x-4">
-                <img src="https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png" 
-                     alt="Avatar James Thomas" 
-                     class="w-12 h-12 rounded-full object-cover">
-                <div>
-                    <blockquote class="italic text-gray-600 text-sm relative">
-                        <span class="text-4xl text-gray-300 absolute -top-2 -left-4">“</span>
-                        One morning, when Gregor Samsa woke from troubled dreams, 
-                        he found himself transformed in his bed into a horrible vermin.
-                    </blockquote>
-                    <p class="mt-4 font-semibold text-gray-700 uppercase text-xs">M. Ihsan Firjatulloh</p>
-                    <p class="text-xs text-gray-500 italic">Some Company Name</p>
+
+                <!-- Gambar popup dengan zoom -->
+                <div class="overflow-auto max-w-[90vw] max-h-[90vh]">
+                    <img :style="'transform: scale(' + scale + ')'"
+                         src="{{ asset('images/denah.jpeg') }}"
+                         alt="Denah Pineus Tilu"
+                         class="transition-transform duration-300 ease-in-out rounded-lg shadow-xl" />
                 </div>
             </div>
         </div>
@@ -261,25 +133,20 @@
 
 
 
-    <!-- Newsletter -->
-    <section class="bg-white py-10 border-t">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h3 class="italic text-lg mb-4">Subscribe to our newsletter</h3>
-            <form class="flex flex-col md:flex-row justify-center items-center gap-4">
-                <input type="email" placeholder="Enter your email" class="w-full md:w-auto border px-4 py-2 rounded-lg">
-                <button type="submit" class="bg-gray-800 text-white px-6 py-2 rounded-lg">Subscribe</button>
-            </form>
+
+    <!-- Location Section -->
+    <section class="py-12 bg-white">
+        <div class="container px-4 mx-auto">
+            <h2 class="mb-6 text-2xl font-bold text-center text-green-800 font-japanese font-cursive">Our Location</h2>
+            <p class="max-w-2xl mx-auto mb-4 text-center text-gray-700 font-typewriter">
+                Hutan Rahong, Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378.
+            </p>
+            <div class="flex justify-center mt-6">
+                <div class="w-full md:w-2/3 aspect-video">
+                    <iframe src="https://maps.google.com/maps?q=Pineus%20Tilu&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        class="w-full h-full border rounded-lg"></iframe>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-20 py-8 text-center text-sm">
-        <p>2025 Copyright information goes here.</p>
-        <p>Designed by GYT Company</p>
-        <div class="mt-4 flex justify-center gap-2">
-            @foreach(range(1, 4) as $i)
-                <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
-            @endforeach
-        </div>
-    </footer>
-</x-app-layout>
+@endsection

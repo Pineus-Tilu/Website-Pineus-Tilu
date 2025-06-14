@@ -1,33 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
+// Halaman Publik
+Route::get('/', fn() => view('dashboard'));
+Route::get('/tentang', fn() => view('tentang'));
+Route::get('/ulasan', fn() => view('ulasan'));
+Route::get('/reservasi', fn() => view('reservasi'));
 
-// Halaman Public
-Route::get('/', fn () => view('welcome'));
-Route::get('/about', fn () => view('about'));
-Route::get('/review', fn () => view('review'));
-Route::get('/faq', fn () => view('faq'));
-Route::get('/contact', fn () => view('contact'));
-Route::get('/explore', fn () => view('explore'));
+// Fasilitas Route dengan data dari config
+Route::get('/fasilitas/{slug?}', function ($slug = 'pineus-tilu-1') {
+    $data = config('fasilitas');
 
-// Dashboard untuk user login & verified
-Route::get('/dashboard', fn () => view('dashboard'))
-    ->middleware(['auth', 'verified'])->name('dashboard');
+    if (!is_array($data) || !array_key_exists($slug, $data)) {
+        abort(404, 'Halaman tidak ditemukan');
+    }
 
-// Group untuk halaman login-required
-Route::middleware(['auth'])->group(function () {
-    Route::view('/tour', 'tour');
-    Route::view('/cart', 'cart');
-    Route::view('/settings', 'settings');
+    return view('fasilitas', [
+        'slug' => $slug,
+        'data' => $data[$slug],
+    ]);
+})->name('fasilitas');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Route auth (login/register/logout)
-require __DIR__.'/auth.php';
+// Auth (login/register/logout)
+require __DIR__ . '/auth.php';

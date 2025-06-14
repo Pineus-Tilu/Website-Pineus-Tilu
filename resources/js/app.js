@@ -1,4 +1,11 @@
+import.meta.glob([
+
+'../fonts/**',
+
+]);
+
 import './bootstrap';
+import './ui-helper';
 
 import Alpine from 'alpinejs';
 

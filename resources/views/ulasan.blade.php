@@ -34,19 +34,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Call to Action -->
-    <section class="py-12 bg-gray-100">
-        <div class="max-w-3xl mx-auto text-center">
-            <h3 class="mb-4 text-xl italic font-semibold">Ready to start your own adventure?</h3>
-            <p class="mb-6 text-sm text-gray-600">Join countless happy travelers and discover something unforgettable.</p>
-            <a href="/tour" class="px-6 py-3 text-sm text-white bg-gray-900 rounded-lg hover:bg-gray-800">View Our Tours</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 text-sm text-center text-gray-400 bg-gray-900">
-        <p>2025 &copy; GETYOURTRIP.COM</p>
-        <p>Designed by GYT Company</p>
-    </footer>
 </x-app-layout>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 
 // Halaman Publik
@@ -43,5 +44,6 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 // Reservasi
 Route::post('/detailpembelian', [ReservasiController::class, 'detailPembelian'])->name('detailpembelian');
 
-Route::get('/pembayaran', function () {
-    return view('pembayaran');})->name('pembayaran');
+// Pembayaran
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');

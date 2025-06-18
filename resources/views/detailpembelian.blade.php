@@ -60,6 +60,9 @@
         </div>
 
         <form action="{{ route('pembayaran') }}" method="GET">
+            <input type="hidden" name="nama" value="{{ $nama }}">
+            <input type="hidden" name="email" value="{{ $email }}">
+            <input type="hidden" name="subtotal" value="{{ $subtotal }}">
             <button class="w-full bg-green-600 text-white py-2 rounded font-semibold hover:bg-green-700 transition">
                 Lanjut ke Pembayaran
             </button>

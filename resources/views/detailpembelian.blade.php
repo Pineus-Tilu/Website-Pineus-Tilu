@@ -3,7 +3,7 @@
 @section('title', 'Detail Pembelian')
 
 @section('content')
-<div class="min-h-screen bg-green-600 flex items-center justify-center py-8">
+<div class="min-h-screen bg-green-700 flex items-center justify-center py-8">
     <div class="max-w-2xl w-full mx-auto px-6 py-8 bg-white rounded-lg shadow-md">
         <!-- Breadcrumb -->
         <nav class="text-sm mb-6 text-green-700 flex items-center space-x-2">
@@ -63,7 +63,7 @@
             <input type="hidden" name="nama" value="{{ $nama }}">
             <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="subtotal" value="{{ $subtotal }}">
-            <button class="w-full bg-green-600 text-white py-2 rounded font-semibold hover:bg-green-700 transition">
+            <button class="w-full bg-green-700 text-white py-2 rounded font-semibold hover:bg-green-700 transition">
                 Lanjut ke Pembayaran
             </button>
         </form>

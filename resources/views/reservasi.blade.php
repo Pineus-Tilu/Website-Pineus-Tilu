@@ -3,7 +3,7 @@
 @section('title', 'Reservasi')
 
 @section('content')
-<div class="min-h-screen bg-green-600 flex items-center justify-center py-8">
+<div class="min-h-screen bg-green-700 flex items-center justify-center py-8">
     <div class="max-w-4xl w-full mx-auto px-4 py-8 bg-white rounded-lg shadow-md">
         <!-- Breadcrumb -->
         <nav class="text-sm mb-6 text-green-700 flex items-center space-x-2">
@@ -83,7 +83,7 @@
                         >
                         <button 
                             type="button" 
-                            class="bg-green-600 text-white px-4 rounded-r hover:bg-green-700 transition flex items-center"
+                            class="bg-green-700 text-white px-4 rounded-r hover:bg-green-700 transition flex items-center"
                             style="height: 42px;"
                         >&#10003;</button>
                     </div>
@@ -91,10 +91,10 @@
                 <div class="mb-2 text-right text-sm text-green-700">SubTotal</div>
                 <div class="mb-2 text-right text-lg font-bold text-green-900">Rp 0</div>
                 <div class="flex items-center mb-4">
-                    <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required>
+                    <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-700" required>
                     <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang berlaku</label>
                 </div>
-                <button type="submit" class="w-full bg-green-600 text-white py-2 rounded font-semibold hover:bg-green-700 transition">Pesan Sekarang</button>
+                <button type="submit" class="w-full bg-green-700 text-white py-2 rounded font-semibold hover:bg-green-700 transition">Pesan Sekarang</button>
             </div>
         </form>
     </div>

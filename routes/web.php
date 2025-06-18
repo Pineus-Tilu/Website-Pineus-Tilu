@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('generate-pdf', [App\Http\Controllers\InvoiceController::class, 'generatePdf'])->name('generate.pdf');
+
 // Halaman Publik
 Route::get('/', fn() => view('dashboard'));
 Route::get('/tentang', fn() => view('tentang'));

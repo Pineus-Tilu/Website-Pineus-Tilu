@@ -6,6 +6,9 @@ use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 
+
+Route::get('generate-pdf', [App\Http\Controllers\InvoiceController::class, 'generatePdf'])->name('generate.pdf');
+
 // Halaman Publik
 Route::get('/', fn() => view('dashboard'));
 Route::get('/tentang', fn() => view('tentang'));

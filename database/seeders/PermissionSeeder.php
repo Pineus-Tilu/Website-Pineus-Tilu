@@ -7,11 +7,11 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\User; 
+use Illuminate\Support\Facades\Hash;
 
 class PermissionSeeder extends Seeder
-{
-
-    
+{   
     /**
      * Run the database seeds.
      */
@@ -31,6 +31,15 @@ class PermissionSeeder extends Seeder
 
         $role = Role::findOrCreate('Super Admin', 'web');
         $role->syncPermissions($permission['Super Admin']);
+        
+        $admin = User::firstOrCreate(
+            ['email' => 'adminpineustilu@example.com'],
+            [
+                'name' => 'Admin Pineustilu',
+                'password' => Hash::make('adminpineustilu'), // password = adminpineustilu
+            ]
+        );
+        $admin->assignRole(['Super Admin']);
 
         Artisan::call('cache:clear');
     }

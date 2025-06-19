@@ -1,68 +1,68 @@
 <x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2b2a6e] via-[#16222A] to-[#3a6073] py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl w-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
-            <!-- Left Side -->
-            <div class="md:w-1/2 bg-gradient-to-br from-[#3a6073] to-[#16222A] p-10 text-white flex flex-col justify-center">
-                <h2 class="text-2xl font-bold mb-4">Login</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="min-h-screen flex items-center justify-center bg-[#0d3b2e] px-4 py-16 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-[#2d6a4f] tracking-wide" style="font-family: 'Brush Script MT', cursive;">
+                    Pineus Tilu
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 italic">
+                    "Masuk untuk menikmati pengalaman alam yang tak terlupakan."
+                </p>
             </div>
 
-            <!-- Right Side (Login Form) -->
-            <div class="md:w-1/2 p-8 bg-white">
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                <div class="flex justify-center mb-6">
-                    <div class="bg-[#1e3c72] rounded-full p-4">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
-                        </svg>
-                    </div>
+            <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                @csrf
+
+                <!-- Email Address -->
+                <div>
+                    <x-input-label for="email" :value="__('Email')" class="text-gray-700" />
+                    <x-text-input id="email" class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" type="email" name="email" required autofocus autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 text-sm" />
                 </div>
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
+                <!-- Password -->
+                <div>
+                    <x-input-label for="password" :value="__('Password')" class="text-gray-700" />
+                    <x-text-input id="password" class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" type="password" name="password" required autocomplete="current-password" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 text-sm" />
+                </div>
 
-                    <!-- Email Address -->
-                    <div>
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+                <!-- Remember Me -->
+                <div class="flex items-center justify-between">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-green-600 shadow-sm focus:ring-green-500" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Ingat Saya') }}</span>
+                    </label>
+                    @if (Route::has('password.request'))
+                        <a class="text-sm text-green-700 hover:text-green-900 font-medium" href="{{ route('password.request') }}">
+                            {{ __('Lupa kata sandi?') }}
+                        </a>
+                    @endif
+                </div>
 
-                    <!-- Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
-                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
+                <!-- Submit Button -->
+                <div>
+                    <x-primary-button class="w-full bg-[#2d6a4f] hover:bg-[#1b4332] text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                        {{ __('Masuk') }}
+                    </x-primary-button>
+                </div>
 
-                    <!-- Remember Me -->
-                    <div class="block mt-4">
-                        <label for="remember_me" class="inline-flex items-center">
-                            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-[#1e3c72] shadow-sm focus:ring-[#2a5298]" name="remember">
-                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                        </label>
-                    </div>
+                <!-- Google Login -->
+                <div class="flex items-center justify-center mt-4">
+                    <a href="{{ route('google.login') }}"
+                        class="flex items-center justify-center w-full bg-white text-gray-700 border border-gray-300 rounded-md py-2 hover:bg-gray-100 transition">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5 mr-2">
+                        Masuk dengan Google
+                    </a>
+                </div>
+            </form>
 
-                    <div class="flex items-center justify-between mt-4">
-                        @if (Route::has('password.request'))
-                            <a class="text-sm text-[#1e3c72] hover:underline" href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
-                    </div>
-
-                    <div class="mt-4">
-                        <x-primary-button class="w-full bg-gradient-to-r from-[#2a5298] to-[#1e3c72] hover:from-[#3a70b0] hover:to-[#2a3a80]">
-                            {{ __('Login') }}
-                        </x-primary-button>
-                    </div>
-
-                    <div class="mt-4 text-center">
-                        <a href="{{ route('register') }}" class="text-sm text-gray-500 hover:underline">Create new account</a>
-                    </div>
-                </form>
+            <div class="text-center text-sm text-gray-600">
+                Belum punya akun?
+                <a href="{{ route('register') }}" class="text-green-700 font-medium hover:underline">Daftar di sini</a>
             </div>
         </div>
     </div>

@@ -2,14 +2,17 @@
   <div class="flex items-center justify-between w-full px-4 py-4 sm:px-6 lg:px-20">
     <!-- Logo -->
     <div class="flex items-center">
-      <img src="/images/logo.png" alt="Logo" class="h-[80px] object-contain" />
+      <a href="/">
+        <img src="/images/logo.png" alt="Logo" class="h-[80px] object-contain" />
+      </a>
     </div>
 
-    <!-- Desktop Menu -->
+    <!-- Menu Desktop -->
     <ul class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[18px] lg:text-[20px] font-medium text-green-800 font-typewriter">
       <li>
         <a href="/" class="{{ request()->is('/') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Beranda</a>
       </li>
+      <!-- Menu Fasilitas (Dapat diakses oleh semua pengguna, termasuk tamu) -->
       <li class="relative">
         <button id="dropdownToggle" class="flex items-center hover:underline underline-offset-4 focus:outline-none">
           Fasilitas
@@ -17,7 +20,7 @@
             <path d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <ul id="dropdownMenu" class="absolute left-0 z-50 hidden mt-2 w-52 bg-white border rounded shadow-md text-green-800 text-[18px] font-typewriter">
+        <ul id="dropdownMenu" class="absolute left-0 z-50 mt-2 w-52 bg-white hidden border rounded shadow-md text-green-800 text-[18px] font-typewriter">
           <li><a href="/fasilitas/pineus-tilu-1" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu I</a></li>
           <li><a href="/fasilitas/pineus-tilu-2" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu II</a></li>
           <li><a href="/fasilitas/pineus-tilu-3" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu III</a></li>
@@ -27,12 +30,35 @@
       <li><a href="/ulasan" class="{{ request()->is('ulasan') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Ulasan</a></li>
       <li><a href="/tentang" class="{{ request()->is('tentang') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Tentang</a></li>
       <li><a href="/reservasi" class="{{ request()->is('reservasi') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Reservasi</a></li>
-      <li>
-        <a href="/login" class="px-4 py-2 text-white bg-[#006C43] rounded-md hover:bg-green-700">Login/Register</a>
-      </li>
+
+      @guest
+        <li>
+          <a href="/login" class="px-4 py-2 text-white bg-[#006C43] rounded-md hover:bg-green-700">Login/Register</a>
+        </li>
+      @endguest
+
+      @auth
+        <li class="relative">
+          <button id="userDropdownToggle" class="flex items-center px-4 py-2 text-white bg-[#006C43] rounded-md hover:bg-green-700 focus:outline-none">
+            {{ Auth::user()->name }}
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <ul id="userDropdown-profile" class="absolute right-0 z-50 hidden mt-2 w-48 bg-white border rounded shadow-md text-green-800 text-[16px] font-typewriter">
+            <li><a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">Profil</a></li>
+            <li>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      @endauth
     </ul>
 
-    <!-- Mobile Menu Button -->
+    <!-- Tombol Menu Mobile -->
     <div class="md:hidden">
       <button id="mobile-menu-toggle" class="text-green-800 focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -42,11 +68,11 @@
     </div>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Menu Mobile -->
   <div id="mobile-menu" class="hidden px-4 pt-2 pb-4 space-y-2 text-green-800 bg-white border-t md:hidden font-typewriter">
     <a href="/" class="block hover:underline">Beranda</a>
 
-    <!-- Mobile Dropdown -->
+    <!-- Dropdown Mobile (Dapat diakses oleh semua pengguna, termasuk tamu) -->
     <div class="space-y-1">
       <button id="mobile-dropdown-toggle" type="button" class="flex items-center w-full text-left hover:underline">
         Fasilitas
@@ -65,6 +91,59 @@
     <a href="/ulasan" class="block hover:underline">Ulasan</a>
     <a href="/tentang" class="block hover:underline">Tentang</a>
     <a href="/reservasi" class="block hover:underline">Reservasi</a>
-    <a href="/login" class="inline-block px-4 py-2 text-white bg-[#006C43] rounded-md hover:bg-green-700">Login/Register</a>
+
+    @guest
+      <a href="/login" class="inline-block px-4 py-2 text-white bg-[#006C43] rounded-md hover:bg-green-700">Login/Register</a>
+    @endguest
+
+    @auth
+      <div class="space-y-1 border-t pt-2">
+        <p class="font-semibold">{{ Auth::user()->name }}</p>
+        <a href="{{ route('profile.edit') }}" class="block hover:underline">Profil</a>
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="block text-left w-full hover:underline">Logout</button>
+        </form>
+      </div>
+    @endauth
   </div>
 </nav>
+
+<!-- Script untuk Dropdown -->
+
+<script>
+  function setupDropdown(toggleId, menuId) {
+    const toggle = document.getElementById(toggleId);
+    const menu = document.getElementById(menuId);
+
+    if (!toggle || !menu) return;
+
+    // Toggle menu saat tombol diklik
+    toggle.addEventListener('click', (e) => {      
+      const isHidden = menu.classList.contains('hidden');
+      closeAllDropdowns(); // Tutup dropdown lain sebelum buka
+      if (isHidden) menu.classList.remove('hidden');
+    });
+
+    // Klik di luar → sembunyikan
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.classList.add('hidden');
+    });
+  }
+
+  // Inisialisasi saat halaman siap
+  window.addEventListener('DOMContentLoaded', () => {
+    setupDropdown('dropdownToggle', 'dropdownMenu');
+    setupDropdown('userDropdownToggle', 'userDropdown-profile');
+    setupDropdown('mobile-menu-toggle', 'mobile-menu');
+    setupDropdown('mobile-dropdown-toggle', 'mobile-dropdown');
+  });
+</script>

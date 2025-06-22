@@ -23,21 +23,21 @@ class PriceSeeder extends Seeder
         foreach ($units as $unit) {
             if (in_array($unit->unit_name, ['Deck 3', 'Deck 4', 'Deck 5', 'Deck 6', 'Deck 7'])) {
                 // Tenda 4.0
-                DB::table('price')->insert([
+                DB::table('prices')->insert([
                     'unit_id' => $unit->id,
-                    'Weekday' => 650000,
-                    'Weekend' => 900000,
-                    'High_season' => 1100000,
+                    'weekday' => 650000,
+                    'weekend' => 900000,
+                    'highseason' => 1100000,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             } else {
                 // Tenda 4.2
-                DB::table('price')->insert([
+                DB::table('prices')->insert([
                     'unit_id' => $unit->id,
-                    'Weekday' => 750000,
-                    'Weekend' => 950000,
-                    'High_season' => 1100000,
+                    'weekday' => 750000,
+                    'weekend' => 950000,
+                    'highseason' => 1100000,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -55,21 +55,21 @@ class PriceSeeder extends Seeder
         foreach ($units as $unit) {
             if (in_array($unit->unit_name, ['Deck 1', 'Deck 2', 'Deck 3', 'Deck 4', 'Deck 5', 'Deck 6'])) {
                 // Tenda 4.0
-                DB::table('price')->insert([
+                DB::table('prices')->insert([
                     'unit_id' => $unit->id,
-                    'Weekday' => 650000,
-                    'Weekend' => 900000,
-                    'High_season' => 1100000,
+                    'weekday' => 650000,
+                    'weekend' => 900000,
+                    'highseason' => 1100000,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             } else {
                 // Tenda 4.2
-                DB::table('price')->insert([
+                DB::table('prices')->insert([
                     'unit_id' => $unit->id,
-                    'Weekday' => 750000,
-                    'Weekend' => 950000,
-                    'High_season' => 1100000,
+                    'weekday' => 750000,
+                    'weekend' => 950000,
+                    'highseason' => 1100000,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -85,11 +85,11 @@ class PriceSeeder extends Seeder
             ->get();
 
         foreach ($units as $unit) {
-            DB::table('price')->insert([
+            DB::table('prices')->insert([
                 'unit_id' => $unit->id,
-                'Weekday' => 1500000,
-                'Weekend' => 1900000,
-                'High_season' => 2200000,
+                'weekday' => 1500000,
+                'weekend' => 1900000,
+                'highseason' => 2200000,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -104,11 +104,11 @@ class PriceSeeder extends Seeder
             ->get();
 
         foreach ($units as $unit) {
-            DB::table('price')->insert([
+            DB::table('prices')->insert([
                 'unit_id' => $unit->id,
-                'Weekday' => 1500000,
-                'Weekend' => 1900000,
-                'High_season' => 2200000,
+                'weekday' => 1500000,
+                'weekend' => 1900000,
+                'highseason' => 2200000,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -123,11 +123,11 @@ class PriceSeeder extends Seeder
             ->get();
 
         foreach ($units as $unit) {
-            DB::table('price')->insert([
+            DB::table('prices')->insert([
                 'unit_id' => $unit->id,
-                'Weekday' => 750000,
-                'Weekend' => 950000,
-                'High_season' => 1100000,
+                'weekday' => 750000,
+                'weekend' => 950000,
+                'highseason' => 1100000,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

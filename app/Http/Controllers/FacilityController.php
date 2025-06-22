@@ -3,66 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Area;
+use App\Models\Facility;
+use App\Models\AreaUnit;
+use App\Models\Price;
 
 class FacilityController extends Controller
 {
     public function show($slug)
-{
-    $dataList = [
-        'pineus-tilu-1' => [
-            'title' => 'Pineus Tilu I',
-            'hero' => 'hero-pineus-1.jpg',
-            'denah' => 'denah-tilu-1.png',
-            'kapasitas' => 'Standar 4 orang – Maksimal 6 orang',
-            'fasilitas_pribadi' => [
-                '4 Kursi tamu + 4 Bantal',
-                '4 Kasur tidur',
-                'Meja Kayu',
-                'Colokan listrik dan lampu',
-                'Tenda dome 4–6 orang',
-            ],
-            'fasilitas_umum' => [
-                'Kamar mandi dengan pemanas air',
-                'Musholla umum',
-                'Alat panggang BBQ',
-                'Alat makan & dispenser',
-                'Toilet jongkok',
-            ],
-            'catatan' => 'Fasilitas tambahan 100K/orang',
-            'harga_biasa' => 'Rp650.000',
-            'harga_libur' => 'Rp750.000',
-            'harga_catatan' => '*Libur Nasional dikenakan tambahan Rp100.000/deck/malam',
-            'visual' => [
-                [
-                    'gambar' => 'area.jpg',
-                    'judul' => 'Area',
-                    'deskripsi' => 'Area camping dengan tenda di tepi sungai untuk kenyamanan alami.',
-                ],
-                [
-                    'gambar' => 'ruang-publik.jpg',
-                    'judul' => 'Ruang Publik',
-                    'deskripsi' => 'Tempat duduk santai bersama di bawah pohon rindang.',
-                ],
-                [
-                    'gambar' => 'toilet.jpg',
-                    'judul' => 'Toilet',
-                    'deskripsi' => 'Fasilitas kamar mandi dan toilet bersih dengan pemanas air.',
-                ],
-            ],
-            'galeri' => [
-                'galeri1.jpg',
-                'galeri2.jpg',
-                'galeri3.jpg',
-            ],
-        ],
-        // Tambahkan data lain seperti 'pineus-tilu-2', dst.
-    ];
+    {
+        // Ambil area berdasarkan slug
+        $area = Area::all()->first(function ($area) use ($slug) {
+            $areaSlug = strtolower(str_replace([' ', '(', ')'], ['-', '', ''], $area->name));
+            return $areaSlug === $slug;
+        });
+        if (!$area) {
+            abort(404);
+        }
 
-    if (!array_key_exists($slug, $dataList)) {
-        abort(404);
+        // Fasilitas
+        $fasilitas_pribadi = Facility::where('area_id', $area->id)->where('type', 'pribadi')->pluck('description');
+        $fasilitas_umum = Facility::where('area_id', $area->id)->where('type', 'umum')->pluck('description');
+
+        // Kapasitas dari salah satu unit (atau bisa diambil semua)
+        $unit = AreaUnit::whereHas('facility', function ($q) use ($area) {
+            $q->where('area_id', $area->id);
+        })->first();
+
+        // Harga dari salah satu unit (atau bisa diambil semua)
+        $prices = $unit ? Price::where('unit_id', $unit->id)->first() : null;
+
+
+        $data = [
+            'title' => $area->name,
+            'hero' => $area->image_path,
+            'denah' => 'denah-' . $slug . '.png', // atau ambil dari DB jika ada
+            'kapasitas' => $unit ? "Standar {$unit->default_people} orang – Maksimal {$unit->max_people} orang" : '-',
+            'extra_charge' => $area->extra_charge,
+            'fasilitas_pribadi' => $fasilitas_pribadi,
+            'fasilitas_umum' => $fasilitas_umum,
+            'catatan' => null,
+            'harga_biasa' => ($prices && $prices->weekday) ? 'Rp' . number_format($prices->weekday, 0, ',', '.') : '-',
+            'harga_libur' => ($prices && $prices->weekend) ? 'Rp' . number_format($prices->weekend, 0, ',', '.') : '-',
+            'harga_highseason' => ($prices && $prices->highseason) ? 'Rp' . number_format($prices->highseason, 0, ',', '.') : '-',
+            'harga_catatan' => '*Harga Libur Nasional cenderung jatuh di tanggal libur nasional, libur sekolah, dsb.',
+            'visual' => [], // tambahkan jika ada
+            'galeri' => [], // tambahkan jika ada
+        ];
+
+        return view('fasilitas', compact('data'));
     }
-
-    return view('fasilitas', ['data' => $dataList[$slug]]);
-}
-
 }

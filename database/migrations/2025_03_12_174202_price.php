@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('price', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('unit_id')->constrained('area_units')->onDelete('cascade');
-            $table->decimal('Weekday', 10, 2)->default(0);
-            $table->decimal('Weekend', 10, 2)->default(0);
-            $table->decimal('High_season', 10, 2)->default(0);
+            $table->decimal('weekday', 10, 2)->default(0);
+            $table->decimal('weekend', 10, 2)->default(0);
+            $table->decimal('highseason', 10, 2)->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('price');
+        Schema::dropIfExists('prices');
     }
 };

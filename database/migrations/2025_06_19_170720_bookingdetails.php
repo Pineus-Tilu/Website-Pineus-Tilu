@@ -9,10 +9,13 @@ return new class extends Migration {
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('booking_id')->constrained()->onDelete('cascade');
-            $table->integer('additional_people')->default(0); // Jumlah orang melebihi standar
-            $table->decimal('extra_charge', 10, 2)->default(0); // Biaya tambahan
-            $table->text('notes')->nullable(); // Catatan tambahan jika dibutuhkan
+            $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
+            $table->integer('number_of_people');
+            $table->decimal('extra_charge', 10, 2)->default(0);
+            $table->text('notes')->nullable();
+            $table->decimal('total_price', 10, 2)->default(0);
+            $table->date('check_in');
+            $table->date('check_out');
             $table->timestamps();
         });
     }

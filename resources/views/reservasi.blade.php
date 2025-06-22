@@ -72,13 +72,7 @@
                     <label class="block mb-1 font-medium text-green-800">Email</label>
                     <input name="email" type="email" class="w-full px-3 py-2 bg-gray-100 border border-green-300 rounded focus:outline-none" value="{{ Auth::check() ? Auth::user()->email : '' }}" @if(Auth::check()) readonly @endif required>
                 </div>
-                <div class="mb-4">
-                    <label class="block mb-1 font-medium text-green-800">Kode Promo (Opsional)</label>
-                    <div class="flex">
-                        <input name="kode_promo" type="text" class="w-full px-3 py-2 border border-green-300 rounded-l focus:outline-none" placeholder="Masukan Kode Promo">
-                        <button type="button" class="px-4 text-white bg-green-600 rounded-r hover:bg-green-700">&#10003;</button>
-                    </div>
-                </div>
+                
                 <div class="flex items-center mb-4">
                     <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required>
                     <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang berlaku</label>

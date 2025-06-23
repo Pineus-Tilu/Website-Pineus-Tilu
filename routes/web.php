@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\FacilityController; // ✅ Fasilitas
 use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 
 
@@ -16,18 +17,7 @@ Route::get('/ulasan', fn() => view('ulasan'));
 Route::get('/reservasi', fn() => view('reservasi'));
 
 // Fasilitas Route dengan data dari config
-Route::get('/fasilitas/{slug?}', function ($slug = 'pineus-tilu-1') {
-    $data = config('fasilitas');
-
-    if (!is_array($data) || !array_key_exists($slug, $data)) {
-        abort(404, 'Halaman tidak ditemukan');
-    }
-
-    return view('fasilitas', [
-        'slug' => $slug,
-        'data' => $data[$slug],
-    ]);
-})->name('fasilitas');
+Route::get('/fasilitas/{slug}', [FacilityController::class, 'show'])->name('fasilitas');
 
 // Profile 
 Route::middleware(['auth'])->group(function () {

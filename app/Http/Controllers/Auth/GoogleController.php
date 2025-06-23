@@ -21,7 +21,7 @@ class GoogleController extends Controller
         DB::beginTransaction();
         try {
             // Mendapatkan data pengguna dari Google
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $googleUser = Socialite::driver('google')->user();
 
 
             $user = User::firstOrCreate([

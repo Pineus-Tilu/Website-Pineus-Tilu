@@ -12,7 +12,7 @@
       <li>
         <a href="/" class="{{ request()->is('/') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Beranda</a>
       </li>
-      <!-- Menu Fasilitas (Dapat diakses oleh semua pengguna, termasuk tamu) -->
+      <!-- Menu Fasilitas Dinamis -->
       <li class="relative">
         <button id="dropdownToggle" class="flex items-center hover:underline underline-offset-4 focus:outline-none">
           Fasilitas
@@ -21,10 +21,13 @@
           </svg>
         </button>
         <ul id="dropdownMenu" class="absolute left-0 z-50 mt-2 w-52 bg-white hidden border rounded shadow-md text-green-800 text-[18px] font-typewriter">
-          <li><a href="/fasilitas/pineus-tilu-1" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu I</a></li>
-          <li><a href="/fasilitas/pineus-tilu-2" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu II</a></li>
-          <li><a href="/fasilitas/pineus-tilu-3" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu III</a></li>
-          <li><a href="/fasilitas/pineus-tilu-4" class="block px-4 py-2 hover:bg-gray-100">Pineus Tilu IV</a></li>
+          @foreach($areas as $area)
+            <li>
+              <a href="/fasilitas/{{ strtolower(str_replace([' ', '(', ')'], ['-', '', ''], $area->name)) }}" class="block px-4 py-2 hover:bg-gray-100">
+                {{ $area->name }}
+              </a>
+            </li>
+          @endforeach
         </ul>
       </li>
       <li><a href="/ulasan" class="{{ request()->is('ulasan') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Ulasan</a></li>
@@ -50,7 +53,7 @@
             <li>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                <button type="submit" class="w-full px-4 py-2 text-left hover:bg-gray-100">Logout</button>
               </form>
             </li>
           </ul>
@@ -71,8 +74,7 @@
   <!-- Menu Mobile -->
   <div id="mobile-menu" class="hidden px-4 pt-2 pb-4 space-y-2 text-green-800 bg-white border-t md:hidden font-typewriter">
     <a href="/" class="block hover:underline">Beranda</a>
-
-    <!-- Dropdown Mobile (Dapat diakses oleh semua pengguna, termasuk tamu) -->
+    <!-- Dropdown Mobile Dinamis -->
     <div class="space-y-1">
       <button id="mobile-dropdown-toggle" type="button" class="flex items-center w-full text-left hover:underline">
         Fasilitas
@@ -81,13 +83,13 @@
         </svg>
       </button>
       <div id="mobile-dropdown" class="hidden ml-4 space-y-1">
-        <a href="/fasilitas/pineus-tilu-1" class="block hover:underline">Pineus Tilu I</a>
-        <a href="/fasilitas/pineus-tilu-2" class="block hover:underline">Pineus Tilu II</a>
-        <a href="/fasilitas/pineus-tilu-3" class="block hover:underline">Pineus Tilu III</a>
-        <a href="/fasilitas/pineus-tilu-4" class="block hover:underline">Pineus Tilu IV</a>
+        @foreach($areas as $area)
+          <a href="/fasilitas/{{ strtolower(str_replace([' ', '(', ')'], ['-', '', ''], $area->name)) }}" class="block hover:underline">
+            {{ $area->name }}
+          </a>
+        @endforeach
       </div>
     </div>
-
     <a href="/ulasan" class="block hover:underline">Ulasan</a>
     <a href="/tentang" class="block hover:underline">Tentang</a>
     <a href="/reservasi" class="block hover:underline">Reservasi</a>
@@ -97,12 +99,12 @@
     @endguest
 
     @auth
-      <div class="space-y-1 border-t pt-2">
+      <div class="pt-2 space-y-1 border-t">
         <p class="font-semibold">{{ Auth::user()->name }}</p>
         <a href="{{ route('profile.edit') }}" class="block hover:underline">Profil</a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-          <button type="submit" class="block text-left w-full hover:underline">Logout</button>
+          <button type="submit" class="block w-full text-left hover:underline">Logout</button>
         </form>
       </div>
     @endauth

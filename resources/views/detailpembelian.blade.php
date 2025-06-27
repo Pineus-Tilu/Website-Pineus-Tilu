@@ -20,15 +20,19 @@
                 <h3 class="mb-2 font-semibold text-green-800">Data Reservasi</h3>
                 <div class="grid grid-cols-2 gap-4 text-green-900">
                     <div>
-                        <div class="text-sm text-green-700">Tanggal Kunjungan</div>
-                        <div class="font-medium">{{ $tanggal_kunjungan ?? '-' }}</div>
+                        <div class="text-sm text-green-700">Tanggal Check-in</div>
+                        <div class="font-medium">{{ $bookingDetail->check_in ?? ($tanggal_kunjungan ?? '-') }}</div>
                     </div>
                     <div>
-                        <div class="text-sm text-green-700">Fasilitas</div>
+                        <div class="text-sm text-green-700">Tanggal Check-out</div>
+                        <div class="font-medium">{{ $bookingDetail->check_out ?? '-' }}</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-green-700">Area</div>
                         <div class="font-medium">{{ $fasilitas ?? '-' }}</div>
                     </div>
                     <div>
-                        <div class="text-sm text-green-700">Deck / Plot</div>
+                        <div class="text-sm text-green-700">Deck</div>
                         <div class="font-medium">{{ $deck ?? '-' }}</div>
                     </div>
                     <div>
@@ -53,7 +57,6 @@
                         <div class="text-sm text-green-700">Email</div>
                         <div class="font-medium">{{ $email ?? '-' }}</div>
                     </div>
-
                 </div>
             </div>
 

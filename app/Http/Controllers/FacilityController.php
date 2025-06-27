@@ -51,6 +51,37 @@ class FacilityController extends Controller
             'galeri' => [], // tambahkan jika ada
         ];
 
+        // Tentukan gambar denah sesuai nama area
+        $title = strtolower($area->name);
+
+        if (str_contains($title, 'pineus tilu iv')) {
+            $denahImage = 'galeri/denah/pineus4.jpg';
+        } elseif (
+            str_contains($title, 'pineus tilu iii vip kabin') ||
+            str_contains($title, 'pineus tilu iii tenda') ||
+            preg_match('/pineus tilu iii\b/', $title)
+        ) {
+            $denahImage = 'galeri/denah/pineus3.png';
+        } elseif (preg_match('/pineus tilu ii\b/', $title)) {
+            $denahImage = 'galeri/denah/pineus2.jpg';
+        } elseif (preg_match('/pineus tilu i\b/', $title)) {
+            $denahImage = 'galeri/denah/pineus1.jpg';
+        } else {
+            $denahImage = 'galeri/denah/denah.jpeg';
+        }
+        $data['denah'] = $denahImage;
+
+        $galeriPath = public_path('images/galeri/' . $slug);
+        $galeri = [];
+        if (is_dir($galeriPath)) {
+            foreach (scandir($galeriPath) as $file) {
+                if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp'])) {
+                    $galeri[] = 'galeri/' . $slug . '/' . $file;
+                }
+            }
+        }
+        $data['galeri'] = $galeri;
+
         return view('fasilitas', compact('data'));
     }
 }

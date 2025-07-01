@@ -3,8 +3,9 @@
 @section('title', 'Reservasi')
 
 @section('content')
-    <div class="flex items-center justify-center min-h-screen py-8 bg-green-600">
-        <div class="w-full max-w-4xl px-4 py-8 mx-auto bg-white rounded-lg shadow-md">
+    <div class="flex items-center justify-center min-h-screen py-8 font-typewriter"
+        style="background-image: url('/images/reservasi.jpg'); background-size: cover; background-position: center;">
+        <div class="w-full max-w-4xl px-4 py-8 mx-auto bg-white rounded-lg shadow-md ">
             <!-- Breadcrumb -->
             <nav class="flex items-center mb-6 space-x-2 text-sm text-green-700">
                 <span class="font-semibold text-green-900">Informasi Reservasi</span>

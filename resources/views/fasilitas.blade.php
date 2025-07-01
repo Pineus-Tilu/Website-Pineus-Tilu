@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-full overflow-hidden">
     <!-- Hero Section -->
-    <section class="relative h-[320px] pt-[120px] flex items-center justify-center" data-aos="fade-down">
+    <section class="relative h-[50vh] pt-[120px] flex items-center justify-center" data-aos="fade-down">
         <img src="{{ asset('images/' . $data['hero']) }}" alt="{{ $data['title'] }}"
             class="absolute top-0 left-0 z-0 object-cover w-full h-full">
         <div class="relative z-10 flex flex-col items-center justify-center w-full h-full">
@@ -19,7 +19,7 @@
         <p class="mb-6 text-gray-600 font-typewriter" data-aos="fade-left">
             Denah area {{ $data['title'] }} untuk memudahkan pengunjung memahami lokasi fasilitas.
         </p>
-        <div class="flex justify-center">
+        <div class="relative flex items-center justify-center">
             <img src="{{ asset('images/' . $data['denah']) }}"
                 class="w-full max-w-2xl mx-auto transition-transform duration-300 rounded-lg shadow cursor-pointer hover:scale-105"
                 alt="Denah {{ $data['title'] }}" data-aos="zoom-in" @click="showDenah = true">

@@ -14,8 +14,8 @@
       <div class="space-y-2">
         <h4 class="font-semibold">Pertanyaan Umum</h4>
         <ul class="space-y-1">
-          <li><a href="#" class="hover:underline">Penjadwalan Ulang</a></li>
-          <li><a href="#" class="hover:underline">Pembatalan</a></li>
+          <li><a href="/tentang" class="hover:underline">Penjadwalan Ulang</a></li>
+          <li><a href="/tentang" class="hover:underline">Pembatalan</a></li>
         </ul>
       </div>
 

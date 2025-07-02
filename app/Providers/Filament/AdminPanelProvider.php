@@ -26,8 +26,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('Pineus Tilu')
-            ->brandLogo(asset('images/logo.png')) // optional: jika ada logo
-            ->brandLogoHeight('5rem') // optional: ukuran logo
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('5rem')
             ->login([
                 'view' => 'auth.login',
                 'action' => fn() => route('login'),
@@ -54,10 +54,17 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
+                // Widget akun di pojok kanan atas
                 Widgets\AccountWidget::class,
+                
+                // Widget statistik utama (baris pertama)
                 \App\Filament\Widgets\BookingStatsWidget::class,
+                
+                // Widget charts (baris kedua - berdampingan)
                 \App\Filament\Widgets\BookingChart::class,
                 \App\Filament\Widgets\BookingStatusChart::class,
+                
+                // Widget tabel (baris ketiga - full width)
                 \App\Filament\Widgets\RecentBookingsWidget::class,
             ])
             ->middleware([

@@ -8,7 +8,11 @@ use Filament\Widgets\ChartWidget;
 class BookingStatusChart extends ChartWidget
 {
     protected static ?string $heading = 'Status Booking';
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 3;
+    protected int | string | array $columnSpan = [
+        'md' => 2,
+        'xl' => 3,
+    ];
 
     protected function getData(): array
     {
@@ -33,6 +37,7 @@ class BookingStatusChart extends ChartWidget
                         'rgb(34, 197, 94)',  // success
                         'rgb(239, 68, 68)',  // danger/cancel
                     ],
+                    'borderWidth' => 0,
                 ],
             ],
             'labels' => ['Pending', 'Success', 'Cancel'],
@@ -42,5 +47,18 @@ class BookingStatusChart extends ChartWidget
     protected function getType(): string
     {
         return 'pie';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'legend' => [
+                    'display' => true,
+                    'position' => 'bottom',
+                ],
+            ],
+            'maintainAspectRatio' => false,
+        ];
     }
 }

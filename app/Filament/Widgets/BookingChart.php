@@ -10,6 +10,10 @@ class BookingChart extends ChartWidget
 {
     protected static ?string $heading = 'Booking Per Hari (7 Hari Terakhir)';
     protected static ?int $sort = 2;
+    protected int | string | array $columnSpan = [
+        'md' => 2,
+        'xl' => 3,
+    ];
 
     protected function getData(): array
     {
@@ -42,5 +46,24 @@ class BookingChart extends ChartWidget
     protected function getType(): string
     {
         return 'line';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'legend' => [
+                    'display' => true,
+                ],
+            ],
+            'scales' => [
+                'y' => [
+                    'beginAtZero' => true,
+                    'ticks' => [
+                        'stepSize' => 1,
+                    ],
+                ],
+            ],
+        ];
     }
 }

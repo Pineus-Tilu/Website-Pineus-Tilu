@@ -16,6 +16,12 @@ class AreaUnit extends Model
 
     public function price()
     {
-        return $this->hasOne(Price::class, 'unit_id');
+        // Pastikan foreign key dan local key benar
+        return $this->hasOne(Price::class, 'unit_id', 'id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'unit_id');
     }
 }

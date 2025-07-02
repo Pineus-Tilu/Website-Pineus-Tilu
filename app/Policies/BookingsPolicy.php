@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Booking;
 use Illuminate\Auth\Access\Response;
-use App\Models\Bookings;
 use App\Models\User;
 
 class BookingsPolicy
@@ -19,7 +19,7 @@ class BookingsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Bookings $bookings): bool
+    public function view(User $user, Booking $bookings): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class BookingsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Bookings $bookings): bool
+    public function update(User $user, Booking $bookings): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class BookingsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Bookings $bookings): bool
+    public function delete(User $user, Booking $bookings): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class BookingsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Bookings $bookings): bool
+    public function restore(User $user, Booking $bookings): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class BookingsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Bookings $bookings): bool
+    public function forceDelete(User $user, Booking $bookings): bool
     {
         return false;
     }

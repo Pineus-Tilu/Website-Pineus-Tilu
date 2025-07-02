@@ -54,10 +54,20 @@ class FasilitasResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('Foto')
+                    ->circular()
+                    ->height(40)
+                    ->width(40)
+                    ->size('sm'),
+                
                 Tables\Columns\TextColumn::make('area.name')
                     ->label('Area')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->size('sm')
+                    ->weight('medium')
+                    ->wrap(),
                 
                 Tables\Columns\BadgeColumn::make('type')
                     ->label('Tipe')
@@ -65,134 +75,158 @@ class FasilitasResource extends Resource
                         'success' => 'pribadi',
                         'warning' => 'umum',
                     ])
+                    ->size('sm')
                     ->sortable(),
                     
                 Tables\Columns\TextColumn::make('description')
                     ->label('Deskripsi')
-                    ->limit(50)
+                    ->limit(30)
+                    ->size('sm')
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
                         $state = $column->getState();
-                        return strlen($state) > 50 ? $state : null;
+                        return strlen($state) > 30 ? $state : null;
                     }),
                 
                 Tables\Columns\TextColumn::make('weekday_price')
-                    ->label('Harga Weekday')
+                    ->label('Weekday')
                     ->money('IDR')
+                    ->size('sm')
+                    ->color('primary')
                     ->getStateUsing(function (Facility $record) {
-                        // Ambil area units berdasarkan area yang sama dengan facility
                         $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
-                        if (!$areaUnit) {
-                            return null;
-                        }
+                        if (!$areaUnit) return null;
                         
                         $price = Price::where('unit_id', $areaUnit->id)->first();
-                        if (!$price) {
-                            return null;
-                        }
-                        
-                        return $price->weekday;
+                        return $price ? $price->weekday : null;
                     })
-                    ->placeholder('Belum ada harga'),
+                    ->placeholder('-'),
                 
                 Tables\Columns\TextColumn::make('weekend_price')
-                    ->label('Harga Weekend')
+                    ->label('Weekend')
                     ->money('IDR')
+                    ->size('sm')
+                    ->color('warning')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->getStateUsing(function (Facility $record) {
-                        // Ambil area units berdasarkan area yang sama dengan facility
                         $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
-                        if (!$areaUnit) {
-                            return null;
-                        }
+                        if (!$areaUnit) return null;
                         
                         $price = Price::where('unit_id', $areaUnit->id)->first();
-                        if (!$price) {
-                            return null;
-                        }
-                        
-                        return $price->weekend;
+                        return $price ? $price->weekend : null;
                     })
-                    ->placeholder('Belum ada harga'),
+                    ->placeholder('-'),
                 
                 Tables\Columns\TextColumn::make('high_season_price')
-                    ->label('Harga High Season')
+                    ->label('High Season')
                     ->money('IDR')
+                    ->size('sm')
+                    ->color('danger')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->getStateUsing(function (Facility $record) {
-                        // Ambil area units berdasarkan area yang sama dengan facility
                         $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
-                        if (!$areaUnit) {
-                            return null;
-                        }
+                        if (!$areaUnit) return null;
                         
                         $price = Price::where('unit_id', $areaUnit->id)->first();
-                        if (!$price) {
-                            return null;
-                        }
-                        
-                        return $price->highseason;
+                        return $price ? $price->highseason : null;
                     })
-                    ->placeholder('Belum ada harga'),
-                
-                Tables\Columns\ImageColumn::make('image_path')
-                    ->label('Gambar')
-                    ->circular()
-                    ->height(50),
+                    ->placeholder('-'),
                 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
-                    ->dateTime('d M Y H:i')
-                    ->sortable()
+                    ->since()
+                    ->size('sm')
                     ->toggleable(isToggledHiddenByDefault: true),
                 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Diperbarui')
-                    ->dateTime('d M Y H:i')
-                    ->sortable()
+                    ->since()
+                    ->size('sm')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('area_id')
                     ->label('Area')
-                    ->options(Area::all()->pluck('name', 'id')),
+                    ->options(Area::all()->pluck('name', 'id'))
+                    ->multiple(),
                 
                 Tables\Filters\SelectFilter::make('type')
                     ->label('Tipe')
                     ->options([
                         'pribadi' => 'Pribadi',
                         'umum' => 'Umum',
-                    ]),
+                    ])
+                    ->multiple(),
+                
+                Tables\Filters\Filter::make('with_image')
+                    ->label('Dengan Gambar')
+                    ->query(fn ($query) => $query->whereNotNull('image_path'))
+                    ->toggle(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                
-                // Hapus atau ganti action ini karena route tidak ada
-                Tables\Actions\Action::make('view_area_units')
-                    ->label('Lihat Area Units')
-                    ->icon('heroicon-o-building-office-2')
-                    ->action(function (Facility $record) {
-                        // Redirect ke halaman area units berdasarkan area_id
-                        return redirect()->route('filament.admin.resources.area-units.index', [
-                            'tableFilters' => [
-                                'area_id' => ['value' => $record->area_id]
-                            ]
-                        ]);
-                    })
-                    ->visible(fn (Facility $record) => $record->area_id !== null),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    
+                    Tables\Actions\Action::make('view_area_units')
+                        ->label('Lihat Units')
+                        ->icon('heroicon-o-building-office-2')
+                        ->color('info')
+                        ->action(function (Facility $record) {
+                            return redirect()->route('filament.admin.resources.area-units.index', [
+                                'tableFilters' => [
+                                    'area_id' => ['value' => $record->area_id]
+                                ]
+                            ]);
+                        })
+                        ->visible(fn (Facility $record) => $record->area_id !== null),
+                    
+                    Tables\Actions\DeleteAction::make(),
+                ])
+                ->label('Actions')
+                ->icon('heroicon-m-ellipsis-vertical')
+                ->size('sm')
+                ->color('gray')
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    
+                    Tables\Actions\BulkAction::make('update_type')
+                        ->label('Ubah Tipe')
+                        ->icon('heroicon-o-pencil')
+                        ->form([
+                            Forms\Components\Select::make('type')
+                                ->label('Tipe Baru')
+                                ->options([
+                                    'pribadi' => 'Pribadi',
+                                    'umum' => 'Umum',
+                                ])
+                                ->required(),
+                        ])
+                        ->action(function (array $data, $records) {
+                            $records->each(function ($record) use ($data) {
+                                $record->update(['type' => $data['type']]);
+                            });
+                        })
+                        ->requiresConfirmation(),
                 ]),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('created_at', 'desc')
+            ->striped()
+            ->paginated([10, 25, 50])
+            ->defaultPaginationPageOption(25)
+            ->persistSortInSession()
+            ->persistSearchInSession()
+            ->persistFiltersInSession();
     }
 
     public static function getRelations(): array
     {
         return [
-            // Jika ingin menambahkan relasi manager untuk units
-            // RelationManagers\UnitsRelationManager::class,
+            //
         ];
     }
 

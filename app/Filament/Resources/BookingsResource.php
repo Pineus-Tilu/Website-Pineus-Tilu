@@ -57,28 +57,36 @@ class BookingsResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')
-                    ->sortable(),
-                
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label('User')
                     ->sortable()
+                    ->size('sm')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                
+                Tables\Columns\TextColumn::make('bookingDetail.nama')
+                    ->label('Nama')
                     ->searchable()
-                    ->placeholder('Guest'),
+                    ->placeholder('Guest')
+                    ->size('sm')
+                    ->weight('medium')
+                    ->wrap(),
                 
                 Tables\Columns\TextColumn::make('unit.area.name')
                     ->label('Area')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->size('sm')
+                    ->toggleable(),
                 
                 Tables\Columns\TextColumn::make('unit.unit_name')
-                    ->label('Deck/Unit')
+                    ->label('Unit')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->size('sm'),
                 
                 Tables\Columns\TextColumn::make('booking_for_date')
-                    ->label('Tanggal Booking')
-                    ->date('d M Y')
-                    ->sortable(),
+                    ->label('Tanggal')
+                    ->date('d/m/Y')
+                    ->sortable()
+                    ->size('sm'),
 
                 Tables\Columns\BadgeColumn::make('status.name')
                     ->label('Status')
@@ -87,35 +95,41 @@ class BookingsResource extends Resource
                         'success' => 'success',
                         'danger' => 'cancel',
                     ])
+                    ->size('sm')
                     ->sortable(),
-                
-                Tables\Columns\TextColumn::make('bookingDetail.nama')
-                    ->label('Nama Pemesan')
-                    ->searchable()
-                    ->placeholder('-'),
                 
                 Tables\Columns\TextColumn::make('bookingDetail.email')
                     ->label('Email')
                     ->searchable()
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->size('sm')
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->wrap(),
                 
                 Tables\Columns\TextColumn::make('bookingDetail.telepon')
                     ->label('Telepon')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->size('sm')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 
                 Tables\Columns\TextColumn::make('bookingDetail.number_of_people')
-                    ->label('Jumlah Orang')
-                    ->placeholder('-'),
+                    ->label('Orang')
+                    ->placeholder('-')
+                    ->size('sm')
+                    ->alignCenter(),
                 
                 Tables\Columns\TextColumn::make('bookingDetail.total_price')
-                    ->label('Total Harga')
+                    ->label('Total')
                     ->money('IDR')
-                    ->placeholder('-'),
+                    ->placeholder('-')
+                    ->size('sm')
+                    ->weight('semibold')
+                    ->color('success'),
                 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
-                    ->dateTime('d M Y H:i')
-                    ->sortable()
+                    ->since()
+                    ->size('sm')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -123,11 +137,13 @@ class BookingsResource extends Resource
                     ->label('Area/Unit')
                     ->options(AreaUnit::with('area')->get()->mapWithKeys(function ($unit) {
                         return [$unit->id => $unit->area->name . ' - ' . $unit->unit_name];
-                    })),
+                    }))
+                    ->multiple(),
 
                 Tables\Filters\SelectFilter::make('status_id')
                     ->label('Status')
-                    ->options(BookingStatus::all()->pluck('name', 'id')),
+                    ->options(BookingStatus::all()->pluck('name', 'id'))
+                    ->multiple(),
                 
                 Tables\Filters\Filter::make('booking_for_date')
                     ->form([
@@ -141,31 +157,43 @@ class BookingsResource extends Resource
                             ->when($data['from'], fn($q) => $q->whereDate('booking_for_date', '>=', $data['from']))
                             ->when($data['until'], fn($q) => $q->whereDate('booking_for_date', '<=', $data['until']));
                     }),
+                
+                Tables\Filters\Filter::make('today')
+                    ->label('Hari Ini')
+                    ->query(fn ($query) => $query->whereDate('created_at', today()))
+                    ->toggle(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                
-                Tables\Actions\Action::make('confirm')
-                    ->label('Konfirmasi')
-                    ->icon('heroicon-o-check-circle')
-                    ->color('success')
-                    ->action(function (Booking $record) {
-                        $record->update(['status_id' => 2]); // 2 = success
-                    })
-                    ->visible(fn (Booking $record) => $record->status->name === 'pending'),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    
+                    Tables\Actions\Action::make('confirm')
+                        ->label('Konfirmasi')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->action(function (Booking $record) {
+                            $record->update(['status_id' => 2]); // 2 = success
+                        })
+                        ->visible(fn (Booking $record) => $record->status->name === 'pending'),
 
-                Tables\Actions\Action::make('cancel')
-                    ->label('Cancel')
-                    ->icon('heroicon-o-x-circle')
-                    ->color('danger')
-                    ->action(function (Booking $record) {
-                        $record->update(['status_id' => 3]); // 3 = cancel
-                    })
-                    ->visible(fn (Booking $record) => in_array($record->status->name, ['pending', 'success']))
-                    ->requiresConfirmation(),
+                    Tables\Actions\Action::make('cancel')
+                        ->label('Cancel')
+                        ->icon('heroicon-o-x-circle')
+                        ->color('danger')
+                        ->action(function (Booking $record) {
+                            $record->update(['status_id' => 3]); // 3 = cancel
+                        })
+                        ->visible(fn (Booking $record) => in_array($record->status->name, ['pending', 'success']))
+                        ->requiresConfirmation(),
 
-                Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
+                ->label('Actions')
+                ->icon('heroicon-m-ellipsis-vertical')
+                ->size('sm')
+                ->color('gray')
+                ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -198,7 +226,13 @@ class BookingsResource extends Resource
                         ->requiresConfirmation(),
                 ]),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('created_at', 'desc')
+            ->striped()
+            ->paginated([10, 25, 50, 100])
+            ->defaultPaginationPageOption(25)
+            ->persistSortInSession()
+            ->persistSearchInSession()
+            ->persistFiltersInSession();
     }
 
     public static function getRelations(): array

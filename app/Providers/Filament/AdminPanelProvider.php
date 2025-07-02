@@ -25,6 +25,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandName('Pineus Tilu')
+            ->brandLogo(asset('images/logo.png')) // optional: jika ada logo
+            ->brandLogoHeight('5rem') // optional: ukuran logo
             ->login([
                 'view' => 'auth.login',
                 'action' => fn() => route('login'),
@@ -41,7 +44,6 @@ class AdminPanelProvider extends PanelProvider
                     return redirect()->route('filament.admin.auth.login');
                 })->name('filament.admin.logout');
             })
-
             ->colors([
                 'primary' => Color::Amber,
             ])

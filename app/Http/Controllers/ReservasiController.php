@@ -36,9 +36,12 @@ class ReservasiController extends Controller
             return back()->withErrors(['deck' => 'Deck tidak ditemukan.']);
         }
 
-        // Validasi tanggal sudah dipesan
+        // Validasi tanggal sudah dipesan (hanya yang status success dan pending)
         $sudahDipesan = Booking::where('unit_id', $unit->id)
             ->where('booking_for_date', $request->tanggal_kunjungan)
+            ->whereHas('status', function($q) {
+                $q->whereIn('name', ['pending', 'success']);
+            })
             ->exists();
 
         if ($sudahDipesan) {
@@ -67,11 +70,12 @@ class ReservasiController extends Controller
         }
         $total = $hargaDasar + $extra;
 
-        // Simpan ke tabel bookings
+        // Simpan ke tabel bookings dengan status pending (default)
         $booking = Booking::create([
             'user_id' => null,
             'unit_id' => $unit->id,
             'booking_for_date' => $tanggal,
+            'status_id' => 1, // 1 = pending (default)
         ]);
 
         // Simpan ke tabel booking_details
@@ -152,8 +156,11 @@ class ReservasiController extends Controller
                         'max_people' => (int) $unit->max_people,
                     ];
                 }
-                // Ambil tanggal yang sudah dipesan untuk unit ini, pastikan format string Y-m-d
+                // Ambil tanggal yang sudah dipesan untuk unit ini (hanya yang aktif: pending dan success)
                 $bookedDates[$unit->unit_name] = Booking::where('unit_id', $unit->id)
+                    ->whereHas('status', function($q) {
+                        $q->whereIn('name', ['pending', 'success']);
+                    })
                     ->pluck('booking_for_date')
                     ->map(fn($d) => date('Y-m-d', strtotime($d)))
                     ->toArray();

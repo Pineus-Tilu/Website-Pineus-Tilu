@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Booking extends Model
 {
-    protected $fillable = ['user_id', 'unit_id', 'booking_for_date'];
+    protected $fillable = ['user_id', 'unit_id', 'booking_for_date', 'status_id'];
 
     protected $casts = [
         'booking_for_date' => 'date',
@@ -27,5 +27,10 @@ class Booking extends Model
     public function bookingDetail(): HasOne
     {
         return $this->hasOne(BookingDetail::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(BookingStatus::class, 'status_id');
     }
 }

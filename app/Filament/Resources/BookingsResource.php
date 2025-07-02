@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookingsResource\Pages;
 use App\Models\Booking;
+use App\Models\BookingStatus;
 use App\Models\AreaUnit;
 use App\Models\User;
 use Filament\Forms;
@@ -41,6 +42,12 @@ class BookingsResource extends Resource
                     ->label('Tanggal Booking')
                     ->required()
                     ->minDate(now()),
+
+                Forms\Components\Select::make('status_id')
+                    ->label('Status')
+                    ->options(BookingStatus::all()->pluck('name', 'id'))
+                    ->required()
+                    ->default(1),
             ]);
     }
 
@@ -71,6 +78,15 @@ class BookingsResource extends Resource
                 Tables\Columns\TextColumn::make('booking_for_date')
                     ->label('Tanggal Booking')
                     ->date('d M Y')
+                    ->sortable(),
+
+                Tables\Columns\BadgeColumn::make('status.name')
+                    ->label('Status')
+                    ->colors([
+                        'warning' => 'pending',
+                        'success' => 'success',
+                        'danger' => 'cancel',
+                    ])
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('bookingDetail.nama')
@@ -108,6 +124,10 @@ class BookingsResource extends Resource
                     ->options(AreaUnit::with('area')->get()->mapWithKeys(function ($unit) {
                         return [$unit->id => $unit->area->name . ' - ' . $unit->unit_name];
                     })),
+
+                Tables\Filters\SelectFilter::make('status_id')
+                    ->label('Status')
+                    ->options(BookingStatus::all()->pluck('name', 'id')),
                 
                 Tables\Filters\Filter::make('booking_for_date')
                     ->form([
@@ -125,11 +145,57 @@ class BookingsResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                
+                Tables\Actions\Action::make('confirm')
+                    ->label('Konfirmasi')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->action(function (Booking $record) {
+                        $record->update(['status_id' => 2]); // 2 = success
+                    })
+                    ->visible(fn (Booking $record) => $record->status->name === 'pending'),
+
+                Tables\Actions\Action::make('cancel')
+                    ->label('Cancel')
+                    ->icon('heroicon-o-x-circle')
+                    ->color('danger')
+                    ->action(function (Booking $record) {
+                        $record->update(['status_id' => 3]); // 3 = cancel
+                    })
+                    ->visible(fn (Booking $record) => in_array($record->status->name, ['pending', 'success']))
+                    ->requiresConfirmation(),
+
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    
+                    Tables\Actions\BulkAction::make('confirm_selected')
+                        ->label('Konfirmasi Terpilih')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->action(function ($records) {
+                            $records->each(function ($record) {
+                                if ($record->status->name === 'pending') {
+                                    $record->update(['status_id' => 2]);
+                                }
+                            });
+                        })
+                        ->requiresConfirmation(),
+
+                    Tables\Actions\BulkAction::make('cancel_selected')
+                        ->label('Cancel Terpilih')
+                        ->icon('heroicon-o-x-circle')
+                        ->color('danger')
+                        ->action(function ($records) {
+                            $records->each(function ($record) {
+                                if (in_array($record->status->name, ['pending', 'success'])) {
+                                    $record->update(['status_id' => 3]);
+                                }
+                            });
+                        })
+                        ->requiresConfirmation(),
                 ]),
             ])
             ->defaultSort('created_at', 'desc');

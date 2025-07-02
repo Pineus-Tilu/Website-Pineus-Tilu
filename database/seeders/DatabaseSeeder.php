@@ -3,17 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Test user
         User::where('email', 'test@example.com')->delete();
         User::factory()->create([
             'name' => 'Test User',
@@ -25,8 +21,8 @@ class DatabaseSeeder extends Seeder
             FacilitySeeder::class,
             AreaUnitsSeeder::class,
             PriceSeeder::class,
-            // Add other seeders here as needed
-            AssignSuperAdminRoleSeeder::class, // <-- Tambahkan baris ini
+            CreateAdminUserSeeder::class, // PENTING: Harus sebelum AssignSuperAdminRoleSeeder
+            AssignSuperAdminRoleSeeder::class,
         ]);
     }
 }

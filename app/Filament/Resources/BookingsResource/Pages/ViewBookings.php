@@ -4,15 +4,16 @@ namespace App\Filament\Resources\BookingsResource\Pages;
 
 use App\Filament\Resources\BookingsResource;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ViewRecord;
 
-class ListBookings extends ListRecords
+class ViewBookings extends ViewRecord
 {
     protected static string $resource = BookingsResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
+            Actions\EditAction::make(),
         ];
     }
 }

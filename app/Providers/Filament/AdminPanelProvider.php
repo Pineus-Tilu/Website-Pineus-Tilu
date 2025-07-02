@@ -55,7 +55,10 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\BookingStatsWidget::class,
+                \App\Filament\Widgets\BookingChart::class,
+                \App\Filament\Widgets\BookingStatusChart::class,
+                \App\Filament\Widgets\RecentBookingsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

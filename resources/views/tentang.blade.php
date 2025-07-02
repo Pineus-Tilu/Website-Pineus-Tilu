@@ -92,7 +92,7 @@
                 </div>
 
                 <!-- Keterangan -->
-                <div class="w-full max-w-3xl mx-auto mt-6 text-sm text-base italic text-center text-red-600 md:text-lg"
+                <div class="w-full max-w-3xl mx-auto mt-6 text-base italic text-center text-red-600 font-typewriter md:text-lg"
                     data-aos="fade-up" data-aos-delay="300">
                     <p class="mb-2">*Keterangan:</p>
                     <ul class="not-italic font-normal text-left text-gray-700 list-disc list-inside">

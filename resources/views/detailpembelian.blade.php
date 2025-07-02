@@ -3,11 +3,12 @@
 @section('title', 'Detail Pembelian')
 
 @section('content')
-    <div class="flex items-center justify-center min-h-screen py-8"
-    style="background-image: url('/images/reservasi.jpg'); background-size: cover; background-position: center;">
-        <div class="w-full max-w-2xl px-6 py-8 mx-auto bg-white rounded-lg shadow-md font-typewriter">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-24 pb-8"
+        style="background-image: url('/images/reservasi.jpg'); background-size: cover; background-position: center;">
+        <div class="w-full max-w-2xl px-4 py-8 mx-auto bg-white rounded-lg shadow-md sm:px-6 font-typewriter">
+
             <!-- Breadcrumb -->
-            <nav class="flex items-center mb-6 space-x-2 text-sm text-green-700">
+            <nav class="flex flex-wrap items-center mb-6 space-x-2 text-sm text-green-700">
                 <span class="font-semibold text-green-900">Informasi Reservasi</span>
                 <span>&gt;</span>
                 <span class="font-semibold text-green-900">Detail Pembelian</span>
@@ -17,9 +18,10 @@
 
             <h2 class="mb-6 text-xl font-bold text-center text-green-900">Detail Pembelian</h2>
 
+            <!-- Data Reservasi -->
             <div class="mb-6">
-                <h3 class="mb-2 font-semibold text-green-800">Data Reservasi</h3>
-                <div class="grid grid-cols-2 gap-4 text-green-900">
+                <h3 class="mb-2 text-lg font-bold text-green-800">Data Reservasi</h3>
+                <div class="grid grid-cols-1 gap-4 text-green-900 sm:grid-cols-2">
                     <div>
                         <div class="text-sm text-green-700">Tanggal Check-in</div>
                         <div class="font-medium">{{ $bookingDetail->check_in ?? ($tanggal_kunjungan ?? '-') }}</div>
@@ -43,9 +45,10 @@
                 </div>
             </div>
 
+            <!-- Data Pengunjung -->
             <div class="mb-6">
-                <h3 class="mb-2 font-semibold text-green-800">Data Pengunjung</h3>
-                <div class="grid grid-cols-2 gap-4 text-green-900">
+                <h3 class="mb-2 text-lg font-bold text-green-800">Data Pengunjung</h3>
+                <div class="grid grid-cols-1 gap-4 text-green-900 sm:grid-cols-2">
                     <div>
                         <div class="text-sm text-green-700">Nama Lengkap</div>
                         <div class="font-medium">{{ $nama ?? '-' }}</div>
@@ -54,28 +57,33 @@
                         <div class="text-sm text-green-700">Nomor Telepon</div>
                         <div class="font-medium">{{ $telepon ?? '-' }}</div>
                     </div>
-                    <div>
+                    <div class="sm:col-span-2">
                         <div class="text-sm text-green-700">Email</div>
-                        <div class="font-medium">{{ $email ?? '-' }}</div>
+                        <div class="font-medium break-words">{{ $email ?? '-' }}</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Subtotal -->
             <div class="pt-4 mb-6 border-t">
-                <div class="flex justify-between font-semibold text-green-800">
+                <div class="flex justify-between text-base font-semibold text-green-800">
                     <span>Subtotal</span>
                     <span>Rp {{ number_format($subtotal ?? 0, 0, ',', '.') }}</span>
                 </div>
             </div>
 
+            <!-- Button -->
             <form action="{{ route('pembayaran') }}" method="GET">
                 <input type="hidden" name="nama" value="{{ $nama }}">
                 <input type="hidden" name="email" value="{{ $email }}">
                 <input type="hidden" name="subtotal" value="{{ $subtotal }}">
-                <button class="w-full py-2 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700">
+
+                <button
+                    class="w-full py-3 text-base font-semibold text-white transition bg-green-600 rounded hover:bg-green-700">
                     Lanjut ke Pembayaran
                 </button>
             </form>
+
         </div>
     </div>
 @endsection

@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {        
         return view('profile.edit', [
             'user' => $request->user(),
-            'isGoogleUser' => ($request->user()->google_id ? true : false), 
+            'isGoogleUser' => !is_null($request->user()->google_id), 
         ]);
     }
 
@@ -29,34 +29,31 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
+        $isGoogleUser = !is_null($user->google_id);
 
-        // Cek jika pengguna login via Google (tidak memiliki password)
-        if (empty($user->password)) {
-            $request->validate([
-                'name' => 'required|string|max:255',
-            ], [
-                'name.required' => 'Nama wajib diisi.',
-            ]);
-        } else {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email,' . $user->id,
-            ], [
-                'name.required' => 'Nama wajib diisi.',
-                'email.required' => 'Email wajib diisi.',
-                'email.email' => 'Format email tidak valid.',
-                'email.unique' => 'Email sudah digunakan.',
-            ]);
-        }
+        // Validasi dasar untuk semua user
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+        ];
+
+        $messages = [
+            'name.required' => 'Nama wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+        ];
+
+        $request->validate($rules, $messages);
 
         $user->fill([
             'name' => $request->name,
-            // Hanya update email jika bukan pengguna Google
-            'email' => empty($user->password) ? $user->email : $request->email,
+            'email' => $request->email,
         ]);
 
-        if ($user->isDirty('email') && !empty($user->password)) {
-            $user->email_verified_at = null;
+        // Reset email verification jika email berubah dan bukan Google user
+        if ($user->isDirty('email') && !$isGoogleUser) {
+            $user->forceFill(['email_verified_at' => null]);
         }
 
         $user->save();
@@ -69,6 +66,16 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request): RedirectResponse
     {
+        $user = $request->user();
+        $isGoogleUser = !is_null($user->google_id);
+
+        // Google user tidak bisa update password
+        if ($isGoogleUser) {
+            return Redirect::route('profile.edit')->withErrors([
+                'password' => 'Pengguna Google tidak dapat mengubah password.'
+            ]);
+        }
+
         $request->validate([
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'confirmed', 'min:8'],
@@ -80,7 +87,6 @@ class ProfileController extends Controller
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
-        $user = $request->user();
         $user->update([
             'password' => Hash::make($request->password),
         ]);
@@ -94,9 +100,10 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
+        $isGoogleUser = !is_null($user->google_id);
 
-        // Cek jika user memiliki password (login biasa)
-        if ($user->password) {
+        // Hanya minta password jika bukan Google user
+        if (!$isGoogleUser) {
             $request->validateWithBag('userDeletion', [
                 'password' => ['required', 'current_password'],
             ], [

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             AreaUnitsSeeder::class,
             PriceSeeder::class,
             // Add other seeders here as needed
+            AssignSuperAdminRoleSeeder::class, // <-- Tambahkan baris ini
         ]);
     }
 }

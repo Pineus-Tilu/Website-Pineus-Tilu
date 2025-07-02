@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        // Jika user baru adalah admin, redirect ke /admin (opsional, biasanya user baru bukan admin)
+        // Jika user baru adalah admin, redirect ke /admin (opsional)
         if ($user->hasRole('Super Admin')) {
             return redirect('/admin');
         }

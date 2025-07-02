@@ -15,13 +15,18 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css', 'resources/js/swiper-init.js', 'resources/js/reservasi.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css', 'resources/js/swiper-init.js'])
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
-    <!-- Lightbox2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet">
+   
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
     <!-- Ganti Font -->
@@ -66,7 +71,7 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)" x-show="show" x-transition.opacity.duration.700ms>
             @yield('content')
             @isset($slot)
                 {{ $slot }}
@@ -79,11 +84,15 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <!-- Lightbox2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="{{ asset('js/ui-helper.js') }}" defer></script>
-
+    
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            AOS.init();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 
 </html>

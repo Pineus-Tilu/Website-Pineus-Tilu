@@ -11,11 +11,11 @@ use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 Route::get('generate-pdf', [App\Http\Controllers\InvoiceController::class, 'generatePdf'])->name('generate.pdf');
 
 // Halaman Publik
-Route::get('/', fn() => view('dashboard'));
+// Route::get('/', fn() => view('dashboard'));
+Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/tentang', fn() => view('tentang'));
 Route::get('/ulasan', fn() => view('ulasan'));
-Route::get('/reservasi', fn() => view('reservasi'));
-
+Route::get('/reservasi', [ReservasiController::class, 'showReservasi'])->name('reservasi');
 // Fasilitas Route dengan data dari config
 Route::get('/fasilitas/{slug}', [FacilityController::class, 'show'])->name('fasilitas');
 

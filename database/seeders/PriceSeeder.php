@@ -14,8 +14,7 @@ class PriceSeeder extends Seeder
     {
         // Pineus Tilu I
         $units = DB::table('area_units')
-            ->join('facility', 'area_units.facility_id', '=', 'facility.id')
-            ->join('area', 'facility.area_id', '=', 'area.id')
+            ->join('area', 'area_units.area_id', '=', 'area.id')
             ->where('area.name', 'Pineus Tilu I')
             ->select('area_units.id', 'unit_name')
             ->get();
@@ -46,8 +45,7 @@ class PriceSeeder extends Seeder
 
         // Pineus Tilu II
         $units = DB::table('area_units')
-            ->join('facility', 'area_units.facility_id', '=', 'facility.id')
-            ->join('area', 'facility.area_id', '=', 'area.id')
+            ->join('area', 'area_units.area_id', '=', 'area.id')
             ->where('area.name', 'Pineus Tilu II')
             ->select('area_units.id', 'unit_name')
             ->get();
@@ -78,8 +76,7 @@ class PriceSeeder extends Seeder
 
         // Pineus Tilu III VIP (Tenda)
         $units = DB::table('area_units')
-            ->join('facility', 'area_units.facility_id', '=', 'facility.id')
-            ->join('area', 'facility.area_id', '=', 'area.id')
+            ->join('area', 'area_units.area_id', '=', 'area.id')
             ->where('area.name', 'Pineus Tilu III VIP (Tenda)')
             ->select('area_units.id', 'unit_name')
             ->get();
@@ -97,8 +94,7 @@ class PriceSeeder extends Seeder
 
         // Pineus Tilu III VIP (Kabin)
         $units = DB::table('area_units')
-            ->join('facility', 'area_units.facility_id', '=', 'facility.id')
-            ->join('area', 'facility.area_id', '=', 'area.id')
+            ->join('area', 'area_units.area_id', '=', 'area.id')
             ->where('area.name', 'Pineus Tilu III VIP (Kabin)')
             ->select('area_units.id', 'unit_name')
             ->get();
@@ -116,8 +112,7 @@ class PriceSeeder extends Seeder
 
         // Pineus Tilu IV
         $units = DB::table('area_units')
-            ->join('facility', 'area_units.facility_id', '=', 'facility.id')
-            ->join('area', 'facility.area_id', '=', 'area.id')
+            ->join('area', 'area_units.area_id', '=', 'area.id')
             ->where('area.name', 'Pineus Tilu IV')
             ->select('area_units.id', 'unit_name')
             ->get();

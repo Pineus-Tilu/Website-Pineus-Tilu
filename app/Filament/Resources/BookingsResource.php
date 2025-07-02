@@ -31,8 +31,8 @@ class BookingsResource extends Resource
                 
                 Forms\Components\Select::make('unit_id')
                     ->label('Unit/Deck')
-                    ->options(AreaUnit::with('facility.area')->get()->mapWithKeys(function ($unit) {
-                        return [$unit->id => $unit->facility->area->name . ' - ' . $unit->unit_name];
+                    ->options(AreaUnit::with('area')->get()->mapWithKeys(function ($unit) {
+                        return [$unit->id => $unit->area->name . ' - ' . $unit->unit_name];
                     }))
                     ->required()
                     ->searchable(),
@@ -58,8 +58,8 @@ class BookingsResource extends Resource
                     ->searchable()
                     ->placeholder('Guest'),
                 
-                Tables\Columns\TextColumn::make('unit.facility.area.name')
-                    ->label('Area/Fasilitas')
+                Tables\Columns\TextColumn::make('unit.area.name')
+                    ->label('Area')
                     ->sortable()
                     ->searchable(),
                 
@@ -105,8 +105,8 @@ class BookingsResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('unit_id')
                     ->label('Area/Unit')
-                    ->options(AreaUnit::with('facility.area')->get()->mapWithKeys(function ($unit) {
-                        return [$unit->id => $unit->facility->area->name . ' - ' . $unit->unit_name];
+                    ->options(AreaUnit::with('area')->get()->mapWithKeys(function ($unit) {
+                        return [$unit->id => $unit->area->name . ' - ' . $unit->unit_name];
                     })),
                 
                 Tables\Filters\Filter::make('booking_for_date')

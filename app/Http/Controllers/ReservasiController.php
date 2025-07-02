@@ -26,7 +26,7 @@ class ReservasiController extends Controller
         ]);
 
         // Cari unit_id berdasarkan area (fasilitas) dan deck
-        $unit = AreaUnit::whereHas('facility.area', function($q) use ($request) {
+        $unit = AreaUnit::whereHas('area', function($q) use ($request) {
                 $q->where('name', $request->fasilitas);
             })
             ->where('unit_name', $request->deck)
@@ -47,7 +47,7 @@ class ReservasiController extends Controller
 
         // Ambil harga dan data terkait
         $price = Price::where('unit_id', $unit->id)->first();
-        $area = Area::find($unit->facility->area_id);
+        $area = Area::find($unit->area_id);
 
         // Hitung harga sesuai season
         $tanggal = $request->tanggal_kunjungan;
@@ -82,7 +82,7 @@ class ReservasiController extends Controller
             'notes' => null,
             'total_price' => $total,
             'check_in' => $tanggal,
-            'check_out' => $checkout, // <-- checkout = hari esok setelah checkin
+            'check_out' => $checkout,
             'nama' => $request->nama,
             'telepon' => $request->telepon,
             'email' => $request->email,
@@ -131,8 +131,8 @@ class ReservasiController extends Controller
     public function showReservasi()
     {
         $areas = Area::all();
-        $areaUnits = AreaUnit::with('facility.area')->get()->groupBy(function($unit) {
-            return $unit->facility->area->name;
+        $areaUnits = AreaUnit::with('area')->get()->groupBy(function($unit) {
+            return $unit->area->name;
         });
 
         $prices = [];
@@ -141,7 +141,7 @@ class ReservasiController extends Controller
         foreach ($areaUnits as $areaName => $units) {
             foreach ($units as $unit) {
                 $price = Price::where('unit_id', $unit->id)->first();
-                $area = Area::find($unit->facility->area_id);
+                $area = Area::find($unit->area_id);
                 if ($price && $area) {
                     $prices[$areaName][$unit->unit_name] = [
                         'weekday' => (float) $price->weekday,

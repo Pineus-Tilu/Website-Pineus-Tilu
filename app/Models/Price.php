@@ -12,13 +12,14 @@ class Price extends Model
         'unit_id',
         'weekday',
         'weekend', 
-        'high_season'
+        'highseason'
     ];
 
     protected $casts = [
+        'unit_id' => 'integer',
         'weekday' => 'decimal:2',
         'weekend' => 'decimal:2',
-        'high_season' => 'decimal:2',
+        'highseason' => 'decimal:2',
     ];
 
     public function unit()

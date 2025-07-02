@@ -10,15 +10,9 @@ class Facility extends Model
     
     protected $fillable = [
         'area_id',
-        'type',
         'description',
-        'galeri',
-        'jumlah_maksimum_orang'
-    ];
-
-    protected $casts = [
-        'jumlah_maksimum_orang' => 'integer',
-        'galeri' => 'array',
+        'image_path',
+        'type'
     ];
 
     public function area()
@@ -44,6 +38,6 @@ class Facility extends Model
 
     public function getHighSeasonPriceAttribute()
     {
-        return $this->units()->with('price')->first()?->price?->high_season;
+        return $this->units()->with('price')->first()?->price?->highseason;  // Ubah ke highseason
     }
 }

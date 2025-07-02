@@ -17,8 +17,8 @@ class FasilitasResource extends Resource
 {
     protected static ?string $model = Facility::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'Fasilitas';
-    protected static ?string $pluralModelLabel = 'Fasilitas';
+    protected static ?string $navigationLabel = 'Area';
+    protected static ?string $pluralModelLabel = 'Area';
 
     public static function form(Form $form): Form
     {
@@ -31,7 +31,7 @@ class FasilitasResource extends Resource
                     ->searchable(),
                 
                 Forms\Components\Select::make('type')
-                    ->label('Tipe Fasilitas')
+                    ->label('Tipe Area')
                     ->options([
                         'pribadi' => 'Pribadi',
                         'umum' => 'Umum',
@@ -42,16 +42,11 @@ class FasilitasResource extends Resource
                     ->label('Deskripsi')
                     ->rows(3),
                 
-                Forms\Components\FileUpload::make('galeri')
-                    ->label('Galeri Fasilitas')
-                    ->multiple()
+                Forms\Components\FileUpload::make('image_path')
+                    ->label('Gambar Area')
                     ->image()
-                    ->directory('fasilitas-galeri')
-                    ->maxFiles(10),
-                
-                Forms\Components\TextInput::make('jumlah_maksimum_orang')
-                    ->label('Jumlah Maksimum Orang')
-                    ->numeric(),
+                    ->directory('area')
+                    ->maxSize(5120), // 5MB
             ]);
     }
 
@@ -84,36 +79,72 @@ class FasilitasResource extends Resource
                     ->label('Harga Weekday')
                     ->money('IDR')
                     ->getStateUsing(function (Facility $record) {
-                        // Debug: tampilkan facility_id untuk memastikan
-                        \Log::info('Facility ID: ' . $record->id);
-                        
-                        $areaUnit = AreaUnit::where('facility_id', $record->id)->first();
+                        // Ambil area units berdasarkan area yang sama dengan facility
+                        $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
                         if (!$areaUnit) {
-                            return 'Facility ID: ' . $record->id . ' - No Unit';
+                            return null;
                         }
-                        
-                        \Log::info('Area Unit ID: ' . $areaUnit->id);
                         
                         $price = Price::where('unit_id', $areaUnit->id)->first();
                         if (!$price) {
-                            return 'Unit ID: ' . $areaUnit->id . ' - No Price';
+                            return null;
                         }
                         
                         return $price->weekday;
                     })
                     ->placeholder('Belum ada harga'),
                 
-                Tables\Columns\ImageColumn::make('galeri')
-                    ->label('Galeri')
-                    ->circular()
-                    ->limit(3),
+                Tables\Columns\TextColumn::make('weekend_price')
+                    ->label('Harga Weekend')
+                    ->money('IDR')
+                    ->getStateUsing(function (Facility $record) {
+                        // Ambil area units berdasarkan area yang sama dengan facility
+                        $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
+                        if (!$areaUnit) {
+                            return null;
+                        }
+                        
+                        $price = Price::where('unit_id', $areaUnit->id)->first();
+                        if (!$price) {
+                            return null;
+                        }
+                        
+                        return $price->weekend;
+                    })
+                    ->placeholder('Belum ada harga'),
                 
-                Tables\Columns\TextColumn::make('jumlah_maksimum_orang')
-                    ->label('Maks Orang')
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('high_season_price')
+                    ->label('Harga High Season')
+                    ->money('IDR')
+                    ->getStateUsing(function (Facility $record) {
+                        // Ambil area units berdasarkan area yang sama dengan facility
+                        $areaUnit = AreaUnit::where('area_id', $record->area_id)->first();
+                        if (!$areaUnit) {
+                            return null;
+                        }
+                        
+                        $price = Price::where('unit_id', $areaUnit->id)->first();
+                        if (!$price) {
+                            return null;
+                        }
+                        
+                        return $price->highseason;
+                    })
+                    ->placeholder('Belum ada harga'),
+                
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('Gambar')
+                    ->circular()
+                    ->height(50),
                 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
+                    ->dateTime('d M Y H:i')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui')
                     ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -134,6 +165,20 @@ class FasilitasResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                
+                // Hapus atau ganti action ini karena route tidak ada
+                Tables\Actions\Action::make('view_area_units')
+                    ->label('Lihat Area Units')
+                    ->icon('heroicon-o-building-office-2')
+                    ->action(function (Facility $record) {
+                        // Redirect ke halaman area units berdasarkan area_id
+                        return redirect()->route('filament.admin.resources.area-units.index', [
+                            'tableFilters' => [
+                                'area_id' => ['value' => $record->area_id]
+                            ]
+                        ]);
+                    })
+                    ->visible(fn (Facility $record) => $record->area_id !== null),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -146,7 +191,8 @@ class FasilitasResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Jika ingin menambahkan relasi manager untuk units
+            // RelationManagers\UnitsRelationManager::class,
         ];
     }
 

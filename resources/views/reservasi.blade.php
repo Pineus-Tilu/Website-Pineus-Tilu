@@ -76,6 +76,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="harga_deck" id="harga_deck" value="0">
+                    <input type="hidden" name="status" value="pending">
                 </div>
 
                 <!-- Informasi Pengunjung -->

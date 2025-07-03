@@ -42,6 +42,14 @@
                         <div class="text-sm text-green-700">Jumlah Orang</div>
                         <div class="font-medium">{{ $jumlah_orang ?? '-' }}</div>
                     </div>
+                    <div>
+                        <div class="text-sm text-green-700">Status</div>
+                        <div class="font-medium">
+                            <span class="px-2 py-1 text-xs rounded {{ ($status ?? 'pending') === 'confirmed' ? 'bg-green-100 text-green-800' : (($status ?? 'pending') === 'cancelled' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
+                                {{ ucfirst($status ?? 'pending') }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -76,10 +84,14 @@
             <form action="{{ route('pembayaran') }}" method="GET">
                 <input type="hidden" name="nama" value="{{ $nama }}">
                 <input type="hidden" name="email" value="{{ $email }}">
+                <input type="hidden" name="telepon" value="{{ $telepon }}">
                 <input type="hidden" name="subtotal" value="{{ $subtotal }}">
-
-                <button
-                    class="w-full py-3 text-base font-semibold text-white transition bg-green-600 rounded hover:bg-green-700">
+                <input type="hidden" name="status" value="{{ $status ?? 'pending' }}">
+                <input type="hidden" name="fasilitas" value="{{ $fasilitas }}">
+                <input type="hidden" name="deck" value="{{ $deck }}">
+                <input type="hidden" name="tanggal_kunjungan" value="{{ $tanggal_kunjungan }}">
+                <input type="hidden" name="jumlah_orang" value="{{ $jumlah_orang }}">
+                <button class="w-full py-2 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700">
                     Lanjut ke Pembayaran
                 </button>
             </form>

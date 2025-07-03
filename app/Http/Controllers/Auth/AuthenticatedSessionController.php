@@ -28,6 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Redirect admin ke panel admin
+        if (auth()->user()->hasRole('Super Admin')) {
+            return redirect()->intended('/admin');
+        }
+        // Redirect user biasa ke halaman utama
         return redirect()->intended('/');
     }
 
@@ -42,6 +47,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
+        // Redirect ke dashboard setelah logout
         return redirect('/');
     }
 }

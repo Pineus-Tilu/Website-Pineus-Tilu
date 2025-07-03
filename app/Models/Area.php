@@ -7,15 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     protected $table = 'area';
-    protected $guarded = [];
+    
+    protected $fillable = [
+        'name',
+        'description',
+        'image_path',
+        'extra_charge'
+    ];
+
+    protected $casts = [
+        'extra_charge' => 'decimal:2',
+    ];
+
+    // Menambahkan accessor untuk default value jika diperlukan
+    protected $attributes = [
+        'extra_charge' => 0,
+    ];
 
     public function facilities()
     {
-        return $this->hasMany(Facility::class);
-    }
-
-    public function units()
-    {
-        return $this->hasManyThrough(AreaUnit::class, Facility::class, 'area_id', 'facility_id', 'id', 'id');
+        return $this->hasMany(Facility::class, 'area_id');
     }
 }

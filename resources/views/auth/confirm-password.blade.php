@@ -1,48 +1,48 @@
 <x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2b2a6e] via-[#16222A] to-[#3a6073] py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl w-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
-            <!-- Left Side -->
-            <div class="md:w-1/2 bg-gradient-to-br from-[#3a6073] to-[#16222A] p-10 text-white flex flex-col justify-center">
-                <h2 class="text-2xl font-bold mb-4">Confirm Password</h2>
-                <p>This is a secure area of the application. Please confirm your password before continuing.</p>
+    <div class="min-h-screen flex items-center justify-center bg-[#0d3b2e] px-4 py-16 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-[#2d6a4f] tracking-wide" style="font-family: 'Brush Script MT', cursive;">
+                    Pineus Tilu
+                </h2>
+                <p class="mt-2 text-lg font-semibold text-[#2d6a4f]">
+                    Konfirmasi Password
+                </p>
+                <p class="mt-1 text-sm text-gray-500 italic">
+                    "Ini adalah area aman aplikasi. Silakan konfirmasi password Anda sebelum melanjutkan."
+                </p>
             </div>
 
-            <!-- Right Side (Confirm Password Form) -->
-            <div class="md:w-1/2 p-8 bg-white">
-                <!-- Session Status -->
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
+            <!-- Session Status -->
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600 bg-green-50 p-3 rounded-lg border border-green-200">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-                <div class="flex justify-center mb-6">
-                    <div class="bg-[#1e3c72] rounded-full p-4">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
-                        </svg>
-                    </div>
+            <form method="POST" action="{{ route('password.confirm') }}" class="space-y-5">
+                @csrf
+
+                <!-- Password -->
+                <div>
+                    <x-input-label for="password" :value="__('Password')" class="text-gray-700" />
+                    <x-text-input id="password" class="block mt-1 w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" 
+                        type="password" 
+                        name="password" 
+                        required autocomplete="current-password" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 text-sm" />
                 </div>
 
-                <form method="POST" action="{{ route('password.confirm') }}">
-                    @csrf
+                <!-- Submit Button -->
+                <div>
+                    <x-primary-button class="w-full bg-[#2d6a4f] hover:bg-[#1b4332] text-white font-semibold py-3 px-4 rounded-md transition duration-200">
+                        {{ __('Konfirmasi') }}
+                    </x-primary-button>
+                </div>
+            </form>
 
-                    <!-- Password -->
-                    <div>
-                        <x-input-label for="password" :value="__('Password')" />
-                        <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-
-                    <div class="flex justify-end mt-6">
-                        <x-primary-button class="w-full bg-gradient-to-r from-[#2a5298] to-[#1e3c72] hover:from-[#3a70b0] hover:to-[#2a3a80]">
-                            {{ __('Confirm') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+            <div class="text-center text-sm text-gray-600">
+                <a href="{{ route('dashboard') }}" class="text-green-700 font-medium hover:underline">Kembali ke Dashboard</a>
             </div>
         </div>
     </div>

@@ -51,13 +51,9 @@ class AreaUnitsSeeder extends Seeder
             $area = DB::table('area')->where('name', $unit['area_name'])->first();
             if (!$area) continue;
 
-            // Ambil facility_id pertama untuk area ini
-            $facility = DB::table('facility')->where('area_id', $area->id)->first();
-            if (!$facility) continue;
-
             for ($i = 1; $i <= $unit['deck']; $i++) {
                 DB::table('area_units')->insert([
-                    'facility_id' => $facility->id,
+                    'area_id' => $area->id,
                     'unit_name' => 'Deck ' . $i,
                     'default_people' => $unit['default'],
                     'max_people' => $unit['max'],

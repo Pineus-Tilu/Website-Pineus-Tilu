@@ -19,6 +19,11 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            // Jika user adalah admin, redirect ke /admin
+            if (Auth::user()->hasRole('Super Admin')) {
+                return redirect('/admin');
+            }
+            // Jika user biasa, redirect ke dashboard
             return redirect()->route('dashboard');
         }
 
@@ -45,6 +50,11 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        // Jika user baru adalah admin, redirect ke /admin (opsional)
+        if ($user->hasRole('Super Admin')) {
+            return redirect('/admin');
+        }
 
         return redirect()->route('dashboard');
     }

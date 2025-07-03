@@ -2,20 +2,20 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Navigation\UserMenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use Filament\Facades\Filament;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Facades\Filament;
-use Illuminate\Support\Facades\Route;
+use Filament\Http\Responses\Auth\Contracts\LogoutResponse;
 
 class AdminPanelProvider extends PanelProvider
 {

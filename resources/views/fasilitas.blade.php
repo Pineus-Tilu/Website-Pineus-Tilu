@@ -67,7 +67,7 @@
             </div>
         </div>
         
-        <!-- Enhanced Modal Denah with Zoom -->
+        <!-- Enhanced Modal Denah with Zoom (HANYA SATU MODAL INI SAJA) -->
         <div x-show="showDenah" 
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
@@ -142,18 +142,6 @@
                     <p>• ESC untuk keluar</p>
                 </div>
             </div>
-        
-        <!-- Modal Denah -->
-        <div x-show="showDenah" x-transition @click.self="showDenah = false"
-            class="fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-90" style="display: none;">
-            <button @click="showDenah = false"
-                class="absolute top-6 right-6 z-[100000] p-3 text-white bg-red-600 rounded-full hover:bg-red-700 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <img src="{{ asset('images/' . $data['denah']) }}" alt="Denah {{ $data['title'] }}"
-                class="max-h-[85vh] max-w-[85vw] object-contain rounded-lg shadow-2xl bg-white p-2" />
         </div>
     </section>
 

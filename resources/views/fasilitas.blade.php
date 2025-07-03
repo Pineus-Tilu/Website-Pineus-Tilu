@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $data['title'] . ' - Pineus Tilu')
+
 @section('content')
 <div class="max-w-full overflow-hidden">
     @include('partials.fasilitas.hero-fasilitas-section', ['data' => $data])

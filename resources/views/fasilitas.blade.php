@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="max-w-full overflow-hidden">
-    @include('partials.hero-fasilitas-section', ['data' => $data])
-    @include('partials.denah-fasilitas-section', ['data' => $data])
-    @include('partials.fasilitas-fasilitas-section', ['data' => $data])
-    @include('partials.harga-fasilitas-section', ['data' => $data])
+    @include('partials.fasilitas.hero-fasilitas-section', ['data' => $data])
+    @include('partials.fasilitas.denah-fasilitas-section', ['data' => $data])
+    @include('partials.fasilitas.fasilitas-fasilitas-section', ['data' => $data])
+    @include('partials.fasilitas.harga-fasilitas-section', ['data' => $data])
     @if (!empty($data['galeri']) && count($data['galeri']))
-        @include('partials.galeri-fasilitas-section', ['data' => $data])
+        @include('partials.fasilitas.galeri-fasilitas-section', ['data' => $data])
     @endif
-    @include('partials.reservasi-fasilitas-section')
+    @include('partials.fasilitas.reservasi-fasilitas-section')
 </div>
 
 <!-- Add custom styles for better interaction -->

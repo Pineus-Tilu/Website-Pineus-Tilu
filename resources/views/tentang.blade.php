@@ -2,8 +2,8 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative flex items-center justify-center h-[85vh] px-6 text-white bg-center bg-cover"
-        style="background-image: url('/images/tentang-hero.jpg')">
+    <section class="relative flex items-center justify-center h-[60vh] px-6 text-white bg-center bg-cover"
+        style="background-image: url('/images/tentang.jpg')">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         <div class="relative z-10 text-center">
             <h1 class="text-4xl font-bold md:text-6xl jp-brush animate-fade-in">Tentang Kami Untuk Lebih Lanjut</h1>
@@ -140,27 +140,6 @@
 
             <!-- Penjadwalan & Pembatalan -->
             <div class="grid gap-8 md:grid-cols-2">
-                <div class="p-6 bg-white border-t-4 border-blue-500 shadow-md rounded-lg">
-                    <h3 class="mb-4 text-xl font-bold text-center jp-brush text-blue-700">📅 Penjadwalan Ulang</h3>
-                    <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                        <li class="flex justify-between p-2 bg-green-50 rounded">
-                            <span>Sebelum H-7</span>
-                            <span class="font-bold text-green-600">GRATIS</span>
-                        </li>
-                        <li class="flex justify-between p-2 bg-yellow-50 rounded">
-                            <span>H-7 s.d H-3</span>
-                            <span class="font-bold text-yellow-600">Tambahan biaya</span>
-                        </li>
-                        <li class="flex justify-between p-2 bg-orange-50 rounded">
-                            <span>H-2 to H-1</span>
-                            <span class="font-bold text-orange-600">+250rb/tenda</span>
-                        </li>
-                        <li class="flex justify-between p-2 bg-red-50 rounded">
-                            <span>H (hari H)</span>
-                            <span class="font-bold text-red-600">Sesuai harga tenda</span>
-                        </li>
-                    </ul>
-                </div>
                 <div class="p-6 bg-white border-t-4 border-red-500 shadow-md rounded-lg">
                     <h3 class="mb-4 text-xl font-bold text-center jp-brush text-red-700">❌ Pembatalan</h3>
                     <ul class="space-y-3 text-sm md:text-base font-typewriter">
@@ -182,17 +161,15 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            
-            <!-- Keterangan -->
-            <div class="p-6 mt-8 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="p-6 mt-8 bg-blue-50 border border-blue-200 rounded-lg">
                 <h4 class="mb-3 text-lg font-bold text-blue-800 jp-brush">📌 Keterangan Penting:</h4>
                 <ul class="space-y-2 text-sm text-blue-700 font-typewriter">
                     <li>• Kelebihan biaya/refund akan ditransfer paling lambat 14 hari kerja setelah pengiriman informasi rekening penerima</li>
                     <li>• Refund karena gagal reservasi maksimal diproses paling lambat 3 hari kerja setelah pengiriman informasi rekening</li>
                     <li>• Apabila terjadi suatu hal yang di luar kuasa kami, contoh: PPKM yang membuat kami terpaksa harus tutup, biaya refund dipotong 50%</li>
-                    <li>• Untuk penjadwalan ulang dan pembatalan harap hubungi admin kami yang telah kami sediakan di bagian kontak</li>
+                    <li>• Untuk pembatalan harap hubungi admin kami yang telah kami sediakan di bagian kontak</li>
                 </ul>
+            </div>
             </div>
         </div>
     </section>

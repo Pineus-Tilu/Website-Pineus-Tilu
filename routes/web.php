@@ -4,11 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\InvoiceController; // ✅ Invoice PDF
 use App\Http\Controllers\FacilityController; // ✅ Fasilitas
 use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 
-
-Route::get('generate-pdf', [App\Http\Controllers\InvoiceController::class, 'generatePdf'])->name('generate.pdf');
 
 // Halaman Publik
 // Route::get('/', fn() => view('dashboard'));
@@ -40,3 +39,8 @@ Route::post('/detailpembelian', [ReservasiController::class, 'detailPembelian'])
 // Pembayaran
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
 Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');
+
+// Invoice PDF
+Route::get('/invoice/{booking_id}', [InvoiceController::class, 'generateInvoice'])->name('invoice');
+
+

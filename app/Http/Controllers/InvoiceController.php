@@ -2,29 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Booking;
 
 class InvoiceController extends Controller
 {
-   public function generatePdf(Request $request)
+    public function generateInvoice($id)
     {
-        // Ambil data dari request atau buat data dummy
-        $data = [
-            'title' => 'Invoice',
-            'date' => now()->format('Y-m-d'),
-            'items' => [
-                ['name' => 'Item 1', 'price' => 100],
-                ['name' => 'Item 2', 'price' => 200],
-            ],
-            'total' => 300,
-        ];
+        // Ambil booking beserta detailnya
+        $booking = Booking::with('bookingDetails.unit.facility.area')->findOrFail($id);
 
-        // Buat PDF
-        $pdf = Pdf::loadView('invoice', $data);
+        // Render view ke PDF
+        $pdf = Pdf::loadView('invoice', compact('booking'));
 
-        // Kembalikan PDF sebagai response
-        return $pdf->download('invoice.pdf');
+        // Optional: Set paper size dan orientation (misal A4 potrait)
+        $pdf->setPaper('A4', 'landscape');
+
+        // Nama file download
+        $fileName = 'invoice-' . $booking->invoice_number . '.pdf';
+
+        return $pdf->stream($fileName);
     }
 }

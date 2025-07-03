@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->date('expired_at')->nullable();
             $table->text('qr_url')->nullable();
             $table->text('qr_string')->nullable();
+            $table->string('snap_token')->nullable();
             $table->timestamps();
         });
     }

@@ -1,67 +1,95 @@
 <!-- Awal Mula Pineus Tilu - Mobile Responsive -->
-<section class="relative py-12 md:py-20 bg-gradient-to-br from-gray-50 to-green-50 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
-    <!-- Background Decorations -->
+<section class="relative py-16 md:py-24 bg-white overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full bg-green-300 animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 rounded-full bg-green-400 animate-pulse delay-1000"></div>
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <defs>
+                <pattern id="pine-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M10 2L6 8h8l-4-6z M10 8L6 14h8l-4-6z M10 14L6 20h8l-4-6z M10 20v2" stroke="#10b981" stroke-width="0.5" fill="none"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#pine-pattern)"/>
+        </svg>
     </div>
 
-    <div class="container relative z-10 max-w-6xl px-4 mx-auto">
-        <div class="text-center mb-12 md:mb-16">
-            <h2 class="mb-4 text-3xl font-bold text-green-800 sm:text-4xl md:text-5xl jp-brush" data-aos="fade-down" data-aos-delay="200">
+    <!-- Background Decorative Elements -->
+    <div class="absolute inset-0">
+        <!-- Floating Circles -->
+        <div class="absolute top-20 left-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64">
+            <div class="w-full h-full rounded-full bg-green-100/30 border-2 border-green-200/40 animate-float"></div>
+        </div>
+        <div class="absolute bottom-20 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48">
+            <div class="w-full h-full rounded-full bg-emerald-100/30 border-2 border-emerald-200/40 animate-float-delayed"></div>
+        </div>
+        <div class="absolute top-1/2 left-1/4 w-16 h-16 md:w-24 md:h-24">
+            <div class="w-full h-full rounded-full bg-green-50/50 border border-green-300/30 animate-float-slow"></div>
+        </div>
+        
+        <!-- Abstract Shapes -->
+        <div class="absolute top-1/4 right-1/4 w-20 h-20 transform rotate-45 bg-emerald-100/20 border border-emerald-200/30 animate-spin-slow"></div>
+        <div class="absolute bottom-1/3 left-1/3 w-12 h-12 transform rotate-12 bg-green-100/25 border border-green-200/35 animate-bounce-subtle"></div>
+    </div>
+
+    <div class="container relative z-10 max-w-7xl px-4 mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-16 md:mb-20">
+            <h2 class="mb-6 text-4xl font-bold text-green-800 sm:text-5xl md:text-6xl jp-brush" data-aos="fade-down" data-aos-delay="200">
                 Awal Mula Pineus Tilu
             </h2>
-            <div class="w-20 h-1 mx-auto mb-6 bg-gradient-to-r from-green-500 to-green-700 rounded-full sm:w-24 md:w-32 md:mb-8" data-aos="fade-up" data-aos-delay="300"></div>
-            <p class="text-lg text-gray-600 font-typewriter max-w-3xl mx-auto sm:text-xl" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-24 h-1.5 mx-auto mb-8 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 rounded-full sm:w-32 md:w-40 md:mb-10" data-aos="fade-up" data-aos-delay="300"></div>
+            <p class="text-xl text-gray-600 font-typewriter max-w-4xl mx-auto sm:text-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="400">
                 Sebuah perjalanan dari pencarian pengalaman baru menuju penciptaan surga alam
             </p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            <!-- Story Content -->
-            <div class="space-y-4 md:space-y-6" data-aos="fade-right" data-aos-delay="500">
-                <div class="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-start space-x-3 md:space-x-4 mb-4 md:mb-6">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <!-- Story Timeline -->
+            <div class="space-y-6 md:space-y-8" data-aos="fade-right" data-aos-delay="500">
+                <!-- Timeline Item 1 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                    <div class="flex items-start space-x-5">
+                        <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2 font-typewriter">Mei 2020</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-sm md:text-base">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Mei 2020</h3>
+                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
                                 Pada masa awal pandemi, saya dan keluarga praktis tak pernah keluar rumah. Namun di akhir Agustus, karena bosan, kami nekat jalan-jalan ke daerah sepi—gunung dan hutan.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-start space-x-3 md:space-x-4 mb-4 md:mb-6">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Timeline Item 2 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                    <div class="flex items-start space-x-5">
+                        <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 718.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2 font-typewriter">Malam Pertama</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-sm md:text-base">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Malam Pertama</h3>
+                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
                                 Setelah menjelajah Ciwidey dan Pangalengan, kami bingung mencari penginapan. Akhirnya, kami ditawari menginap di tepi Sungai Palayangan dengan tenda Arpenaz Family 4.0.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl md:rounded-2xl p-6 md:p-8 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <div class="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Timeline Item 3 - Highlight -->
+                <div class="relative bg-gradient-to-br from-green-500 via-emerald-500 to-green-600 rounded-2xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
+                    <div class="flex items-start space-x-5">
+                        <div class="flex-shrink-0 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold mb-2 font-typewriter">Pagi yang Menginspirasi</h3>
-                            <p class="leading-relaxed font-typewriter text-sm md:text-base">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-3 font-typewriter">Pagi yang Menginspirasi</h3>
+                            <p class="leading-relaxed font-typewriter text-lg text-white/95">
                                 Pengalaman tidur di tengah hutan dengan suara sungai yang menenangkan ternyata luar biasa. Pemandangan sinar matahari di antara pepohonan pinus sangat indah dan menyentuh.
                             </p>
                         </div>
@@ -69,43 +97,90 @@
                 </div>
             </div>
 
-            <!-- Visual Content -->
-            <div class="space-y-4 md:space-y-6" data-aos="fade-left" data-aos-delay="600">
-                <div class="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-green-100">
-                    <blockquote class="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6 italic font-typewriter text-center">
+            <!-- Content & Stats Section -->
+            <div class="space-y-6 md:space-y-8" data-aos="fade-left" data-aos-delay="600">
+                <!-- Quote & Story -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500">
+                    <blockquote class="text-3xl font-bold text-gray-800 mb-6 italic font-typewriter text-center leading-tight">
                         "Andai punya tempat sendiri di sini..."
                     </blockquote>
-                    <p class="text-gray-600 leading-relaxed font-typewriter mb-4 md:mb-6 text-sm md:text-base">
-                        Dari situlah lahir <span class="font-bold text-green-600">PINEUS TILU Riverside Camping Ground</span>—tempat yang menawarkan pengalaman ruang yang menenangkan, visual alami yang indah, dan suasana privat dengan tiga pohon pinus ikonik yang menjorok ke sungai.
+                    <div class="h-1 w-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mb-6"></div>
+                    <p class="text-gray-600 leading-relaxed font-typewriter mb-8 text-lg">
+                        Dari situlah lahir <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">PINEUS TILU Riverside Camping Ground</span>—tempat yang menawarkan pengalaman ruang yang menenangkan, visual alami yang indah, dan suasana privat dengan tiga pohon pinus ikonik yang menjorok ke sungai.
                     </p>
-                    <div class="bg-green-50 rounded-lg md:rounded-xl p-4 md:p-6 border-l-4 border-green-500">
-                        <p class="text-green-800 font-semibold font-typewriter text-sm md:text-base">
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border-l-4 border-green-500 shadow-inner">
+                        <p class="text-green-800 font-bold font-typewriter text-lg text-center">
                             Feel the awesome space, feel the incredible experience.
                         </p>
                     </div>
                 </div>
 
-                <!-- Stats -->
-                <div class="grid grid-cols-2 gap-3 md:gap-4">
-                    <div class="bg-white rounded-lg md:rounded-xl p-4 md:p-6 text-center shadow-lg border border-green-100">
-                        <div class="text-2xl md:text-3xl font-bold text-green-600 mb-1 md:mb-2 font-typewriter">7</div>
-                        <div class="text-gray-600 font-typewriter text-sm md:text-base">Deck Kayu</div>
+                <!-- Statistics Cards -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">7</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu</div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
-                    <div class="bg-white rounded-lg md:rounded-xl p-4 md:p-6 text-center shadow-lg border border-green-100">
-                        <div class="text-2xl md:text-3xl font-bold text-green-600 mb-1 md:mb-2 font-typewriter">9</div>
-                        <div class="text-gray-600 font-typewriter text-sm md:text-base">Tenda</div>
+                    <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">9</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda</div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                 </div>
 
-                <!-- Signature -->
-                <div class="bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 text-white shadow-lg">
-                    <div class="text-right">
-                        <p class="font-bold mb-2 font-typewriter text-sm md:text-base">Bandung, 24 Juni 2021</p>
-                        <p class="text-gray-300 font-typewriter text-sm md:text-base">BSBarchitect</p>
-                        <p class="text-green-400 font-bold font-typewriter text-sm md:text-base">PINEUS TILU Riverside Camping Ground</p>
+                <!-- Signature Card -->
+                <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl p-8 text-white shadow-2xl border border-gray-700/50">
+                    <div class="text-right space-y-2">
+                        <div class="h-1 w-24 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full ml-auto mb-4"></div>
+                        <p class="font-bold text-lg font-typewriter text-gray-200">Bandung, 24 Juni 2021</p>
+                        <p class="text-gray-400 font-typewriter">BSBarchitect</p>
+                        <p class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-bold font-typewriter text-lg">
+                            PINEUS TILU Riverside Camping Ground
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Custom Animations -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes float-delayed {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(45deg); }
+            to { transform: rotate(405deg); }
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0px) rotate(12deg); }
+            50% { transform: translateY(-5px) rotate(12deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float-delayed 8s ease-in-out infinite 2s;
+        }
+        .animate-float-slow {
+            animation: float-slow 10s ease-in-out infinite 4s;
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 4s ease-in-out infinite;
+        }
+    </style>
 </section>

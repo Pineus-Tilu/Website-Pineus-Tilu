@@ -70,21 +70,170 @@
                     @endforeach
                 </div>
 
-                <!-- Enhanced Navigation -->
-                <div class="swiper-button-prev !w-10 !h-10 sm:!w-12 sm:!h-12 md:!w-14 md:!h-14 !mt-0 !top-1/2 !-translate-y-1/2 !left-2 sm:!left-4 !bg-white/20 !backdrop-blur-sm !rounded-full !border-2 !border-white/30 hover:!bg-white/30 transition-all duration-300">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
+                <!-- Enhanced Navigation Buttons -->
+                <div class="swiper-button-prev custom-nav-btn">
+                    <div class="nav-btn-content">
+                        <svg class="nav-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </div>
                 </div>
-                <div class="swiper-button-next !w-10 !h-10 sm:!w-12 sm:!h-12 md:!w-14 md:!h-14 !mt-0 !top-1/2 !-translate-y-1/2 !right-2 sm:!right-4 !bg-white/20 !backdrop-blur-sm !rounded-full !border-2 !border-white/30 hover:!bg-white/30 transition-all duration-300">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
+                
+                <div class="swiper-button-next custom-nav-btn">
+                    <div class="nav-btn-content">
+                        <svg class="nav-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
                 </div>
 
                 <!-- Enhanced Pagination -->
-                <div class="swiper-pagination !bottom-0"></div>
+                <div class="swiper-pagination custom-pagination"></div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Custom Styles for Navigation -->
+<style>
+    /* Custom Navigation Buttons */
+    .custom-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px !important;
+        height: 48px !important;
+        margin-top: 0 !important;
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-nav-btn::after {
+        display: none !important;
+    }
+
+    .custom-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25) !important;
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .custom-nav-btn.swiper-button-disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: translateY(-50%) scale(0.9);
+    }
+
+    .nav-btn-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .nav-btn-icon {
+        width: 20px;
+        height: 20px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .custom-nav-btn:hover .nav-btn-icon {
+        color: #ffffff;
+        transform: scale(1.2);
+    }
+
+    /* Previous Button Position */
+    .swiper-button-prev.custom-nav-btn {
+        left: 16px;
+    }
+
+    /* Next Button Position */
+    .swiper-button-next.custom-nav-btn {
+        right: 16px;
+    }
+
+    /* Custom Pagination */
+    .custom-pagination {
+        bottom: 0 !important;
+        text-align: center;
+    }
+
+    .custom-pagination .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.4);
+        opacity: 1;
+        margin: 0 6px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .custom-pagination .swiper-pagination-bullet-active {
+        background: white;
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: scale(1.2);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 640px) {
+        .custom-nav-btn {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        
+        .nav-btn-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .swiper-button-prev.custom-nav-btn {
+            left: 12px;
+        }
+        
+        .swiper-button-next.custom-nav-btn {
+            right: 12px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .custom-nav-btn {
+            width: 56px !important;
+            height: 56px !important;
+        }
+        
+        .nav-btn-icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .swiper-button-prev.custom-nav-btn {
+            left: 24px;
+        }
+        
+        .swiper-button-next.custom-nav-btn {
+            right: 24px;
+        }
+    }
+
+    /* Hover Effects */
+    .custom-nav-btn:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)) !important;
+    }
+
+    .custom-nav-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+</style>

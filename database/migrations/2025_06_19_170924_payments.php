@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
             $table->string('order_id')->unique();
-            $table->string('transaction_id')->unique();
+            $table->string('transaction_id')->unique(); // Hapus unique() dan tambah nullable()
             $table->string('payment_type');
             $table->string('transaction_status');
             $table->string('fraud_status')->nullable();
@@ -19,7 +19,6 @@ return new class extends Migration {
             $table->date('expired_at')->nullable();
             $table->text('qr_url')->nullable();
             $table->text('qr_string')->nullable();
-            $table->string('snap_token')->nullable();
             $table->timestamps();
         });
     }

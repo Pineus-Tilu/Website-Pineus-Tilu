@@ -6,7 +6,7 @@
 <div class="max-w-full overflow-hidden">
     <!-- Hero Section -->
     <section class="relative flex items-center justify-center h-[55vh] px-6 text-white bg-center bg-cover bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] overflow-hidden">
-        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="absolute inset-0"></div>
         
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">

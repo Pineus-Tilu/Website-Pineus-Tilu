@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tentang - Pineus Tilu')
+
 @section('content')
     <!-- Hero Section -->
     <section class="relative flex items-center justify-center h-[60vh] px-6 text-white bg-center bg-cover"
@@ -14,7 +16,7 @@
     </section>
 
     <!-- Kontak Kami - HIJAU -->
-    <section class="bg-gradient-to-r from-[#00291F] to-[#004030] text-white px-6 py-16">
+    <section class="bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white px-6 py-16">
         <div class="max-w-4xl mx-auto text-center">
             <div class="mb-8">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">Kontak Kami</h2>
@@ -208,7 +210,7 @@
     </section>
 
     <!-- Informasi Biaya Parkir - HIJAU -->
-    <section class="px-6 py-20 text-white bg-gradient-to-r from-[#00291F] to-[#004030]">
+    <section class="px-6 py-20 text-white bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36]">
         <div class="max-w-5xl mx-auto">
             <div class="mb-12 text-center">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🚗 Informasi Biaya Parkir</h2>
@@ -282,7 +284,7 @@
             
             <div class="overflow-hidden shadow-2xl bg-gray-50 rounded-2xl">
                 <!-- Header -->
-                <div class="bg-gradient-to-r from-[#006C43] to-[#008854] text-white text-center py-8">
+                <div class="bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white text-center py-8">
                     <h3 class="text-2xl font-bold jp-brush">📋 PERNYATAAN PERSETUJUAN</h3>
                     <p class="mt-2 text-sm opacity-90 font-typewriter">Berlaku untuk semua pengunjung mulai Januari 2022</p>
                 </div>

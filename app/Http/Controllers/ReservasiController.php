@@ -27,9 +27,9 @@ class ReservasiController extends Controller
         ]);
 
         // Cari unit_id berdasarkan area (fasilitas) dan deck
-        $unit = AreaUnit::whereHas('area', function($q) use ($request) {
-                $q->where('name', $request->fasilitas);
-            })
+        $unit = AreaUnit::whereHas('area', function ($q) use ($request) {
+            $q->where('name', $request->fasilitas);
+        })
             ->where('unit_name', $request->deck)
             ->first();
 
@@ -40,7 +40,7 @@ class ReservasiController extends Controller
         // Validasi tanggal sudah dipesan (hanya yang status success dan pending)
         $sudahDipesan = Booking::where('unit_id', $unit->id)
             ->where('booking_for_date', $request->tanggal_kunjungan)
-            ->whereHas('status', function($q) {
+            ->whereHas('status', function ($q) {
                 $q->whereIn('name', ['pending', 'success']);
             })
             ->exists();
@@ -147,7 +147,7 @@ class ReservasiController extends Controller
     public function showReservasi()
     {
         $areas = Area::all();
-        $areaUnits = AreaUnit::with('area')->get()->groupBy(function($unit) {
+        $areaUnits = AreaUnit::with('area')->get()->groupBy(function ($unit) {
             return $unit->area->name;
         });
 
@@ -170,7 +170,7 @@ class ReservasiController extends Controller
                 }
                 // Ambil tanggal yang sudah dipesan untuk unit ini (hanya yang aktif: pending dan success)
                 $bookedDates[$unit->unit_name] = Booking::where('unit_id', $unit->id)
-                    ->whereHas('status', function($q) {
+                    ->whereHas('status', function ($q) {
                         $q->whereIn('name', ['pending', 'success']);
                     })
                     ->pluck('booking_for_date')

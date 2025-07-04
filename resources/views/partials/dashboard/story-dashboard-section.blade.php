@@ -67,7 +67,7 @@
                     <div class="flex items-start space-x-5">
                         <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 718.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"></path>
                             </svg>
                         </div>
                         <div class="flex-1">
@@ -91,6 +91,23 @@
                             <h3 class="text-2xl font-bold mb-3 font-typewriter">Pagi yang Menginspirasi</h3>
                             <p class="leading-relaxed font-typewriter text-lg text-white/95">
                                 Pengalaman tidur di tengah hutan dengan suara sungai yang menenangkan ternyata luar biasa. Pemandangan sinar matahari di antara pepohonan pinus sangat indah dan menyentuh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                    <div class="flex items-start space-x-5">
+                        <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Ide Brilian</h3>
+                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
+                                Dari situlah lahir ide untuk menciptakan sebuah tempat yang menggabungkan keindahan alam dengan kenyamanan modern. Sebuah tempat di mana orang bisa merasakan kedamaian alam.
                             </p>
                         </div>
                     </div>
@@ -119,14 +136,30 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
                         <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">7</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
                         <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">9</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
+                </div>
+
+                <!-- Vision Card -->
+                <div class="bg-gradient-to-br from-emerald-600 via-green-600 to-emerald-700 rounded-2xl p-8 text-white shadow-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold font-typewriter">Visi Kami</h3>
+                    </div>
+                    <p class="leading-relaxed font-typewriter text-white/95">
+                        Menjadi destinasi camping ground terbaik yang memadukan keindahan alam dengan fasilitas modern, memberikan pengalaman tak terlupakan bagi setiap pengunjung.
+                    </p>
                 </div>
 
                 <!-- Signature Card -->

@@ -91,7 +91,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                         </svg>
                                     </div>
-                                    <p class="font-bold text-lg font-typewriter">Klik untuk Peta Interaktif</p>
+                                    <p class="font-bold text-lg font-typewriter">Klik untuk Melihat Google Maps</p>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
 
                     <!-- Map Badge -->
                     <div class="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold shadow-lg animate-pulse">
-                        🗺️ Klik untuk Zoom
+                        🗺️ Klik untuk Melihat
                     </div>
                 </div>
 

@@ -40,6 +40,10 @@ Route::post('/reservasi/store', [ReservasiController::class, 'storeReservasi'])-
 // Pembayaran - mendukung GET dan POST
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
 Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');
+Route::get('/pembayaran/finish', [PembayaranController::class, 'finish'])->name('pembayaran.finish');
+
+// Midtrans callback
+Route::post('/pembayaran/callback', [PembayaranController::class, 'callback'])->name('pembayaran.callback');
 
 // Invoice PDF
 Route::get('/invoice/{booking_id}', [InvoiceController::class, 'generateInvoice'])->name('invoice');

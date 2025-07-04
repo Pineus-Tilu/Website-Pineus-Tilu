@@ -119,12 +119,12 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
                         <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">7</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
                         <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">9</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda</div>
+                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                 </div>

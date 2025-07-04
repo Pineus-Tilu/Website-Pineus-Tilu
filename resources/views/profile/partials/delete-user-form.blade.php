@@ -29,7 +29,7 @@
                         id="password"
                         name="password"
                         type="password"
-                        class="mt-1 block w-3/4"
+                        class="block w-3/4 mt-1"
                         placeholder="{{ __('Password') }}"
                     />
 
@@ -41,7 +41,7 @@
                 </p>
             @endif
 
-            <div class="mt-6 flex justify-end">
+            <div class="flex justify-end mt-6">
                 <x-secondary-button x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
                 </x-secondary-button>

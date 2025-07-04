@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pembayaran')
+@section('title', 'Pembayaran - Pineus Tilu')
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-green-700">

@@ -1,51 +1,82 @@
 <x-guest-layout>
-    <div class="min-h-screen flex items-center justify-center bg-[#0d3b2e] px-4 py-16 sm:px-6 lg:px-8">
-        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
-            <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-[#2d6a4f] tracking-wide" style="font-family: 'Brush Script MT', cursive;">
-                    Pineus Tilu
-                </h2>
-                <p class="mt-2 text-lg font-semibold text-[#2d6a4f]">
-                    Verifikasi Email
-                </p>
-                <p class="mt-1 text-sm text-gray-500 italic">
-                    "Untuk mengaktifkan akun Anda, silakan periksa kotak masuk email dan klik link verifikasi yang telah kami kirimkan."
-                </p>
-            </div>
+    @section('title', 'Verifikasi Email - Pineus Tilu Riverside Camping Ground')
 
-            <!-- Email Icon -->
-            <div class="flex justify-center">
-                <div class="bg-[#2d6a4f] rounded-full p-4">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] px-4 py-8 relative overflow-hidden">
+        <!-- Mobile Back Button -->
+        <div class="md:hidden absolute top-6 left-6 z-20">
+            <a href="{{ route('dashboard') }}" 
+               class="inline-flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-white/30 hover:bg-white/90 hover:scale-105 transition-all duration-300 group">
+                <svg class="w-5 h-5 text-[#006C43] group-hover:text-[#005A36] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-20 w-40 h-40 bg-white/5 rounded-full animate-pulse"></div>
+            <div class="absolute bottom-20 right-20 w-32 h-32 bg-white/10 rounded-full animate-bounce"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/5 rounded-full animate-ping"></div>
+        </div>
+
+        <div class="w-full max-w-md relative z-10">
+            <div class="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-8 space-y-6 border border-white/20">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <!-- Logo -->
+                    <div class="mx-auto w-50 h-50 mb-6">
+                        <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
+                             class="w-full h-full object-contain drop-shadow-lg">
+                    </div>
+                    <p class="text-sm text-gray-600 font-typewriter italic text-center leading-relaxed">
+                        "Terima kasih telah mendaftar! Silakan periksa email Anda dan klik link verifikasi untuk mengaktifkan akun."
+                    </p>
                 </div>
-            </div>
 
-            <div class="text-center text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
-                {{ __('Terima kasih telah mendaftar! Sebelum memulai, bisakah Anda memverifikasi alamat email Anda dengan mengklik link yang baru saja kami kirimkan kepada Anda? Jika Anda tidak menerima email, kami dengan senang hati akan mengirimkan yang lain.') }}
-            </div>
-
-            @if (session('status') == 'verification-link-sent')
-                <div class="font-medium text-sm text-green-600 bg-green-50 p-3 rounded-lg border border-green-200">
-                    {{ __('Link verifikasi baru telah dikirim ke alamat email yang Anda berikan saat pendaftaran.') }}
+                <!-- Info Message -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p class="text-sm text-blue-800 font-typewriter text-center">
+                        {{ __('Kami telah mengirimkan link verifikasi ke email Anda. Silakan cek kotak masuk atau folder spam.') }}
+                    </p>
                 </div>
-            @endif
 
-            <div class="space-y-4">
-                <form method="POST" action="{{ route('verification.send') }}">
-                    @csrf
-                    <x-primary-button class="w-full bg-[#2d6a4f] hover:bg-[#1b4332] text-white font-semibold py-3 px-4 rounded-md transition duration-200">
-                        {{ __('Kirim Ulang Email Verifikasi') }}
-                    </x-primary-button>
-                </form>
+                <!-- Success Message -->
+                @if (session('status') == 'verification-link-sent')
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p class="text-sm text-green-800 font-typewriter text-center">
+                            {{ __('Link verifikasi baru telah dikirim ke alamat email Anda.') }}
+                        </p>
+                    </div>
+                @endif
 
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="w-full text-center text-sm text-gray-600 hover:text-gray-900 py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-50 transition duration-200">
-                        {{ __('Keluar') }}
-                    </button>
-                </form>
+                <!-- Actions -->
+                <div class="space-y-4">
+                    <!-- Resend Button -->
+                    <form method="POST" action="{{ route('verification.send') }}">
+                        @csrf
+                        <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                            Kirim Ulang Email Verifikasi
+                        </button>
+                    </form>
+
+                    <!-- Logout Button -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full bg-white border-2 border-gray-200 text-gray-700 font-medium py-3 px-6 rounded-xl hover:bg-gray-50 transition-all duration-300 font-typewriter">
+                            Keluar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Email Tips -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h4 class="text-sm font-bold text-yellow-800 font-typewriter mb-2">💡 Tips:</h4>
+                    <ul class="text-xs text-yellow-700 font-typewriter space-y-1">
+                        <li>• Periksa folder spam/junk mail</li>
+                        <li>• Tunggu beberapa menit untuk email masuk</li>
+                        <li>• Pastikan email address sudah benar</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

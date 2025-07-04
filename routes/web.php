@@ -14,7 +14,7 @@ use App\Http\Controllers\Auth\GoogleController; // ✅ Google OAuth
 Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/tentang', fn() => view('tentang'));
 Route::get('/ulasan', fn() => view('ulasan'));
-Route::get('/reservasi', [ReservasiController::class, 'showReservasi'])->name('reservasi');
+
 // Fasilitas Route dengan data dari config
 Route::get('/fasilitas/{slug}', [FacilityController::class, 'show'])->name('fasilitas');
 
@@ -34,9 +34,10 @@ Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name(
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // Reservasi
-Route::post('/detailpembelian', [ReservasiController::class, 'detailPembelian'])->name('detailpembelian');
+Route::get('/reservasi', [ReservasiController::class, 'showReservasi'])->name('reservasi');
+Route::post('/reservasi/store', [ReservasiController::class, 'storeReservasi'])->name('reservasi.store');
 
-// Pembayaran
+// Pembayaran - mendukung GET dan POST
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
 Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');
 

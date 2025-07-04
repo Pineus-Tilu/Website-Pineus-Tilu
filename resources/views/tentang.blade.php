@@ -2,16 +2,18 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative flex items-center justify-center h-[85vh] px-6 text-white bg-center bg-cover"
-        style="background-image: url('/images/tentang-hero.jpg')">
+    <section class="relative flex items-center justify-center h-[60vh] px-6 text-white bg-center bg-cover"
+        style="background-image: url('/images/tentang.jpg')">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         <div class="relative z-10 text-center">
             <h1 class="text-4xl font-bold md:text-6xl jp-brush animate-fade-in">Tentang Kami Untuk Lebih Lanjut</h1>
-            <p class="mt-4 text-lg md:text-xl font-typewriter opacity-90">Dapatkan informasi lengkap tentang layanan camping terbaik kami</p>
+            <p class="mt-4 text-lg md:text-xl font-typewriter opacity-90">
+                Dapatkan informasi lengkap tentang layanan camping terbaik kami
+            </p>
         </div>
     </section>
 
-    <!-- Kontak Kami -->
+    <!-- Kontak Kami - HIJAU -->
     <section class="bg-gradient-to-r from-[#00291F] to-[#004030] text-white px-6 py-16">
         <div class="max-w-4xl mx-auto text-center">
             <div class="mb-8">
@@ -19,8 +21,8 @@
                 <div class="w-24 h-1 mx-auto bg-green-400 rounded"></div>
             </div>
             <p class="max-w-2xl mx-auto mb-8 text-lg font-typewriter opacity-90">
-                Hubungi kami untuk informasi lebih lanjut tentang pengalaman camping yang kami tawarkan. Kami siap membantu
-                Anda dengan segala pertanyaan dan kebutuhan Anda.
+                Hubungi kami untuk informasi lebih lanjut tentang pengalaman camping yang kami tawarkan. 
+                Kami siap membantu Anda dengan segala pertanyaan dan kebutuhan Anda.
             </p>
             <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
                 <a href="https://wa.me/nomor1" target="_blank"
@@ -41,261 +43,313 @@
         </div>
     </section>
 
-    <!-- Peraturan & Ketentuan -->
-    <section class="px-6 py-20 text-green-900 bg-gray-50">
+    <!-- Peraturan & Ketentuan - PUTIH -->
+    <section class="px-6 py-20 text-green-900 bg-white">
         <div class="max-w-6xl mx-auto">
+            <!-- Header Section -->
             <div class="mb-12 text-center">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">Peraturan & Ketentuan</h2>
                 <div class="w-24 h-1 mx-auto bg-green-600 rounded"></div>
-                <p class="mt-4 text-lg text-gray-600 font-typewriter">Pastikan Anda memahami dan mematuhi semua peraturan berikut</p>
+                <p class="mt-4 text-lg text-gray-600 font-typewriter">
+                    Pastikan Anda memahami dan mematuhi semua peraturan berikut
+                </p>
             </div>
 
             <!-- Peraturan Umum -->
             <div class="mb-16">
-                <h3 class="mb-6 text-2xl font-bold text-center text-green-800 jp-brush">📋 Peraturan Umum</h3>
+                <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">📋 Peraturan Umum</h3>
                 <div class="grid gap-8 md:grid-cols-2">
-                    <div class="p-6 bg-white border-l-4 border-green-600 rounded-lg shadow-md">
+                    <!-- Yang Diperbolehkan -->
+                    <div class="p-6 border-l-4 border-green-600 rounded-lg shadow-lg bg-gray-50">
+                        <h4 class="mb-4 font-bold text-green-700 jp-brush">✅ Yang Diperbolehkan</h4>
                         <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-600">✓</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-green-600">✓</span>
                                 <span>Check-in pukul 14.00 WIB & Check-out pukul 12.00 WIB</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-600">✓</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-green-600">✓</span>
                                 <span>Jaga Kebersihan di Area</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-600">✓</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-green-600">✓</span>
                                 <span>Jaga Keamanan Barang Bawaan Anda</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-600">✓</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-green-600">✓</span>
                                 <span>Utamakan Keselamatan & Berhati-hati di Area</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="p-6 bg-white border-l-4 border-red-500 rounded-lg shadow-md">
+
+                    <!-- Yang Dilarang -->
+                    <div class="p-6 border-l-4 border-red-500 rounded-lg shadow-lg bg-gray-50">
+                        <h4 class="mb-4 font-bold text-red-700 jp-brush">❌ Yang Dilarang</h4>
                         <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">✗</span>
-                                <span>Dilarang Menggunakan Narkoba & Alkohol</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-red-500">✗</span>
+                                <span>Menggunakan Narkoba & Alkohol</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">✗</span>
-                                <span>Dilarang Melakukan Kegiatan Asusila</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-red-500">✗</span>
+                                <span>Melakukan Kegiatan Asusila</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">✗</span>
-                                <span>Hewan Peliharaan Tidak Diizinkan</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-red-500">✗</span>
+                                <span>Membawa Hewan Peliharaan</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">✗</span>
-                                <span>Dilarang Membawa Daging Babi & Daging Anjing pada Peralatan BBQ & Api Unggun</span>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 text-red-500">✗</span>
+                                <span>Membawa Daging Babi & Daging Anjing pada Peralatan BBQ & Api Unggun</span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Peraturan Lingkungan -->
+            <!-- Peraturan Lingkungan & Suara -->
             <div class="mb-16">
-                <h3 class="mb-6 text-2xl font-bold text-center text-green-800 jp-brush">🌿 Peraturan Lingkungan & Suara</h3>
-                <div class="p-6 bg-white rounded-lg shadow-md">
-                    <div class="grid gap-6 md:grid-cols-2">
-                        <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                            <li class="flex items-start gap-2">
-                                <span class="text-orange-500">⚠️</span>
-                                <span>Tidak merokok di dalam tenda</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-600">♻️</span>
-                                <span>Memilah sampah organik dan anorganik</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">🔇</span>
-                                <span>Tidak boleh ada pengeras suara atau speaker</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">🎵</span>
-                                <span>Tidak boleh ada suara musik, kecuali hanya terdengar di tendanya sendiri</span>
-                            </li>
-                        </ul>
-                        <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">🎸</span>
-                                <span>Tidak boleh membawa alat musik yang bersuara keras</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">🎤</span>
-                                <span>Tidak boleh membawa alat karaoke</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-red-500">🔊</span>
-                                <span>Tidak boleh membuat suara yang terdengar mengganggu tenda tetangga dan suara alam</span>
-                            </li>
-                        </ul>
+                <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">🌿 Peraturan Lingkungan & Suara</h3>
+                <div class="p-8 shadow-lg bg-gray-50 rounded-xl">
+                    <div class="grid gap-8 lg:grid-cols-2">
+                        <!-- Kolom Kiri -->
+                        <div>
+                            <h4 class="mb-4 font-bold text-orange-700 jp-brush">⚠️ Lingkungan & Keamanan</h4>
+                            <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-orange-50">
+                                    <span class="mt-1 text-orange-500">🚭</span>
+                                    <span>Tidak merokok di dalam tenda</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-green-50">
+                                    <span class="mt-1 text-green-600">♻️</span>
+                                    <span>Memilah sampah organik dan anorganik</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Kolom Kanan -->
+                        <div>
+                            <h4 class="mb-4 font-bold text-red-700 jp-brush">🔇 Peraturan Suara</h4>
+                            <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-red-50">
+                                    <span class="mt-1 text-red-500">📢</span>
+                                    <span>Tidak boleh ada pengeras suara atau speaker</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-red-50">
+                                    <span class="mt-1 text-red-500">🎵</span>
+                                    <span>Musik hanya boleh terdengar di tenda sendiri</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-red-50">
+                                    <span class="mt-1 text-red-500">🎸</span>
+                                    <span>Tidak boleh membawa alat musik yang bersuara keras</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 rounded-lg bg-red-50">
+                                    <span class="mt-1 text-red-500">🎤</span>
+                                    <span>Tidak boleh membawa alat karaoke</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Penjadwalan & Pembatalan -->
-            <div class="grid gap-8 md:grid-cols-2">
-                <div class="p-6 bg-white border-t-4 border-blue-500 rounded-lg shadow-md">
-                    <h3 class="mb-4 text-xl font-bold text-center text-blue-700 jp-brush">📅 Penjadwalan Ulang</h3>
-                    <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                        <li class="flex justify-between p-2 rounded bg-green-50">
-                            <span>Sebelum H-7</span>
-                            <span class="font-bold text-green-600">GRATIS</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-yellow-50">
-                            <span>H-7 s.d H-3</span>
-                            <span class="font-bold text-yellow-600">Tambahan biaya</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-orange-50">
-                            <span>H-2 to H-1</span>
-                            <span class="font-bold text-orange-600">+250rb/tenda</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-red-50">
-                            <span>H (hari H)</span>
-                            <span class="font-bold text-red-600">Sesuai harga tenda</span>
-                        </li>
-                    </ul>
+            <!-- Kebijakan Pembatalan -->
+            <div class="mb-16">
+                <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">📅 Kebijakan Pembatalan</h3>
+                <div class="grid gap-8 lg:grid-cols-2">
+                    <!-- Tabel Pembatalan -->
+                    <div class="p-6 border-t-4 border-red-500 shadow-lg bg-gray-50 rounded-xl">
+                        <h4 class="mb-6 text-xl font-bold text-center text-red-700 jp-brush">❌ Biaya Pembatalan</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-4 border border-green-200 rounded-lg bg-green-50">
+                                <span class="font-typewriter">Sebelum H-7</span>
+                                <span class="text-lg font-bold text-green-600">Potong 25%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 border border-yellow-200 rounded-lg bg-yellow-50">
+                                <span class="font-typewriter">H-7 sampai H-4</span>
+                                <span class="text-lg font-bold text-yellow-600">Potong 50%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 border border-orange-200 rounded-lg bg-orange-50">
+                                <span class="font-typewriter">H-3 sampai H-2</span>
+                                <span class="text-lg font-bold text-orange-600">Potong 75%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 border border-red-200 rounded-lg bg-red-50">
+                                <span class="font-typewriter">H-1 sampai H</span>
+                                <span class="text-lg font-bold text-red-600">Potong 100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Keterangan Penting -->
+                    <div class="p-6 border border-blue-200 shadow-lg bg-blue-50 rounded-xl">
+                        <h4 class="mb-4 text-lg font-bold text-blue-800 jp-brush">📌 Keterangan Penting</h4>
+                        <ul class="space-y-3 text-sm leading-relaxed text-blue-700 font-typewriter">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-1 text-blue-500">•</span>
+                                <span>Kelebihan biaya/refund akan ditransfer paling lambat 14 hari kerja setelah pengiriman informasi rekening penerima</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-1 text-blue-500">•</span>
+                                <span>Refund karena gagal reservasi maksimal diproses paling lambat 3 hari kerja setelah pengiriman informasi rekening</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-1 text-blue-500">•</span>
+                                <span>Apabila terjadi hal di luar kuasa kami (contoh: PPKM), biaya refund dipotong 50%</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-1 text-blue-500">•</span>
+                                <span>Untuk pembatalan harap hubungi admin kami yang telah disediakan di bagian kontak</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="p-6 bg-white border-t-4 border-red-500 rounded-lg shadow-md">
-                    <h3 class="mb-4 text-xl font-bold text-center text-red-700 jp-brush">❌ Pembatalan</h3>
-                    <ul class="space-y-3 text-sm md:text-base font-typewriter">
-                        <li class="flex justify-between p-2 rounded bg-green-50">
-                            <span>Sebelum H-7</span>
-                            <span class="font-bold text-green-600">Potong 25%</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-yellow-50">
-                            <span>H-7 to H-4</span>
-                            <span class="font-bold text-yellow-600">Potong 50%</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-orange-50">
-                            <span>H-3 to H-2</span>
-                            <span class="font-bold text-orange-600">Potong 75%</span>
-                        </li>
-                        <li class="flex justify-between p-2 rounded bg-red-50">
-                            <span>H-1 to H</span>
-                            <span class="font-bold text-red-600">Potong 100%</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Keterangan -->
-            <div class="p-6 mt-8 border border-blue-200 rounded-lg bg-blue-50">
-                <h4 class="mb-3 text-lg font-bold text-blue-800 jp-brush">📌 Keterangan Penting:</h4>
-                <ul class="space-y-2 text-sm text-blue-700 font-typewriter">
-                    <li>• Kelebihan biaya/refund akan ditransfer paling lambat 14 hari kerja setelah pengiriman informasi rekening penerima</li>
-                    <li>• Refund karena gagal reservasi maksimal diproses paling lambat 3 hari kerja setelah pengiriman informasi rekening</li>
-                    <li>• Apabila terjadi suatu hal yang di luar kuasa kami, contoh: PPKM yang membuat kami terpaksa harus tutup, biaya refund dipotong 50%</li>
-                    <li>• Untuk penjadwalan ulang dan pembatalan harap hubungi admin kami yang telah kami sediakan di bagian kontak</li>
-                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Biaya Parkir -->
-    <section class="px-6 py-20 text-green-900 bg-white">
-        <div class="max-w-4xl mx-auto">
+    <!-- Informasi Biaya Parkir - HIJAU -->
+    <section class="px-6 py-20 text-white bg-gradient-to-r from-[#00291F] to-[#004030]">
+        <div class="max-w-5xl mx-auto">
             <div class="mb-12 text-center">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🚗 Informasi Biaya Parkir</h2>
-                <div class="w-24 h-1 mx-auto bg-green-600 rounded"></div>
+                <div class="w-24 h-1 mx-auto bg-green-400 rounded"></div>
             </div>
             
             <div class="grid gap-8 md:grid-cols-2">
-                <div class="p-6 border border-blue-200 rounded-lg shadow-md bg-gradient-to-br from-blue-50 to-blue-100">
-                    <h3 class="mb-4 text-xl font-bold text-center text-blue-800 jp-brush">🌙 Parkir Menginap</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between p-3 bg-white rounded-lg shadow-sm">
-                            <span class="font-typewriter">🚗 Mobil & Mini Bus</span>
-                            <span class="font-bold text-blue-600">60K/malam</span>
+                <!-- Parkir Menginap -->
+                <div class="p-8 bg-white border border-gray-200 shadow-lg rounded-xl">
+                    <h3 class="mb-6 text-2xl font-bold text-center text-blue-800 jp-brush">🌙 Parkir Menginap</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border border-blue-100 rounded-lg shadow-sm bg-blue-50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🚗</span>
+                                <span class="font-medium text-gray-800 font-typewriter">Mobil & Mini Bus</span>
+                            </div>
+                            <span class="text-xl font-bold text-blue-600">60K/malam</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-white rounded-lg shadow-sm">
-                            <span class="font-typewriter">🚌 Bus Medium</span>
-                            <span class="font-bold text-blue-600">100K/malam</span>
+                        <div class="flex items-center justify-between p-4 border border-blue-100 rounded-lg shadow-sm bg-blue-50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🚌</span>
+                                <span class="font-medium text-gray-800 font-typewriter">Bus Medium</span>
+                            </div>
+                            <span class="text-xl font-bold text-blue-600">100K/malam</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="p-6 border border-green-200 rounded-lg shadow-md bg-gradient-to-br from-green-50 to-green-100">
-                    <h3 class="mb-4 text-xl font-bold text-center text-green-800 jp-brush">☀️ Parkir Transit</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between p-3 bg-white rounded-lg shadow-sm">
-                            <span class="font-typewriter">🚗 Mobil & Mini Bus</span>
-                            <span class="font-bold text-green-600">10K/hari</span>
+                <!-- Parkir Transit -->
+                <div class="p-8 bg-white border border-gray-200 shadow-lg rounded-xl">
+                    <h3 class="mb-6 text-2xl font-bold text-center text-green-800 jp-brush">☀️ Parkir Transit</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border border-green-100 rounded-lg shadow-sm bg-green-50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🚗</span>
+                                <span class="font-medium text-gray-800 font-typewriter">Mobil & Mini Bus</span>
+                            </div>
+                            <span class="text-xl font-bold text-green-600">10K/hari</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-white rounded-lg shadow-sm">
-                            <span class="font-typewriter">🚌 Bus Medium</span>
-                            <span class="font-bold text-green-600">30K/hari</span>
+                        <div class="flex items-center justify-between p-4 border border-green-100 rounded-lg shadow-sm bg-green-50">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🚌</span>
+                                <span class="font-medium text-gray-800 font-typewriter">Bus Medium</span>
+                            </div>
+                            <span class="text-xl font-bold text-green-600">30K/hari</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="p-4 mt-8 text-center border border-yellow-200 rounded-lg bg-yellow-50">
-                <p class="text-sm italic text-yellow-800 font-typewriter">
-                    ⚠️ <strong>Penting:</strong> Harga tenda tidak termasuk biaya parkir. Biaya parkir dibayarkan langsung ke pengelola parkir ketika sampai di lokasi.
+            <!-- Catatan Penting -->
+            <div class="p-6 mt-8 text-center border-2 border-yellow-200 shadow-md bg-yellow-50 rounded-xl">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <span class="text-2xl">⚠️</span>
+                    <span class="text-lg font-bold text-yellow-800 jp-brush">Penting untuk Diketahui</span>
+                </div>
+                <p class="text-sm leading-relaxed text-yellow-800 font-typewriter">
+                    Harga tenda <strong>tidak termasuk biaya parkir</strong>. Biaya parkir dibayarkan langsung ke pengelola parkir ketika sampai di lokasi.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Asuransi -->
-    <section class="px-6 py-20 text-green-900 bg-gray-50">
-        <div class="max-w-4xl mx-auto">
+    <!-- Informasi Asuransi - PUTIH -->
+    <section class="px-6 py-20 text-green-900 bg-white">
+        <div class="max-w-5xl mx-auto">
             <div class="mb-12 text-center">
                 <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🛡️ Informasi Asuransi</h2>
                 <div class="w-24 h-1 mx-auto bg-green-600 rounded"></div>
             </div>
             
-            <div class="overflow-hidden bg-white shadow-xl rounded-xl">
-                <div class="bg-gradient-to-r from-[#006C43] to-[#008854] text-white text-center py-6">
-                    <h3 class="text-xl font-bold jp-brush">📋 PERNYATAAN PERSETUJUAN</h3>
-                    <p class="mt-2 text-sm opacity-90">Berlaku untuk semua pengunjung mulai Januari 2022</p>
+            <div class="overflow-hidden shadow-2xl bg-gray-50 rounded-2xl">
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-[#006C43] to-[#008854] text-white text-center py-8">
+                    <h3 class="text-2xl font-bold jp-brush">📋 PERNYATAAN PERSETUJUAN</h3>
+                    <p class="mt-2 text-sm opacity-90 font-typewriter">Berlaku untuk semua pengunjung mulai Januari 2022</p>
                 </div>
                 
                 <div class="p-8">
-                    <div class="mb-6">
-                        <p class="mb-4 leading-relaxed text-gray-700 font-typewriter">
-                            Setiap pengunjung yang camping di <strong class="text-green-700">Pineus Tilu Camping Ground</strong> wajib menyetujui bahwa apabila terjadi kecelakaan/musibah atau bencana selama camping, tidak akan menuntut pengelola, kecuali mendapatkan hak tanggungan asuransi yang telah bekerja sama dengan Perhutani.
+                    <!-- Pernyataan -->
+                    <div class="p-6 mb-8 bg-white border border-gray-200 rounded-xl">
+                        <p class="leading-relaxed text-center text-gray-700 font-typewriter">
+                            Setiap pengunjung yang camping di <strong class="text-green-700">Pineus Tilu Camping Ground</strong> 
+                            wajib menyetujui bahwa apabila terjadi kecelakaan/musibah atau bencana selama camping, 
+                            tidak akan menuntut pengelola, kecuali mendapatkan hak tanggungan asuransi yang telah 
+                            bekerja sama dengan Perhutani.
                         </p>
                     </div>
 
-                    <div class="p-4 mb-6 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 class="mb-2 font-bold text-blue-800 jp-brush">🏢 Penyedia Asuransi</h4>
-                        <p class="text-sm text-blue-700 font-typewriter">
-                            <strong>ASURANSI SYARIAH AMANAH GITHA</strong><br>
-                            Polis Induk No. <strong>8009000050100188</strong>
-                        </p>
-                    </div>
-
-                    <h4 class="mb-4 text-lg font-bold text-green-800 jp-brush">💰 Besaran Jaminan Asuransi:</h4>
-                    <div class="space-y-3">
-                        <div class="flex justify-between p-4 border border-red-200 rounded-lg bg-red-50">
-                            <span class="font-typewriter">☠️ Meninggal Dunia akibat kecelakaan (1 x 24 Jam)</span>
-                            <span class="font-bold text-red-600">Rp. 15.000.000,-</span>
-                        </div>
-                        <div class="flex justify-between p-4 border border-orange-200 rounded-lg bg-orange-50">
-                            <span class="font-typewriter">💀 Meninggal Dunia bukan akibat kecelakaan</span>
-                            <span class="font-bold text-orange-600">Rp. 3.000.000,-</span>
-                        </div>
-                        <div class="flex justify-between p-4 border border-yellow-200 rounded-lg bg-yellow-50">
-                            <span class="font-typewriter">♿ Cacat tetap sesuai persentase (maksimum)</span>
-                            <span class="font-bold text-yellow-600">Rp. 20.000.000,-</span>
-                        </div>
-                        <div class="flex justify-between p-4 border border-green-200 rounded-lg bg-green-50">
-                            <span class="font-typewriter">🏥 Biaya Perawatan/Pengobatan akibat kecelakaan</span>
-                            <span class="font-bold text-green-600">Rp. 3.000.000,-</span>
+                    <!-- Penyedia Asuransi -->
+                    <div class="p-6 mb-8 border-l-4 border-blue-500 rounded-lg bg-blue-50">
+                        <h4 class="mb-3 text-lg font-bold text-blue-800 jp-brush">🏢 Penyedia Asuransi</h4>
+                        <div class="text-blue-700 font-typewriter">
+                            <p class="text-lg font-bold">ASURANSI SYARIAH AMANAH GITHA</p>
+                            <p class="mt-1 text-sm">Polis Induk No. <strong>8009000050100188</strong></p>
                         </div>
                     </div>
 
-                    <div class="p-4 mt-6 bg-gray-100 border border-gray-300 rounded-lg">
-                        <p class="text-xs text-gray-600 font-typewriter">
-                            <strong>Catatan:</strong> Jaminan asuransi berlaku sejak memasuki pintu masuk hingga keluar dari lokasi camping.
-                        </p>
+                    <!-- Besaran Jaminan -->
+                    <div>
+                        <h4 class="mb-6 text-xl font-bold text-center text-green-800 jp-brush">💰 Besaran Jaminan Asuransi</h4>
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <div class="p-4 border-l-4 border-red-500 rounded-lg shadow-sm bg-red-50">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">☠️</span>
+                                    <span class="text-sm font-typewriter">Meninggal Dunia akibat kecelakaan (1 x 24 Jam)</span>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Rp. 15.000.000,-</span>
+                            </div>
+                            
+                            <div class="p-4 border-l-4 border-orange-500 rounded-lg shadow-sm bg-orange-50">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">💀</span>
+                                    <span class="text-sm font-typewriter">Meninggal Dunia bukan akibat kecelakaan</span>
+                                </div>
+                                <span class="text-lg font-bold text-orange-600">Rp. 3.000.000,-</span>
+                            </div>
+                            
+                            <div class="p-4 border-l-4 border-yellow-500 rounded-lg shadow-sm bg-yellow-50">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">♿</span>
+                                    <span class="text-sm font-typewriter">Cacat tetap sesuai persentase (maksimum)</span>
+                                </div>
+                                <span class="text-lg font-bold text-yellow-600">Rp. 20.000.000,-</span>
+                            </div>
+                            
+                            <div class="p-4 border-l-4 border-green-500 rounded-lg shadow-sm bg-green-50">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="text-2xl">🏥</span>
+                                    <span class="text-sm font-typewriter">Biaya Perawatan/Pengobatan akibat kecelakaan</span>
+                                </div>
+                                <span class="text-lg font-bold text-green-600">Rp. 3.000.000,-</span>
+                            </div>
+                        </div>
+
+                        <!-- Catatan -->
+                        <div class="p-4 mt-6 bg-white border border-gray-300 rounded-lg shadow-sm">
+                            <p class="text-sm text-center text-gray-600 font-typewriter">
+                                <strong>📝 Catatan:</strong> Jaminan asuransi berlaku sejak memasuki pintu masuk hingga keluar dari lokasi camping.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

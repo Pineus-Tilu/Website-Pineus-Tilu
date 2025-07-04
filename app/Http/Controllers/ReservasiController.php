@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservasiController extends Controller
 {
-    public function detailPembelian(Request $request)
+    public function storeReservasi(Request $request)
     {
         // Validasi input
         $request->validate([
@@ -23,6 +23,7 @@ class ReservasiController extends Controller
             'telepon' => 'required',
             'email' => 'required|email',
             'jumlah_orang' => 'required|integer|min:1',
+            'total_harga' => 'required|numeric',
         ]);
 
         // Cari unit_id berdasarkan area (fasilitas) dan deck
@@ -33,7 +34,7 @@ class ReservasiController extends Controller
             ->first();
 
         if (!$unit) {
-            return back()->withErrors(['deck' => 'Deck tidak ditemukan.']);
+            return back()->withErrors(['deck' => 'Deck tidak ditemukan.'])->withInput();
         }
 
         // Validasi tanggal sudah dipesan (hanya yang status success dan pending)
@@ -70,44 +71,55 @@ class ReservasiController extends Controller
         }
         $total = $hargaDasar + $extra;
 
-        // Simpan ke tabel bookings dengan status pending (default)
-        $booking = Booking::create([
-            'user_id' => null,
-            'unit_id' => $unit->id,
-            'booking_for_date' => $tanggal,
-            'status_id' => 1, // 1 = pending (default)
-        ]);
+        // Gunakan total dari frontend jika ada
+        $totalFromRequest = (float) $request->total_harga;
+        if ($totalFromRequest > 0) {
+            $total = $totalFromRequest;
+        }
 
-        // Simpan ke tabel booking_details
-        $bookingDetail = BookingDetail::create([
-            'booking_id' => $booking->id,
-            'number_of_people' => $jumlah,
-            'extra_charge' => $extra,
-            'notes' => null,
-            'total_price' => $total,
-            'check_in' => $tanggal,
-            'check_out' => $checkout,
-            'nama' => $request->nama,
-            'telepon' => $request->telepon,
-            'email' => $request->email,
-        ]);
+        try {
+            // Simpan ke tabel bookings dengan status pending (default)
+            $booking = Booking::create([
+                'user_id' => Auth::check() ? Auth::id() : null,
+                'unit_id' => $unit->id,
+                'booking_for_date' => $tanggal,
+                'status_id' => 1, // 1 = pending (default)
+            ]);
 
-        // Redirect ke halaman detail pembelian dengan data booking
-        return view('detailpembelian', [
-            'booking' => $booking,
-            'bookingDetail' => $bookingDetail,
-            'tanggal_kunjungan' => $tanggal,
-            'fasilitas' => $request->fasilitas,
-            'deck' => $request->deck ?? '-',
-            'jumlah_orang' => $jumlah,
-            'nama' => $request->nama,
-            'telepon' => $request->telepon,
-            'email' => $request->email,
-            'subtotal' => $total,
-        ]);
+            // Simpan ke tabel booking_details
+            $bookingDetail = BookingDetail::create([
+                'booking_id' => $booking->id,
+                'number_of_people' => $jumlah,
+                'extra_charge' => $extra,
+                'notes' => null,
+                'total_price' => $total,
+                'check_in' => $tanggal,
+                'check_out' => $checkout,
+                'nama' => $request->nama,
+                'telepon' => $request->telepon,
+                'email' => $request->email,
+            ]);
+
+            // Redirect ke halaman pembayaran dengan parameter GET
+            return redirect()->route('pembayaran', [
+                'booking_id' => $booking->id,
+                'tanggal_kunjungan' => $tanggal,
+                'fasilitas' => $request->fasilitas,
+                'deck' => $request->deck,
+                'jumlah_orang' => $jumlah,
+                'nama' => $request->nama,
+                'telepon' => $request->telepon,
+                'email' => $request->email,
+                'subtotal' => $total,
+                'status' => 'pending'
+            ]);
+
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
+        }
     }
 
-    // Tambahkan fungsi bantu season:
+    // Fungsi bantu season
     private function getSeason($date)
     {
         $d = date_create($date);

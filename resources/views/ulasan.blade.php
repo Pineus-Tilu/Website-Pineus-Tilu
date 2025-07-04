@@ -1,37 +1,153 @@
-<x-app-layout>
-    <!-- Hero Section -->
-    <div class="bg-cover bg-center h-[500px] flex items-center justify-center text-white text-center px-4" style="background-image: url('/images/review-hero.jpg');">
-        <div class="bg-[#0f172a]/70 p-8 rounded-lg">
-            <h1 class="mb-4 text-5xl italic font-bold md:text-6xl">What People Say</h1>
-            <p class="text-sm tracking-wide text-gray-300 uppercase">Traveler Testimonials</p>
-        </div>
-    </div>
+@extends('layouts.app')
 
-    <!-- Reviews Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-6xl px-4 mx-auto">
-            <h2 class="mb-12 text-2xl italic font-semibold text-center">Real Experiences from Real Travelers</h2>
-            <div class="grid gap-8 md:grid-cols-3">
-                @foreach ([
-                    ['name' => 'Amanda Lee', 'company' => 'Digital Nomad', 'quote' => 'The journey was magical! The place, the people, the vibe – everything was just unforgettable.', 'img' => ''],
-                    ['name' => 'John Smith', 'company' => 'Backpacker', 'quote' => 'A must-visit destination! I enjoyed every moment there.', 'img' => ''],
-                    ['name' => 'Sarah Kim', 'company' => 'Photographer', 'quote' => 'Perfect scenery for photography, and the experience was incredibly smooth.', 'img' => ''],
-                    ['name' => 'Eko Prasetyo', 'company' => 'Travel Blogger', 'quote' => 'Pelayanannya sangat ramah dan terorganisir. Recommended banget!', 'img' => ''],
-                    ['name' => 'Lina Mardiana', 'company' => 'Content Creator', 'quote' => 'Tempatnya indah banget, cocok buat healing dan bikin konten.', 'img' => ''],
-                    ['name' => 'Andi Rahman', 'company' => 'Solo Traveler', 'quote' => 'Saya pergi sendirian tapi merasa aman dan nyaman selama trip berlangsung.', 'img' => ''],
-                ] as $review)
-                    <div class="p-6 bg-gray-100 rounded shadow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-gray-400 rounded-full"></div>
-                            <div>
-                                <p class="text-sm font-semibold">{{ $review['name'] }}</p>
-                                <p class="text-xs text-gray-500">{{ $review['company'] }}</p>
-                            </div>
-                        </div>
-                        <blockquote class="text-sm italic text-gray-700">“{{ $review['quote'] }}”</blockquote>
+@section('title', 'Ulasan - Pineus Tilu')
+
+@section('content')
+<div class="max-w-full overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center h-[55vh] px-6 text-white bg-center bg-cover bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-white animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full bg-white animate-pulse delay-1000"></div>
+            <div class="absolute top-1/2 left-1/3 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-white animate-pulse delay-500"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold md:text-6xl jp-brush animate-fade-in text-center" data-aos="fade-down">
+                Ulasan
+            </h1>
+            <p class="mt-4 text-lg md:text-xl font-typewriter opacity-90 text-center leading-relaxed" data-aos="fade-up" data-aos-delay="300">
+                Tentang kami dari orang yang pernah mengunjungi pineus tilu
+            </p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 jp-brush mb-4">
+                    Review YouTube
+                </h2>
+                <div class="w-20 h-1 mx-auto bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
+                <p class="mt-4 text-gray-600 text-lg">
+                    Lihat pengalaman nyata pengunjung melalui video review mereka
+                </p>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Video 1 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/07QdgOaa_HE" 
+                            title="Pineus Tilu Review Video 1"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
                     </div>
-                @endforeach
+                </div>
+
+                <!-- Video 2 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/8OwcRHyPZLQ" 
+                            title="Pineus Tilu Review Video 2"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/fHTkbNpdC4U" 
+                            title="Pineus Tilu Review Video 3"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/z0RaF18orEg" 
+                            title="Pineus Tilu Review Video 4"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Video 5 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/AWLCCG5-W6Y" 
+                            title="Pineus Tilu Review Video 5"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Video 6 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="aspect-video">
+                        <iframe 
+                            src="https://www.youtube.com/embed/o6Y_-gDp28Q" 
+                            title="Pineus Tilu Review Video 6"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-</x-app-layout>
+
+    <!-- Google Reviews Section -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 jp-brush mb-4">
+                    Testimoni Pengunjung 
+                </h2>
+                <div class="w-20 h-1 mx-auto bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
+                <p class="mt-4 text-gray-600 text-lg">
+                    Tanggapan jujur mereka yang pernah mendapatkan pengalaman menakjubkan di Pineus Tilu
+                </p>
+            </div>
+
+            <!-- Elfsight Google Reviews Widget -->
+            <div class="w-full">
+                <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                <div class="elfsight-app-17b60940-3311-416e-bc78-3f7f62d9582c" data-elfsight-app-lazy></div>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection

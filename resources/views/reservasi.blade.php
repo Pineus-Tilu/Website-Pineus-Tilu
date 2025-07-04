@@ -7,9 +7,7 @@
     style="background-image: url('/images/reservasi.JPG');" data-aos="fade-in" data-aos-duration="1500">
         <div class="w-full max-w-6xl px-4 py-8 mx-auto bg-white rounded-lg shadow-md">
             <nav class="flex items-center mb-6 space-x-2 text-sm text-green-700">
-                <span class="font-semibold text-green-900">Informasi Reservasi</span>
-                <span>&gt;</span>
-                <span>Detail Pembelian</span>
+                <span class="font-semibold text-green-900">Reservasi</span>
                 <span>&gt;</span>
                 <span>Pembayaran</span>
             </nav>
@@ -63,8 +61,8 @@
                                 <div class="flex items-center space-x-2">
                                     <button type="button" id="minus-btn" class="px-3 py-1 bg-gray-200 rounded">&minus;</button>
                                     <input type="number" id="jumlah-orang" name="jumlah_orang" value="1" min="1"
-                                        max="10"
-                                        class="w-16 px-2 py-1 text-center border border-green-300 rounded focus:outline-none">
+                                        max="10" readonly
+                                        class="w-16 px-2 py-1 text-center border border-green-300 rounded focus:outline-none bg-gray-100 cursor-default">
                                     <button type="button" id="plus-btn" class="px-3 py-1 bg-gray-200 rounded">+</button>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex items-center justify-center py-8 min-h-screen-with-nav"
     style="background-image: url('/images/reservasi.JPG');" data-aos="fade-in" data-aos-duration="1500">
-        <div class="w-full max-w-6xl px-4 py-6 mx-auto my-8 bg-white rounded-lg shadow-md">
+        <div class="w-full max-w-6xl px-4 py-6 mx-auto my-10 bg-white rounded-lg shadow-md">
             <nav class="flex items-center mb-4 space-x-2 text-sm text-green-700">
                 <span class="font-semibold text-green-900">Reservasi</span>
                 <span>&gt;</span>
@@ -94,15 +94,6 @@
                                     value="{{ Auth::check() ? Auth::user()->email : '' }}"
                                     @if (Auth::check()) readonly @endif required>
                             </div>
-
-                            <div class="flex items-center mb-4 font-typewriter">
-                                <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required>
-                                <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang
-                                    berlaku</label>
-                            </div>
-                            <button type="submit"
-                                class="w-full py-3 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700 font-typewriter">Pesan
-                                Sekarang</button>
                         </div>
                     </form>
                 </div>
@@ -170,10 +161,19 @@
                             <span class="text-sm text-green-700">Tambahan</span>
                             <span class="text-sm" id="tambahan-harga">Rp 0</span>
                         </div>
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mb-4">
                             <span class="text-lg font-bold text-green-900">Total Harga</span>
                             <span class="text-lg font-bold text-green-900" id="total-harga">Rp 0</span>
                         </div>
+                        
+                        <div class="flex items-center mb-4 font-typewriter">
+                            <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required form="reservasi-form">
+                            <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang
+                                berlaku</label>
+                        </div>
+                        <button type="submit" form="reservasi-form"
+                            class="w-full py-3 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700 font-typewriter">Pesan
+                            Sekarang</button>
                     </div>
                 </div>
             </div>

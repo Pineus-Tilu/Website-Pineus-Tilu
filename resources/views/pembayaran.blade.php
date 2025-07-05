@@ -3,24 +3,24 @@
 @section('title', 'Pembayaran - Pineus Tilu')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-green-700">
-    <div class="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
-        <h2 class="text-2xl font-bold mb-4 text-green-900">Pembayaran</h2>
+<div class="flex items-center justify-center bg-green-700 min-h-screen-with-nav">
+    <div class="w-full max-w-lg p-8 bg-white rounded-lg shadow-md">
+        <h2 class="mb-4 text-2xl font-bold text-green-900">Pembayaran</h2>
         
         @if(isset($booking))
-        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-            <h3 class="font-semibold text-gray-800 mb-2">Detail Pemesanan:</h3>
+        <div class="p-4 mb-6 rounded-lg bg-gray-50">
+            <h3 class="mb-2 font-semibold text-gray-800">Detail Pemesanan:</h3>
             <p class="text-sm text-gray-600">{{ $booking->unit->area->name }} - {{ $booking->unit->unit_name }}</p>
             <p class="text-sm text-gray-600">{{ $booking->booking_for_date }}</p>
             <p class="text-lg font-bold text-green-700">Total: Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
         </div>
         @endif
 
-        <button id="pay-button" class="w-full bg-green-700 text-white py-2 rounded font-semibold hover:bg-green-800 transition disabled:opacity-50">
+        <button id="pay-button" class="w-full py-2 font-semibold text-white transition bg-green-700 rounded hover:bg-green-800 disabled:opacity-50">
             Bayar Sekarang
         </button>
         
-        <div id="loading" class="hidden text-center mt-4">
+        <div id="loading" class="hidden mt-4 text-center">
             <p class="text-gray-600">Memproses pembayaran...</p>
         </div>
     </div>

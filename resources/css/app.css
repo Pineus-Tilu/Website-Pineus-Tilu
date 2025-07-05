@@ -5,3 +5,27 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../../node_modules/flowbite";
+
+/* Space untuk fixed navigation */
+.page-content {
+    padding-top: 120px; /* Sesuaikan dengan tinggi navbar */
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding-top: 100px; /* Padding lebih kecil untuk mobile */
+    }
+}
+
+/* Untuk halaman dengan min-h-screen */
+.min-h-screen-with-nav {
+    min-height: calc(100vh - 120px);
+    padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+    .min-h-screen-with-nav {
+        min-height: calc(100vh - 100px);
+        padding-top: 100px;
+    }
+}

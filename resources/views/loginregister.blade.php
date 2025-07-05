@@ -1,19 +1,19 @@
 <x-app-layout>
-  <div class="flex items-center justify-center min-h-screen bg-gray-50" id="app-container">
-    <div class="max-w-4xl w-full bg-white rounded-2xl shadow-lg p-8">
-      <h2 class="text-3xl font-semibold text-gray-700 text-center mb-8">Pengaturan Website</h2>
+  <div class="flex items-center justify-center min-h-screen-with-nav bg-gray-50" id="app-container">
+    <div class="w-full max-w-4xl p-8 bg-white shadow-lg rounded-2xl">
+      <h2 class="mb-8 text-3xl font-semibold text-center text-gray-700">Pengaturan Website</h2>
 
       <div class="space-y-6">
         <!-- Email Kontak -->
         <div>
-          <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">Email Kontak</label>
+          <label for="contact_email" class="block mb-1 text-sm font-medium text-gray-700">Email Kontak</label>
           <input type="email" id="contact_email" name="contact_email" value="support@getyourtrip.com"
                  class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" disabled>
         </div>
 
         <!-- Pilihan Bahasa -->
         <div>
-          <label for="language" class="block text-sm font-medium text-gray-700 mb-1">Bahasa</label>
+          <label for="language" class="block mb-1 text-sm font-medium text-gray-700">Bahasa</label>
           <select id="language" name="language"
                   class="w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" disabled>
             <option value="id">Bahasa Indonesia</option>
@@ -23,22 +23,22 @@
 
         <!-- Pilihan Mode Tema -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Mode Tema</label>
+          <label class="block mb-1 text-sm font-medium text-gray-700">Mode Tema</label>
           <div class="flex space-x-3">
-            <button id="light-mode" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md shadow-sm">Light</button>
-            <button id="dark-mode" class="px-4 py-2 bg-gray-800 text-white rounded-md shadow-sm">Dark</button>
+            <button id="light-mode" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md shadow-sm">Light</button>
+            <button id="dark-mode" class="px-4 py-2 text-white bg-gray-800 rounded-md shadow-sm">Dark</button>
           </div>
         </div>
 
         <!-- Tombol Simpan -->
         <div class="text-center">
-          <button id="save-settings" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+          <button id="save-settings" class="px-6 py-2 font-semibold text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             Simpan Perubahan
           </button>
         </div>
 
         <!-- Info -->
-        <div class="text-sm text-gray-500 italic text-center">
+        <div class="text-sm italic text-center text-gray-500">
           *Pengaturan hanya bisa diubah oleh admin.
         </div>
       </div>

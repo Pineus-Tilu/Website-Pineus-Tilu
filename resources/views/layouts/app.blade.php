@@ -18,15 +18,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css', 'resources/js/swiper-init.js'])
 
     <!-- Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-   
+    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
 
     <!-- AOS CSS -->
     <link href="{{ asset('css/aos.css') }}" rel="stylesheet">
 
     <!-- flatpickr CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
 
 
     <!-- Ganti Font -->
@@ -63,7 +61,7 @@
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white shadow dark:bg-gray-800">
+            <header class="bg-white shadow dark:bg-gray-800 page-content">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -81,10 +79,10 @@
         {{-- Footer --}}
         @include('layouts.footer')
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    
+    <script src="{{ asset('js/flowbite.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+
     <!-- AOS JS -->
     <script src="{{ asset('js/aos.js') }}"></script>
     <script>
@@ -92,7 +90,7 @@
             AOS.init();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ asset('js/flatpickr.js') }}"></script>
 </body>
 
 </html>

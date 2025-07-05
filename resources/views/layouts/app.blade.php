@@ -23,7 +23,7 @@
    
 
     <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="{{ asset('css/aos.css') }}" rel="stylesheet">
 
     <!-- flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -86,7 +86,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     
     <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="{{ asset('js/aos.js') }}"></script>
     <script>
         window.addEventListener('load', function() {
             AOS.init();

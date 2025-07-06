@@ -3,8 +3,64 @@
 @section('title', 'Reservasi - Pineus Tilu')
 
 @section('content')
+    <style>
+        /* Styling untuk tanggal disabled di flatpickr */
+        .flatpickr-day.flatpickr-disabled.disabled-date {
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+            cursor: not-allowed !important;
+            opacity: 0.6 !important;
+            pointer-events: none !important;
+        }
+
+        .flatpickr-day.flatpickr-disabled.disabled-date:hover,
+        .flatpickr-day.flatpickr-disabled.disabled-date:focus,
+        .flatpickr-day.flatpickr-disabled.disabled-date:active {
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        .flatpickr-day.flatpickr-disabled.cutoff-date {
+            background-color: #fef3c7 !important;
+            color: #92400e !important;
+            cursor: not-allowed !important;
+            opacity: 0.7 !important;
+            pointer-events: none !important;
+        }
+
+        .flatpickr-day.flatpickr-disabled.cutoff-date:hover,
+        .flatpickr-day.flatpickr-disabled.cutoff-date:focus,
+        .flatpickr-day.flatpickr-disabled.cutoff-date:active {
+            background-color: #fef3c7 !important;
+            color: #92400e !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        .flatpickr-day.flatpickr-disabled {
+            pointer-events: none !important;
+        }
+
+        /* Tambahkan di bagian <style> yang sudah ada */
+
+        /* Styling untuk tanggal yang sudah dibooking */
+        .flatpickr-day.booked-date {
+            background-color: #fca5a5 !important;
+            color: #7f1d1d !important;
+            border-color: #ef4444 !important;
+            cursor: not-allowed !important;
+        }
+
+        .flatpickr-day.booked-date:hover,
+        .flatpickr-day.booked-date:focus {
+            background-color: #f87171 !important;
+            color: #7f1d1d !important;
+        }
+    </style>
     <div class="flex items-center justify-center py-8 min-h-screen-with-nav"
-    style="background-image: url('/images/reservasi.JPG');" data-aos="fade-in" data-aos-duration="1500">
+        style="background-image: url('/images/reservasi.JPG');" data-aos="fade-in" data-aos-duration="1500">
         <div class="w-full max-w-6xl px-4 py-6 mx-auto my-10 bg-white rounded-lg shadow-md">
             <nav class="flex items-center mb-4 space-x-2 text-sm text-green-700">
                 <span class="font-semibold text-green-900">Reservasi</span>
@@ -44,24 +100,27 @@
                                 <label class="block mb-2 font-medium text-green-800">Pilih Deck</label>
                                 <select id="deck-select" name="deck"
                                     class="w-full px-3 py-2 border border-green-300 rounded focus:outline-none focus:ring focus:border-green-500"
-                                    required></select>
+                                    required>
+                                    <option value="" disabled selected>Pilih Deck</option>
+                                </select>
                             </div>
 
                             <!-- Tanggal Kunjungan -->
                             <div class="mb-4 font-typewriter">
                                 <label class="block mb-2 font-medium text-green-800">Tanggal Kunjungan</label>
                                 <input name="tanggal_kunjungan" type="text" id="tanggal-kunjungan"
-                                    class="w-full px-3 py-2 border border-green-300 rounded focus:outline-none focus:ring focus:border-green-500"
-                                    required autocomplete="off">
+                                    class="w-full px-3 py-2 bg-gray-100 border border-green-300 rounded cursor-not-allowed focus:outline-none focus:ring focus:border-green-500"
+                                    placeholder="Pilih area dan deck terlebih dahulu" required autocomplete="off" disabled>
                             </div>
 
                             <!-- Jumlah Orang -->
                             <div class="mb-4 font-typewriter">
                                 <label class="block mb-2 font-medium text-green-800">Jumlah Orang</label>
                                 <div class="flex items-center space-x-2">
-                                    <button type="button" id="minus-btn" class="px-3 py-1 bg-gray-200 rounded">&minus;</button>
-                                    <input type="number" id="jumlah-orang" name="jumlah_orang" value="1" min="1"
-                                        max="10" readonly
+                                    <button type="button" id="minus-btn"
+                                        class="px-3 py-1 bg-gray-200 rounded">&minus;</button>
+                                    <input type="number" id="jumlah-orang" name="jumlah_orang" value="1"
+                                        min="1" max="10" readonly
                                         class="w-16 px-2 py-1 text-center bg-gray-100 border border-green-300 rounded cursor-default focus:outline-none">
                                     <button type="button" id="plus-btn" class="px-3 py-1 bg-gray-200 rounded">+</button>
                                 </div>
@@ -101,7 +160,7 @@
                 <!-- Detail Reservasi (Kanan) -->
                 <div class="p-6 rounded-lg bg-gray-50">
                     <h2 class="mb-6 text-xl font-bold text-green-900 jp-brush">Detail Reservasi</h2>
-                    
+
                     <div class="mb-6 font-typewriter">
                         <h3 class="mb-4 font-semibold text-green-800">Data Reservasi</h3>
                         <div class="space-y-3">
@@ -165,9 +224,10 @@
                             <span class="text-lg font-bold text-green-900">Total Harga</span>
                             <span class="text-lg font-bold text-green-900" id="total-harga">Rp 0</span>
                         </div>
-                        
+
                         <div class="flex items-center mb-4 font-typewriter">
-                            <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required form="reservasi-form">
+                            <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required
+                                form="reservasi-form">
                             <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang
                                 berlaku</label>
                         </div>
@@ -179,6 +239,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Prevent double form submission
+        let isSubmitting = false;
+
+        document.getElementById('reservasi-form').addEventListener('submit', function(e) {
+            if (isSubmitting) {
+                e.preventDefault();
+                console.log("⚠️ Form sudah di-submit, mencegah double submission");
+                return false;
+            }
+
+            isSubmitting = true;
+            console.log("✅ Form submission allowed");
+
+            // Reset flag setelah 30 detik (fallback)
+            setTimeout(() => {
+                isSubmitting = false;
+            }, 30000);
+        });
+    </script>
 
     <script>
         window.areaUnits = @json($areaUnits);

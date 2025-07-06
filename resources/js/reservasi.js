@@ -15,13 +15,163 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookedDates = window.bookedDates || {};
     const prices = window.prices || {};
 
-    // Inisialisasi flatpickr untuk tanggal kunjungan
+    // Cek waktu sekarang untuk pembatasan pemesanan
+    const now = new Date();
+    const currentHour = now.getHours();
+    const today = now.toISOString().split('T')[0];
+    
+    // Tentukan minimum date
+    let minDate = "today";
+    if (currentHour >= 12) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        minDate = tomorrow.toISOString().split('T')[0];
+    }
+
+    // Fungsi untuk get disabled dates
+    function getCurrentDisabledDates() {
+        const currentArea = fasilitasSelect ? fasilitasSelect.value : "";
+        const currentDeck = deckSelect ? deckSelect.value : "";
+        let disabledDates = [];
+        
+        if (currentArea && currentDeck) {
+            const uniqueKey = currentArea + " - " + currentDeck;
+            
+            if (bookedDates.hasOwnProperty(uniqueKey)) {
+                disabledDates = [...bookedDates[uniqueKey]];
+            }
+        }
+        
+        // Tambahkan hari ini jika sudah lewat jam 12
+        if (currentHour >= 12) {
+            if (!disabledDates.includes(today)) {
+                disabledDates = [...disabledDates, today];
+            }
+        }
+        
+        // Pastikan array unik dan terurut
+        disabledDates = [...new Set(disabledDates)].sort();
+        
+        return disabledDates;
+    }
+
+    // Simpan reference global untuk disabled dates
+    let currentDisabledDates = [];
+
+    // Inisialisasi flatpickr
     let fp = flatpickr("#tanggal-kunjungan", {
-        minDate: "today",
-        disable: [],
+        minDate: minDate,
         dateFormat: "Y-m-d",
         allowInput: false,
+        clickOpens: false,
+        enableTime: false,
+        disableMobile: true,
+        onReady: function() {
+            addValidationMessage();
+        },
+        onChange: function(selectedDates, dateStr) {
+            // Hanya lakukan validasi cut-off time untuk hari ini
+            if (selectedDates.length > 0) {
+                const selectedDate = selectedDates[0];
+                const selectedDateStr = selectedDate.toISOString().split('T')[0];
+                
+                // Cek cut-off time untuk hari ini
+                if (selectedDateStr === today && currentHour >= 12) {
+                    alert("❌ Pemesanan untuk hari ini sudah ditutup. Check-in dimulai pukul 14:00, pemesanan harus dilakukan sebelum pukul 12:00.");
+                    fp.clear();
+                    return;
+                }
+            }
+            
+            updateHarga();
+        },
+        // Disable function
+        disable: [
+            function(date) {
+                // Convert date ke string format Y-m-d
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const dateStr = `${year}-${month}-${day}`;
+                
+                const currentArea = fasilitasSelect ? fasilitasSelect.value : "";
+                const currentDeck = deckSelect ? deckSelect.value : "";
+                
+                // Jika area atau deck belum dipilih, disable semua tanggal
+                if (!currentArea || !currentDeck) {
+                    return true;
+                }
+                
+                return currentDisabledDates.includes(dateStr);
+            }
+        ],
+        // Handle click pada tanggal yang disabled
+        onDayCreate: function(dObj, dStr, fp, dayElem) {
+            const year = dayElem.dateObj.getFullYear();
+            const month = String(dayElem.dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dayElem.dateObj.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${day}`;
+            
+            // Jika tanggal ini disabled karena sudah dibooking, tambahkan event listener
+            if (currentDisabledDates.includes(dateStr)) {
+                dayElem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    alert(`❌ Tanggal ${dateStr} sudah dipesan. Silakan pilih tanggal lain.`);
+                }, true);
+                
+                // Tambahkan class custom untuk styling
+                dayElem.classList.add('booked-date');
+            }
+        }
     });
+
+    // Fungsi untuk menambahkan pesan validasi
+    function addValidationMessage() {
+        const existingMessage = document.getElementById('tanggal-validation-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.id = 'tanggal-validation-message';
+        messageDiv.className = 'mt-1 text-sm text-red-600 font-typewriter';
+        messageDiv.innerHTML = '⚠️ Pilih area dan deck terlebih dahulu sebelum memilih tanggal';
+        tanggalInput.parentNode.appendChild(messageDiv);
+    }
+
+    // Fungsi untuk menghapus pesan validasi
+    function removeValidationMessage() {
+        const messageDiv = document.getElementById('tanggal-validation-message');
+        if (messageDiv) {
+            messageDiv.remove();
+        }
+    }
+
+    // Fungsi untuk mengaktifkan/menonaktifkan input tanggal
+    function toggleDateInput() {
+        const area = fasilitasSelect ? fasilitasSelect.value : "";
+        const deck = deckSelect ? deckSelect.value : "";
+        
+        if (area && deck && deck !== "") {
+            // Aktifkan input tanggal
+            fp.set('clickOpens', true);
+            tanggalInput.disabled = false;
+            tanggalInput.classList.remove('bg-gray-100', 'cursor-not-allowed');
+            tanggalInput.classList.add('cursor-pointer', 'bg-white');
+            tanggalInput.placeholder = 'Klik untuk memilih tanggal';
+            removeValidationMessage();
+        } else {
+            // Nonaktifkan input tanggal
+            fp.set('clickOpens', false);
+            tanggalInput.disabled = true;
+            tanggalInput.classList.add('bg-gray-100', 'cursor-not-allowed');
+            tanggalInput.classList.remove('cursor-pointer', 'bg-white');
+            tanggalInput.placeholder = 'Pilih area dan deck terlebih dahulu';
+            tanggalInput.value = "";
+            addValidationMessage();
+        }
+    }
 
     // Fungsi untuk mengupdate pilihan deck
     function updateDeckOptions() {
@@ -30,37 +180,66 @@ document.addEventListener("DOMContentLoaded", function () {
         const selected = fasilitasSelect.value;
         const units = areaUnits[selected] || [];
         
-        if (units.length > 0) {
-            deckSelect.innerHTML = units
-                .map(
-                    (u) =>
-                        `<option value="${u.unit_name}">${u.unit_name}</option>`
-                )
-                .join("");
+        if (selected) {
             deckContainer.classList.remove("hidden");
             deckSelect.required = true;
+            
+            if (units.length > 0) {
+                deckSelect.innerHTML = '<option value="" disabled selected>Pilih Deck</option>' + 
+                    units.map(u => `<option value="${u.unit_name}">${u.unit_name}</option>`).join("");
+            } else {
+                deckSelect.innerHTML = '<option value="" disabled selected>Tidak ada deck tersedia</option>';
+            }
         } else {
-            deckSelect.innerHTML = "";
             deckContainer.classList.add("hidden");
             deckSelect.required = false;
+            deckSelect.innerHTML = '<option value="" disabled selected>Pilih Deck</option>';
         }
         
-        if (tanggalInput) tanggalInput.value = "";
+        deckSelect.selectedIndex = 0;
+        
+        toggleDateInput();
         updateDisabledDates();
         updateMaxPeople();
         updateHarga();
         updateDetailReservasi();
     }
 
-    // Fungsi untuk mengupdate tanggal yang tidak bisa dipilih
+    // Fungsi untuk refresh disabled dates
     function updateDisabledDates() {
-        if (!deckSelect || !fp) return;
+        const area = fasilitasSelect ? fasilitasSelect.value : "";
+        const deck = deckSelect ? deckSelect.value : "";
         
-        const deck = deckSelect.value;
-        const booked = bookedDates?.[deck] || [];
-        fp.set("disable", booked);
-        
+        // Clear tanggal input
         if (tanggalInput) tanggalInput.value = "";
+        
+        // Update global reference untuk disabled dates
+        currentDisabledDates = getCurrentDisabledDates();
+        
+        // Force redraw calendar
+        setTimeout(() => {
+            fp.redraw();
+        }, 100);
+        
+        // // Debug info
+        // const debugInfo = document.getElementById('debug-info');
+        // if (debugInfo) debugInfo.remove();
+        
+        // if (area && deck) {
+        //     const disabledDates = getCurrentDisabledDates();
+            
+        //     const debugDiv = document.createElement('div');
+        //     debugDiv.id = 'debug-info';
+        //     debugDiv.className = 'mt-1 text-xs text-blue-600 font-typewriter';
+            
+        //     if (disabledDates.length > 0) {
+        //         debugDiv.innerHTML = `🔍 Deck sudah ada yang terisi, silahkan pesan di tanggal yang kosong ${area} - ${deck}`;
+        //     } else {
+        //         debugDiv.innerHTML = `✅ Deck masih kosong di semua tanggal, silahkan pesan untuk tanggal yang di pilih ${area} - ${deck}`;
+        //     }
+            
+        //     tanggalInput.parentNode.appendChild(debugDiv);
+        // }
     }
 
     // Fungsi untuk mengupdate maksimal jumlah orang
@@ -124,24 +303,19 @@ document.addEventListener("DOMContentLoaded", function () {
         
         let total = harga + extraTotal;
         
-        // Update hidden input untuk total harga
         const totalHargaInput = document.getElementById("total-harga-input");
         if (totalHargaInput) totalHargaInput.value = total;
         
-        // Update detail reservasi
         updateDetailReservasi();
     }
 
-    // Fungsi untuk mengupdate detail reservasi
     function updateDetailReservasi() {
-        // Update tanggal check-in dan check-out
         const tanggalKunjungan = tanggalInput ? tanggalInput.value : "";
         const detailCheckin = document.getElementById('detail-checkin');
         const detailCheckout = document.getElementById('detail-checkout');
         
         if (detailCheckin) detailCheckin.textContent = tanggalKunjungan || '-';
         
-        // Check-out sehari setelah check-in
         if (tanggalKunjungan && detailCheckout) {
             const checkinDate = new Date(tanggalKunjungan);
             const checkoutDate = new Date(checkinDate);
@@ -153,22 +327,18 @@ document.addEventListener("DOMContentLoaded", function () {
             detailCheckout.textContent = '-';
         }
         
-        // Update area
         const area = fasilitasSelect ? fasilitasSelect.value : "";
         const detailArea = document.getElementById('detail-area');
         if (detailArea) detailArea.textContent = area || '-';
         
-        // Update deck
         const deck = deckSelect ? deckSelect.value : "";
         const detailDeck = document.getElementById('detail-deck');
         if (detailDeck) detailDeck.textContent = deck || '-';
         
-        // Update jumlah orang
         const jumlah = jumlahOrangInput ? jumlahOrangInput.value : "";
         const detailJumlah = document.getElementById('detail-jumlah');
         if (detailJumlah) detailJumlah.textContent = jumlah || '-';
         
-        // Update data pengunjung
         const nama = namaInput ? namaInput.value : "";
         const detailNama = document.getElementById('detail-nama');
         if (detailNama) detailNama.textContent = nama || '-';
@@ -181,11 +351,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const detailEmail = document.getElementById('detail-email');
         if (detailEmail) detailEmail.textContent = email || '-';
         
-        // Update harga
         updateHargaDetail();
     }
     
-    // Fungsi untuk mengupdate harga di detail
     function updateHargaDetail() {
         const fasilitas = fasilitasSelect ? fasilitasSelect.value : "";
         const deck = deckSelect ? deckSelect.value : "";
@@ -224,28 +392,47 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tambahanHarga) tambahanHarga.textContent = 'Rp ' + extraTotal.toLocaleString('id-ID');
         if (totalHarga) totalHarga.textContent = 'Rp ' + total.toLocaleString('id-ID');
         
-        // Update hidden input
         const totalHargaInput = document.getElementById("total-harga-input");
         if (totalHargaInput) totalHargaInput.value = total;
     }
 
     // Event listeners
     if (fasilitasSelect) {
-        fasilitasSelect.addEventListener("change", updateDeckOptions);
+        fasilitasSelect.addEventListener("change", function() {
+            updateDeckOptions();
+        });
     }
     
     if (deckSelect) {
         deckSelect.addEventListener("change", function () {
+            toggleDateInput();
             updateDisabledDates();
             updateMaxPeople();
             updateHarga();
         });
     }
     
+    // Event listener untuk mencegah keyboard input pada tanggal
     if (tanggalInput) {
-        tanggalInput.addEventListener("change", updateHarga);
         tanggalInput.addEventListener("keydown", function (e) {
             e.preventDefault();
+        });
+        
+        tanggalInput.addEventListener("click", function(e) {
+            const area = fasilitasSelect ? fasilitasSelect.value : "";
+            const deck = deckSelect ? deckSelect.value : "";
+            
+            if (!area) {
+                alert("❌ Silakan pilih area terlebih dahulu");
+                e.preventDefault();
+                return false;
+            }
+            
+            if (!deck) {
+                alert("❌ Silakan pilih deck terlebih dahulu");
+                e.preventDefault();
+                return false;
+            }
         });
     }
 
@@ -277,43 +464,63 @@ document.addEventListener("DOMContentLoaded", function () {
     // Validasi form saat submit
     if (form) {
         form.addEventListener("submit", function (e) {
+            const area = fasilitasSelect ? fasilitasSelect.value : "";
             const deck = deckSelect ? deckSelect.value : "";
             const tanggal = tanggalInput ? tanggalInput.value : "";
-            const booked = bookedDates?.[deck] || [];
             
-            if (booked.includes(tanggal)) {
-                alert("Tanggal ini sudah dipesan untuk deck tersebut. Silakan pilih tanggal lain.");
+            if (!area) {
+                alert("❌ Silakan pilih area terlebih dahulu.");
+                e.preventDefault();
+                return;
+            }
+            
+            if (!deck) {
+                alert("❌ Silakan pilih deck terlebih dahulu.");
+                e.preventDefault();
+                return;
+            }
+            
+            if (!tanggal) {
+                alert("❌ Silakan pilih tanggal kunjungan.");
+                e.preventDefault();
+                return;
+            }
+            
+            // Validasi final: Cek disabled dates sekali lagi
+            const disabledForSelection = getCurrentDisabledDates();
+            
+            if (disabledForSelection.includes(tanggal)) {
+                alert(`❌ Tanggal ${tanggal} sudah dipesan untuk ${area} - ${deck}. Silakan pilih tanggal lain.`);
                 if (tanggalInput) tanggalInput.value = "";
                 e.preventDefault();
                 return;
             }
-            
-            // Validasi form lengkap
-            if (!fasilitasSelect.value || !deckSelect.value || !tanggalInput.value) {
-                alert("Mohon lengkapi semua data reservasi.");
-                e.preventDefault();
-                return;
-            }
 
-            // Validasi total harga
             const totalHarga = document.getElementById("total-harga-input").value;
             if (!totalHarga || totalHarga <= 0) {
-                alert("Terjadi kesalahan dalam kalkulasi harga. Mohon refresh halaman dan coba lagi.");
+                alert("❌ Terjadi kesalahan dalam kalkulasi harga. Mohon refresh halaman dan coba lagi.");
                 e.preventDefault();
                 return;
             }
 
-            // Tampilkan loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = "Memproses...";
+                
+                setTimeout(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = "Pesan Sekarang";
+                    }
+                }, 10000);
             }
         });
     }
 
     // Inisialisasi awal
     updateDeckOptions();
+    toggleDateInput();
     updateDisabledDates();
     updateMaxPeople();
     updateHarga();

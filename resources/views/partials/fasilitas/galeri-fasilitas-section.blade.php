@@ -40,26 +40,45 @@
         <p class="mb-12 text-lg text-center text-gray-300" data-aos="fade-up" data-aos-delay="100">
             Nikmati momen tak terlupakan di {{ $data['title'] }} Riverside Camp.
         </p>
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            @foreach ($data['galeri'] as $gambar)
-                <div class="relative group overflow-hidden rounded-xl cursor-pointer" 
-                     data-aos="zoom-in" 
-                     data-aos-delay="{{ 100 * $loop->index }}"
-                     @click="openModal('{{ asset('images/' . $gambar) }}')">
-                    <img src="{{ asset('images/' . $gambar) }}"
-                        class="object-cover w-full h-64 transition-all duration-500 group-hover:scale-110"
-                        alt="Galeri {{ $loop->iteration }}">
-                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                            <svg class="w-12 h-12 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <p class="text-white text-sm font-semibold">Klik untuk memperbesar</p>
+        
+        {{-- HANDLE JIKA ADA GALERI --}}
+        @if(isset($data['galeri']) && count($data['galeri']) > 0)
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                @foreach ($data['galeri'] as $gambar)
+                    <div class="relative group overflow-hidden rounded-xl cursor-pointer" 
+                         data-aos="zoom-in" 
+                         data-aos-delay="{{ 100 * $loop->index }}"
+                         @click="openModal('{{ $gambar }}')">
+                        
+                        <img src="{{ $gambar }}"
+                            class="object-cover w-full h-64 transition-all duration-500 group-hover:scale-110"
+                            alt="Galeri {{ $data['title'] }} {{ $loop->iteration }}"
+                            loading="lazy"
+                            onerror="this.style.border='3px solid red'; console.log('Error loading: {{ $gambar }}');">
+                            
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                                <svg class="w-12 h-12 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                </svg>
+                                <p class="text-white text-sm font-semibold">Klik untuk memperbesar</p>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+            </div>
+        @else
+            {{-- TAMPILKAN PESAN JIKA TIDAK ADA GALERI --}}
+            <div class="text-center py-12">
+                <div class="bg-white bg-opacity-10 rounded-lg p-8 max-w-md mx-auto">
+                    <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold text-white mb-2">Galeri Segera Hadir</h3>
+                    <p class="text-gray-300">Foto-foto menarik dari {{ $data['title'] }} akan segera ditampilkan di sini.</p>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endif
     </div>
     
     <!-- Enhanced Modal with Zoom -->
@@ -108,13 +127,6 @@
             </button>
         </div>
 
-        <!-- Zoom Info -->
-        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[100001]">
-            <div class="bg-black bg-opacity-60 text-white px-4 py-2 rounded-lg">
-                <span x-text="`Zoom: ${Math.round(scale * 100)}%`"></span>
-            </div>
-        </div>
-        
         <!-- Image Container -->
         <div class="relative w-full h-full flex items-center justify-center p-4 overflow-hidden">
             <img :src="modalImg" 
@@ -127,15 +139,6 @@
                  @mouseup="isDragging = false"
                  @mouseleave="isDragging = false"
                  draggable="false" />
-        </div>
-
-        <!-- Instructions -->
-        <div class="absolute bottom-4 right-4 z-[100001]">
-            <div class="bg-black bg-opacity-60 text-white text-xs px-3 py-2 rounded-lg max-w-xs">
-                <p>• Scroll mouse untuk zoom</p>
-                <p>• Drag untuk pindah posisi</p>
-                <p>• ESC untuk keluar</p>
-            </div>
         </div>
     </div>
 </section>

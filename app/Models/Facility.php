@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Facility extends Model
 {
@@ -15,14 +17,20 @@ class Facility extends Model
         'type'
     ];
 
-    public function area()
+    public function area(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'area_id');
     }
 
-    public function units()
+    public function units(): HasMany
     {
         return $this->hasMany(AreaUnit::class, 'facility_id');
+    }
+
+    // Relasi dasar tanpa scope
+    public function galeri(): HasMany
+    {
+        return $this->hasMany(Galeri::class);
     }
 
     // Accessor untuk harga
@@ -38,6 +46,15 @@ class Facility extends Model
 
     public function getHighSeasonPriceAttribute()
     {
-        return $this->units()->with('price')->first()?->price?->highseason;  // Ubah ke highseason
+        return $this->units()->with('price')->first()?->price?->highseason;
+    }
+
+    // Accessor untuk gambar URL
+    public function getImageUrlAttribute(): ?string
+    {
+        if ($this->image_path) {
+            return asset('storage/' . $this->image_path);
+        }
+        return null;
     }
 }

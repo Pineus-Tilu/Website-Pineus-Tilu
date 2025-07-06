@@ -8,9 +8,10 @@
     @include('partials.fasilitas.denah-fasilitas-section', ['data' => $data])
     @include('partials.fasilitas.fasilitas-fasilitas-section', ['data' => $data])
     @include('partials.fasilitas.harga-fasilitas-section', ['data' => $data])
-    @if (!empty($data['galeri']) && count($data['galeri']))
-        @include('partials.fasilitas.galeri-fasilitas-section', ['data' => $data])
-    @endif
+    
+    {{-- SELALU TAMPILKAN GALERI SECTION TANPA KONDISI --}}
+    @include('partials.fasilitas.galeri-fasilitas-section', ['data' => $data])
+    
     @include('partials.fasilitas.reservasi-fasilitas-section')
 </div>
 

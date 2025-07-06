@@ -38,11 +38,13 @@
         <p class="mb-8 text-lg text-gray-600 font-typewriter" data-aos="fade-left">
             Denah area {{ $data['title'] }} untuk memudahkan pengunjung memahami lokasi fasilitas yang tersedia.
         </p>
+        
         <div class="flex justify-center">
             <div class="relative group cursor-pointer" @click="openDenah()">
-                <img src="{{ asset('images/' . $data['denah']) }}"
+                <img src="{{ $data['denah'] }}"
                     class="w-full max-w-3xl mx-auto transition-all duration-300 rounded-xl shadow-lg group-hover:shadow-2xl group-hover:scale-105"
-                    alt="Denah {{ $data['title'] }}" data-aos="zoom-in">
+                    alt="Denah {{ $data['title'] }}" 
+                    data-aos="zoom-in">
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20 rounded-xl">
                     <span class="px-4 py-2 text-white bg-green-600 rounded-lg font-typewriter">Klik untuk memperbesar</span>
                 </div>
@@ -105,7 +107,7 @@
         
         <!-- Image Container -->
         <div class="relative w-full h-full flex items-center justify-center p-4 overflow-hidden">
-            <img src="{{ asset('images/' . $data['denah']) }}" 
+            <img src="{{ $data['denah'] }}" 
                  alt="Denah {{ $data['title'] }}"
                  class="max-h-full max-w-full object-contain rounded-lg shadow-2xl bg-white p-2 transition-transform duration-200 ease-out select-none"
                  :style="`transform: scale(${scale}) translate(${translateX}px, ${translateY}px)`"

@@ -3,52 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Area;
+use App\Models\Galeri;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Daftar area dan slug folder galeri
-        $areas = [
-            [
-                'slug' => 'pineus-tilu-i',
-                'title' => 'Pineus Tilu I',
-            ],
-            [
-                'slug' => 'pineus-tilu-ii',
-                'title' => 'Pineus Tilu II',
-            ],
-            [
-                'slug' => 'pineus-tilu-iii-vip-tenda',
-                'title' => 'Pineus Tilu III (VIP Tenda)',
-            ],
-            [
-                'slug' => 'pineus-tilu-iii-vip-kabin',
-                'title' => 'Pineus Tilu III (VIP Kabin)',
-            ],
-            [
-                'slug' => 'pineus-tilu-iv',
-                'title' => 'Pineus Tilu IV',
-            ],
-        ];
-
+        // Ambil area dengan relasi galeri
+        $areas = Area::with(['featuredGaleri', 'galeriDashboard'])->get();
         $slides = [];
+
         foreach ($areas as $area) {
-            $galeriPath = public_path('images/galeri/' . $area['slug']);
+            $slug = $area->slug;
             $img = null;
-            if (is_dir($galeriPath)) {
-                foreach (['jpg', 'jpeg', 'png', 'webp', 'JPG', 'PNG', 'JPEG', 'WEBP'] as $ext) {
-                    $file = "utama.$ext";
-                    if (file_exists($galeriPath . '/' . $file)) {
-                        $img = 'galeri/' . $area['slug'] . '/' . $file;
-                        break;
-                    }
+            
+            // Prioritas: 1. Featured galeri, 2. Galeri dashboard pertama
+            if ($area->featuredGaleri) {
+                // Gunakan featured galeri
+                $imagePath = $area->featuredGaleri->image_path;
+                if (str_starts_with($imagePath, 'galeri/')) {
+                    $img = asset('storage/' . $imagePath);
+                } else {
+                    $img = asset('storage/galeri/' . $imagePath);
+                }
+            } elseif ($area->galeriDashboard->isNotEmpty()) {
+                // Gunakan galeri dashboard pertama
+                $imagePath = $area->galeriDashboard->first()->image_path;
+                if (str_starts_with($imagePath, 'galeri/')) {
+                    $img = asset('storage/' . $imagePath);
+                } else {
+                    $img = asset('storage/galeri/' . $imagePath);
                 }
             }
-            $slides[] = [
-                'img' => $img ?? 'logo.png',
-                'title' => $area['title'],
-            ];
+
+            // HANYA tambah slide jika ada gambar dari database
+            if ($img) {
+                $slides[] = [
+                    'img' => $img,
+                    'title' => $area->name,
+                    'slug' => $slug,
+                ];
+            }
         }
 
         return view('dashboard', compact('slides'));

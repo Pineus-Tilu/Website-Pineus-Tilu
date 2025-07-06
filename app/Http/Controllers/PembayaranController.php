@@ -38,8 +38,13 @@ class PembayaranController extends Controller
         return view('pembayaran', [
             'booking' => $booking,
             'nama' => $request->nama,
+            'telepon' => $request->telepon,
             'email' => $request->email,
             'subtotal' => $request->subtotal,
+            'tanggal_kunjungan' => $request->tanggal_kunjungan,
+            'fasilitas' => $request->fasilitas,
+            'deck' => $request->deck,
+            'jumlah_orang' => $request->jumlah_orang,
         ]);
     }
 
@@ -53,10 +58,10 @@ class PembayaranController extends Controller
                 'subtotal' => 'required|numeric|min:1',
             ]);
 
-            $booking = Booking::find($request->booking_id);
-            $orderId = 'ORDER-' . $booking->id . '-' . time();
+            $booking = Booking::with(['bookingDetail', 'unit.area'])->find($request->booking_id);
+            $orderId = 'CAMPING-' . $booking->id . '-' . time();
 
-            // Data transaksi
+            // Data transaksi dengan detail lengkap
             $params = [
                 'transaction_details' => [
                     'order_id' => $orderId,
@@ -65,33 +70,55 @@ class PembayaranController extends Controller
                 'customer_details' => [
                     'first_name' => $request->nama,
                     'email' => $request->email,
+                    'phone' => $booking->bookingDetail->telepon ?? '',
+                    'billing_address' => [
+                        'first_name' => $request->nama,
+                        'email' => $request->email,
+                        'phone' => $booking->bookingDetail->telepon ?? '',
+                        'address' => 'Pineus Tilu Camping Ground',
+                        'city' => 'Bandung',
+                        'postal_code' => '40391',
+                        'country_code' => 'IDN'
+                    ]
                 ],
                 'item_details' => [
                     [
                         'id' => 'camping-' . $booking->unit_id,
                         'price' => (int) $request->subtotal,
                         'quantity' => 1,
-                        'name' => 'Reservasi Camping - ' . ($booking->unit->area->name ?? 'Area') . ' - ' . ($booking->unit->unit_name ?? 'Unit'),
+                        'name' => 'Reservasi Camping - ' . $booking->unit->area->name . ' - ' . $booking->unit->unit_name,
+                        'brand' => 'Pineus Tilu',
+                        'category' => 'Camping',
+                        'merchant_name' => 'Pineus Tilu Camping Ground'
                     ]
                 ],
+                // Tambahkan custom field untuk detail reservasi
+                'custom_field1' => 'Check-in: ' . $booking->booking_for_date,
+                'custom_field2' => 'Jumlah Orang: ' . $booking->bookingDetail->number_of_people,
+                'custom_field3' => 'Area: ' . $booking->unit->area->name . ' - ' . $booking->unit->unit_name,
                 'callbacks' => [
                     'finish' => route('pembayaran.finish'),
+                ],
+                'expiry' => [
+                    'start_time' => date('Y-m-d H:i:s O'),
+                    'unit' => 'minutes',
+                    'duration' => 30 // Pembayaran expire dalam 30 menit
                 ]
             ];
 
             $snapToken = Snap::getSnapToken($params);
 
-            // Simpan data pembayaran dengan transaction_id = null
+            // Simpan data pembayaran
             Payment::create([
                 'booking_id' => $booking->id,
                 'order_id' => $orderId,
-                'transaction_id' => null, // Ubah dari '' ke null
+                'transaction_id' => null,
                 'payment_type' => 'pending',
                 'transaction_status' => 'pending',
                 'gross_amount' => $request->subtotal,
                 'snap_token' => $snapToken,
+                'expired_at' => now()->addMinutes(30), // Set expiry time
             ]);
-
 
             return response()->json(['snapToken' => $snapToken]);
 
@@ -210,10 +237,43 @@ class PembayaranController extends Controller
                     $type = 'error';
                 }
 
-                return redirect()->route('/')->with($type, $message);
+                return redirect('/')->with($type, $message);
             }
         }
 
-        return redirect()->route('/')->with('error', 'Data pembayaran tidak ditemukan.');
+        return redirect('/')->with('error', 'Data pembayaran tidak ditemukan.');
+    }
+
+    // Method untuk cancel booking
+    public function cancel(Request $request)
+    {
+        try {
+            $bookingId = $request->booking_id;
+            $booking = Booking::find($bookingId);
+
+            if (!$booking) {
+                return response()->json(['error' => 'Booking tidak ditemukan'], 404);
+            }
+
+            // Update status booking menjadi cancelled
+            $booking->update(['status_id' => 3]); // 3 = cancelled
+
+            // Update payment jika ada
+            $payment = Payment::where('booking_id', $bookingId)->first();
+            if ($payment) {
+                $payment->update([
+                    'transaction_status' => 'cancel',
+                    'payment_type' => 'cancel'
+                ]);
+            }
+
+            Log::info('Booking cancelled by user:', ['booking_id' => $bookingId]);
+
+            return response()->json(['success' => true, 'message' => 'Booking berhasil dibatalkan']);
+
+        } catch (\Exception $e) {
+            Log::error('Cancel booking error:', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'Gagal membatalkan booking'], 500);
+        }
     }
 }

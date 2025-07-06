@@ -41,7 +41,7 @@ Route::post('/reservasi/store', [ReservasiController::class, 'storeReservasi'])-
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
 Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');
 Route::get('/pembayaran/finish', [PembayaranController::class, 'finish'])->name('pembayaran.finish');
-
+Route::post('/pembayaran/cancel', [PembayaranController::class, 'cancel'])->name('pembayaran.cancel');
 // Midtrans callback
 Route::post('/pembayaran/callback', [PembayaranController::class, 'callback'])->name('pembayaran.callback');
 

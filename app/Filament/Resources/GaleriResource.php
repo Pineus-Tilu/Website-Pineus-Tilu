@@ -64,7 +64,6 @@ class GaleriResource extends Resource
                     ->label('Deskripsi')
                     ->rows(3),
 
-                // FIX: Field Urutan dengan validasi proper
                 TextInput::make('sort_order')
                     ->label('Urutan')
                     ->numeric()
@@ -75,7 +74,7 @@ class GaleriResource extends Resource
                     ->suffix('(0 = paling atas)')
                     ->helperText('Masukkan angka 0 atau lebih. Semakin kecil angka, semakin atas posisinya.')
                     ->required()
-                    ->rules(['integer', 'min:0', 'max:9999']), // Tambahan validasi backend
+                    ->rules(['integer', 'min:0', 'max:9999']),
 
                 Toggle::make('is_featured')
                     ->label('Unggulan')
@@ -88,36 +87,69 @@ class GaleriResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image_path')
+                // Custom Image Column yang berfungsi dengan baik
+                TextColumn::make('image_path')
                     ->label('Gambar')
-                    ->disk('public')
-                    ->width(100)
-                    ->height(80),
+                    ->formatStateUsing(function ($state, $record) {
+                        if (!$state) {
+                            return new \Illuminate\Support\HtmlString(
+                                '<div style="width: 80px; height: 60px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 12px;">No Image</div>'
+                            );
+                        }
+                        
+                        // Build proper URL based on stored path
+                        if (str_starts_with($state, 'galeri/')) {
+                            $imageUrl = asset('storage/' . $state);
+                        } else {
+                            $imageUrl = asset('storage/galeri/' . $state);
+                        }
+                        
+                        return new \Illuminate\Support\HtmlString(
+                            '<img src="' . $imageUrl . '" 
+                                  style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;" 
+                                  loading="lazy"
+                                  onerror="this.style.background=\'#f3f4f6\'; this.style.color=\'#9ca3af\'; this.innerHTML=\'Error\'; this.src=\'\';"
+                                  title="' . ($record->title ?: 'Gambar Galeri') . '">'
+                        );
+                    })
+                    ->html(),
                 
                 TextColumn::make('area.name')
                     ->label('Area')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color('info'),
                 
                 TextColumn::make('type')
                     ->label('Tipe')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'dashboard' => 'success',
-                        'facility' => 'info',
+                        'facility' => 'warning',
+                        default => 'gray',
                     })
                     ->sortable(),
                 
                 TextColumn::make('title')
                     ->label('Judul')
                     ->limit(30)
-                    ->searchable(),
+                    ->searchable()
+                    ->placeholder('Tidak ada judul')
+                    ->tooltip(function (TextColumn $column): ?string {
+                        $state = $column->getState();
+                        if (strlen($state) <= 30) {
+                            return null;
+                        }
+                        return $state;
+                    }),
                 
                 TextColumn::make('sort_order')
                     ->label('Urutan')
                     ->sortable()
                     ->badge()
-                    ->color('gray'),
+                    ->color('gray')
+                    ->alignCenter(),
                 
                 BooleanColumn::make('is_featured')
                     ->label('Unggulan')
@@ -148,7 +180,14 @@ class GaleriResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('sort_order', 'asc'); // Sort by urutan ascending
+            ->defaultSort('sort_order', 'asc');
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array

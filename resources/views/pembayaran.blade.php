@@ -350,14 +350,14 @@
         document.getElementById('paymentErrorOkBtn').onclick = function() {
             hideModal('paymentErrorModal');
             // Redirect to tentang page
-            window.location.href = "{{ url('/tentang') }}";
+            //  window.location.href = "{{ url('/tentang') }}";
         };
 
         // 🔥 Handle Payment Pending Modal OK Button
         document.getElementById('paymentPendingOkBtn').onclick = function() {
             hideModal('paymentPendingModal');
             // Redirect to dashboard
-            window.location.href = "{{ url('/') }}";
+            // window.location.href = "{{ url('/') }}";
         };
 
         // 🔥 Close modal when clicking outside
@@ -430,20 +430,7 @@
                     if (data.snapToken) {
                         window.snap.pay(data.snapToken, {
                             onSuccess: function(result) {
-                                // Update booking status via AJAX
-                                fetch('/pembayaran/finish?' + new URLSearchParams({
-                                    order_id: result.order_id,
-                                    status_code: result.status_code,
-                                    transaction_status: result.transaction_status
-                                }), {
-                                    method: 'GET',
-                                    headers: {
-                                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                                    }
-                                }).then(() => {
-                                    // Show payment success modal
-                                    showModal('paymentSuccessModal');
-                                });
+                                showModal('paymentSuccessModal');
                             },
                             onPending: function(result) {
                                 // Show payment pending modal

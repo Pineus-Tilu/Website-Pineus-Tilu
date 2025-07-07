@@ -9,6 +9,7 @@ use Midtrans\Notification;
 use App\Models\Payment;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Log;
+use Midtrans\Transaction;
 
 class PembayaranController extends Controller
 {
@@ -59,6 +60,49 @@ class PembayaranController extends Controller
             ]);
 
             $booking = Booking::with(['bookingDetail', 'unit.area'])->find($request->booking_id);
+
+            // 🔥 Cek apakah ada payment yang masih aktif untuk booking ini
+            $existingPayment = Payment::where('booking_id', $booking->id)
+                ->where('transaction_status', 'pending')
+                ->orderBy('created_at', 'desc')
+                ->first();
+            
+            // Jika ada payment yang masih valid, cek status di Midtrans
+            if ($existingPayment && !empty($existingPayment->order_id)) {
+                try {
+                    $statusResult = Transaction::status($existingPayment->order_id);
+                    $currentStatus = $statusResult->transaction_status;
+
+                    Log::info('Existing payment status check:', [
+                        'order_id' => $existingPayment->order_id,
+                        'status' => $currentStatus
+                    ]);
+
+                    // Jika status masih pending, gunakan token yang ada
+                    if ($currentStatus === 'pending') {
+                        Log::info('Using existing snap token for booking: ' . $booking->id);
+                        return response()->json(['snapToken' => $existingPayment->snap_token]);
+                    } else {
+                        // Jika status berubah (expired, cancel, settlement, dll), update payment lama
+                        $existingPayment->update([
+                            'transaction_status' => $currentStatus,
+                            'payment_type' => $currentStatus
+                        ]);
+
+                        Log::info('Existing payment status changed to: ' . $currentStatus . ', creating new token');
+                    }
+                } catch (\Exception $statusError) {
+                    Log::warning('Failed to check existing payment status:', [
+                        'order_id' => $existingPayment->order_id,
+                        'error' => $statusError->getMessage()
+                    ]);
+
+                    // Jika error saat cek status, anggap payment sudah tidak valid dan buat baru
+                    Log::info('Status check failed, creating new token');
+                }
+            }
+
+            // 🔥 Buat payment baru jika tidak ada yang valid
             $orderId = 'CAMPING-' . $booking->id . '-' . time();
 
             // Data transaksi dengan detail lengkap
@@ -108,7 +152,7 @@ class PembayaranController extends Controller
 
             $snapToken = Snap::getSnapToken($params);
 
-            // Simpan data pembayaran
+            // Simpan data pembayaran baru
             Payment::create([
                 'booking_id' => $booking->id,
                 'order_id' => $orderId,
@@ -117,11 +161,11 @@ class PembayaranController extends Controller
                 'transaction_status' => 'pending',
                 'gross_amount' => $request->subtotal,
                 'snap_token' => $snapToken,
-                'expired_at' => now()->addMinutes(30), // Set expiry time
             ]);
 
-            return response()->json(['snapToken' => $snapToken]);
+            Log::info('New snap token created for booking: ' . $booking->id);
 
+            return response()->json(['snapToken' => $snapToken]);
         } catch (\Exception $e) {
             Log::error('Midtrans Error:', [
                 'message' => $e->getMessage(),
@@ -197,7 +241,6 @@ class PembayaranController extends Controller
             }
 
             return response()->json(['status' => 'success']);
-
         } catch (\Exception $e) {
             Log::error('Midtrans Callback Error:', ['error' => $e->getMessage()]);
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -255,22 +298,45 @@ class PembayaranController extends Controller
                 return response()->json(['error' => 'Booking tidak ditemukan'], 404);
             }
 
+            // Update payment jika ada dan cancel di Midtrans
+            $payment = Payment::where('booking_id', $bookingId)->first();
+            if ($payment && !empty($payment->order_id)) {
+                try {
+                    // Cancel transaksi di Midtrans
+                    $cancelResult = Transaction::cancel($payment->order_id);
+                    
+                    Log::info('Midtrans cancellation result:', [
+                        'order_id' => $payment->order_id,
+                        'result' => $cancelResult
+                    ]);
+
+                    // Update payment dengan status dari Midtrans
+                    $payment->update([
+                        'transaction_status' => 'cancel',
+                        'payment_type' => 'cancel'
+                    ]);
+
+                    Log::info('Payment cancelled in Midtrans and database:', ['order_id' => $payment->order_id]);
+                } catch (\Exception $midtransError) {
+                    Log::warning('Failed to cancel payment in Midtrans:', [
+                        'order_id' => $payment->order_id,
+                        'error' => $midtransError->getMessage()
+                    ]);
+
+                    // Tetap update status lokal meskipun gagal cancel di Midtrans
+                    $payment->update([
+                        'transaction_status' => 'cancel',
+                        'payment_type' => 'cancel'
+                    ]);
+                }
+            }
+
             // Update status booking menjadi cancelled
             $booking->update(['status_id' => 3]); // 3 = cancelled
-
-            // Update payment jika ada
-            $payment = Payment::where('booking_id', $bookingId)->first();
-            if ($payment) {
-                $payment->update([
-                    'transaction_status' => 'cancel',
-                    'payment_type' => 'cancel'
-                ]);
-            }
 
             Log::info('Booking cancelled by user:', ['booking_id' => $bookingId]);
 
             return response()->json(['success' => true, 'message' => 'Booking berhasil dibatalkan']);
-
         } catch (\Exception $e) {
             Log::error('Cancel booking error:', ['error' => $e->getMessage()]);
             return response()->json(['error' => 'Gagal membatalkan booking'], 500);

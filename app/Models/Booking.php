@@ -16,9 +16,6 @@ class Booking extends Model
         'status_id',
         'invoice_number',
         'total_amount',
-        'customer_name',
-        'customer_email',
-        'customer_phone'
     ];
 
     protected $casts = [

@@ -59,4 +59,44 @@ Route::get('/invoice/{booking_id}/preview', [InvoiceController::class, 'previewI
 // Test Invoice (for development only)
 Route::get('/test-invoice', fn() => view('test-invoice'))->name('test.invoice');
 
+// Test Payment Finish (for debugging email issue)
+Route::get('/test-finish/{order_id?}', function($order_id = null) {
+    try {
+        // Get latest payment if no order_id provided
+        if (!$order_id) {
+            $payment = \App\Models\Payment::latest()->first();
+            $order_id = $payment ? $payment->order_id : null;
+        }
+        
+        if (!$order_id) {
+            return response()->json(['error' => 'No order ID found']);
+        }
+        
+        // Simulate finish request
+        $request = request();
+        $request->merge([
+            'order_id' => $order_id,
+            'status_code' => '200',
+            'transaction_status' => 'settlement'
+        ]);
+        
+        $controller = new \App\Http\Controllers\PembayaranController();
+        $response = $controller->finish($request);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Finish method called successfully',
+            'order_id' => $order_id,
+            'response' => $response->getStatusCode()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => true,
+            'message' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile()
+        ]);
+    }
+});
+
 

@@ -164,10 +164,11 @@ class ReservasiController extends Controller
                 'unit_id' => $unit->id,
                 'booking_for_date' => $tanggal,
                 'status_id' => 1, // 1 = pending (default)
+                'total_amount' => $total,
             ]);
 
             // Simpan ke tabel booking_details
-            $bookingDetail = BookingDetail::create([
+            BookingDetail::create([
                 'booking_id' => $booking->id,
                 'number_of_people' => $jumlah,
                 'extra_charge' => $extra,

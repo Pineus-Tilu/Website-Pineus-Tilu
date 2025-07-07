@@ -9,6 +9,8 @@ use Midtrans\Notification;
 use App\Models\Payment;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvoiceMail;
 use Midtrans\Transaction;
 
 class PembayaranController extends Controller
@@ -71,7 +73,7 @@ class PembayaranController extends Controller
             if ($existingPayment && !empty($existingPayment->order_id)) {
                 try {
                     $statusResult = Transaction::status($existingPayment->order_id);
-                    $currentStatus = $statusResult->transaction_status;
+                    $currentStatus = is_object($statusResult) ? $statusResult->transaction_status : $statusResult['transaction_status'];
 
                     Log::info('Existing payment status check:', [
                         'order_id' => $existingPayment->order_id,
@@ -218,17 +220,25 @@ class PembayaranController extends Controller
                     if ($fraud == 'challenge') {
                         $booking->update(['status_id' => 1]); // pending
                         Log::info('Booking status updated to pending (fraud challenge)');
+                        // Send pending notification email
+                        $this->sendPendingEmail($booking);
                     } else {
                         $booking->update(['status_id' => 2]); // success
                         Log::info('Booking status updated to success (credit card capture)');
+                        // Send invoice email for successful payment
+                        $this->sendInvoiceEmail($booking);
                     }
                 }
             } elseif ($transaction == 'settlement') {
                 $booking->update(['status_id' => 2]); // success
                 Log::info('Booking status updated to success (settlement)');
+                // Send invoice email for successful payment
+                $this->sendInvoiceEmail($booking);
             } elseif ($transaction == 'pending') {
                 $booking->update(['status_id' => 1]); // pending
                 Log::info('Booking status updated to pending');
+                // Send pending notification email
+                $this->sendPendingEmail($booking);
             } elseif ($transaction == 'deny') {
                 $booking->update(['status_id' => 3]); // failed/cancel
                 Log::info('Booking status updated to cancel (deny)');
@@ -270,6 +280,8 @@ class PembayaranController extends Controller
                     $booking->update(['status_id' => 2]); // success
                     $message = 'Pembayaran berhasil! Booking Anda telah dikonfirmasi.';
                     $type = 'success';
+                    // Send invoice email for successful payment
+                    $this->sendInvoiceEmail($booking);
                 } elseif ($transactionStatus == 'pending') {
                     $booking->update(['status_id' => 1]); // pending
                     $message = 'Pembayaran sedang diproses. Silakan selesaikan pembayaran Anda.';
@@ -340,6 +352,96 @@ class PembayaranController extends Controller
         } catch (\Exception $e) {
             Log::error('Cancel booking error:', ['error' => $e->getMessage()]);
             return response()->json(['error' => 'Gagal membatalkan booking'], 500);
+        }
+    }
+
+    /**
+     * Send invoice email to customer after successful payment
+     */
+    private function sendInvoiceEmail($booking)
+    {
+        try {
+            Log::info('Starting sendInvoiceEmail process', ['booking_id' => $booking->id]);
+            
+            // Load booking detail relationship if not loaded
+            if (!$booking->relationLoaded('bookingDetail')) {
+                $booking->load('bookingDetail');
+                Log::info('Loaded bookingDetail relationship');
+            }
+
+            // Check if booking has email in booking detail
+            $customerEmail = $booking->bookingDetail->email ?? null;
+            
+            Log::info('Customer email found', ['email' => $customerEmail]);
+            
+            if (empty($customerEmail)) {
+                Log::warning('Cannot send invoice email: No email address for booking', ['booking_id' => $booking->id]);
+                return;
+            }
+
+            Log::info('Attempting to send invoice email', [
+                'booking_id' => $booking->id,
+                'email' => $customerEmail,
+                'mail_driver' => config('mail.default'),
+                'mail_host' => config('mail.mailers.smtp.host')
+            ]);
+
+            // Send the invoice email with PDF attachment
+            Mail::to($customerEmail)->send(new InvoiceMail($booking));
+            
+            Log::info('Invoice email sent successfully', [
+                'booking_id' => $booking->id,
+                'email' => $customerEmail
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to send invoice email', [
+                'booking_id' => $booking->id,
+                'email' => $booking->bookingDetail->email ?? 'N/A',
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
+    }
+
+    /**
+     * Send pending payment notification email to customer
+     */
+    private function sendPendingEmail($booking)
+    {
+        try {
+            // Load booking detail relationship if not loaded
+            if (!$booking->relationLoaded('bookingDetail')) {
+                $booking->load('bookingDetail');
+            }
+
+            // Check if booking has email in booking detail
+            $customerEmail = $booking->bookingDetail->email ?? null;
+            
+            if (empty($customerEmail)) {
+                Log::warning('Cannot send pending email: No email address for booking', ['booking_id' => $booking->id]);
+                return;
+            }
+
+            // For now, we can send a simple notification email
+            // You can create a separate PendingMail class later if needed
+            $customerName = $booking->bookingDetail->nama ?? 'Customer';
+            $subject = 'Pembayaran Sedang Diproses - Pineus Tilu';
+            $message = "Halo $customerName, pembayaran untuk booking #{$booking->id} sedang diproses. Kami akan mengirimkan konfirmasi setelah pembayaran berhasil.";
+            
+            Mail::raw($message, function ($mail) use ($customerEmail, $subject) {
+                $mail->to($customerEmail)->subject($subject);
+            });
+            
+            Log::info('Pending payment email sent successfully', [
+                'booking_id' => $booking->id,
+                'email' => $customerEmail
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to send pending payment email', [
+                'booking_id' => $booking->id,
+                'email' => $booking->bookingDetail->email ?? 'N/A',
+                'error' => $e->getMessage()
+            ]);
         }
     }
 }

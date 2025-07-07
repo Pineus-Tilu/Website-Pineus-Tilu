@@ -98,8 +98,28 @@
                 <ul class="space-y-1 text-sm text-blue-700">
                     <li>• Pembayaran akan otomatis expired dalam 30 menit</li>
                     <li>• Setelah pembayaran berhasil, booking akan dikonfirmasi</li>
+                    <li>• <strong>Invoice PDF akan dikirim otomatis ke email Anda</strong></li>
                     <li>• Jika ada kendala, hubungi customer service</li>
                 </ul>
+            </div>
+
+            <!-- Info Email Invoice -->
+            <div class="p-4 mt-4 rounded-lg bg-green-50">
+                <h4 class="mb-2 font-semibold text-green-800">📧 Sistem Email Invoice:</h4>
+                <div class="text-sm text-green-700">
+                    <div class="flex items-start mb-2">
+                        <span class="inline-block w-2 h-2 mt-2 mr-2 bg-green-500 rounded-full"></span>
+                        <span><strong>Pembayaran Pending:</strong> Email konfirmasi booking dikirim</span>
+                    </div>
+                    <div class="flex items-start mb-2">
+                        <span class="inline-block w-2 h-2 mt-2 mr-2 bg-green-500 rounded-full"></span>
+                        <span><strong>Pembayaran Berhasil:</strong> Invoice PDF lengkap dikirim ke <strong>{{ $email }}</strong></span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="inline-block w-2 h-2 mt-2 mr-2 bg-green-500 rounded-full"></span>
+                        <span>Invoice berisi detail booking, syarat ketentuan, dan kebijakan pembatalan</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -196,7 +216,41 @@
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Pembayaran Berhasil!</h3>
-                    <p class="mb-6 text-gray-600">Pembayaran telah berhasil. Invoice dan keterangan lainnya akan kami kirim lewat email yang terdaftar.</p>
+                    <p class="mb-4 text-gray-600">Terima kasih! Pembayaran Anda telah berhasil diproses.</p>
+                    
+                    <div class="p-4 mb-4 rounded-lg bg-green-50">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-medium text-green-800">Invoice PDF Telah Dikirim</h4>
+                                <p class="mt-1 text-sm text-green-700">
+                                    Invoice lengkap beserta detail booking telah dikirim ke email <strong>{{ $email ?? 'Anda' }}</strong>. 
+                                    Silakan cek email (termasuk folder spam) untuk invoice PDF yang dapat digunakan saat check-in.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 mb-4 rounded-lg bg-blue-50">
+                        <h5 class="font-medium text-blue-800">📋 Yang Anda Terima:</h5>
+                        <ul class="mt-2 text-sm text-blue-700">
+                            <li>• Invoice PDF (3 halaman) dalam format landscape</li>
+                            <li>• Detail lengkap booking dan pembayaran</li>
+                            <li>• Syarat dan ketentuan lengkap</li>
+                            <li>• Kebijakan pembatalan</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-3 mb-6 border-l-4 border-yellow-400 bg-yellow-50">
+                        <p class="text-sm text-yellow-800">
+                            <strong>Penting:</strong> Harap tunjukkan invoice PDF ini saat check-in. Datang 15 menit sebelum waktu kunjungan dan bawa identitas yang valid.
+                        </p>
+                    </div>
 
                     <button id="paymentSuccessOkBtn"
                         class="w-full px-4 py-2 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700">
@@ -243,7 +297,31 @@
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Pembayaran Sedang Diproses</h3>
-                    <p class="mb-6 text-gray-600">Pembayaran sedang diproses. Silakan selesaikan pembayaran Anda.</p>
+                    <p class="mb-4 text-gray-600">Pembayaran Anda sedang dalam proses verifikasi. Silakan selesaikan pembayaran Anda.</p>
+                    
+                    <div class="p-4 mb-4 rounded-lg bg-yellow-50">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002-2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-medium text-yellow-800">Notifikasi Email Dikirim</h4>
+                                <p class="mt-1 text-sm text-yellow-700">
+                                    Kami telah mengirim konfirmasi booking ke email <strong>{{ $email ?? 'Anda' }}</strong>. 
+                                    Invoice PDF lengkap akan dikirim setelah pembayaran berhasil diverifikasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 mb-6 border-l-4 border-blue-400 bg-blue-50">
+                        <p class="text-sm text-blue-800">
+                            <strong>Selanjutnya:</strong> Selesaikan pembayaran Anda. Setelah berhasil, invoice PDF akan otomatis dikirim ke email Anda.
+                        </p>
+                    </div>
 
                     <button id="paymentPendingOkBtn"
                         class="w-full px-4 py-2 font-semibold text-white transition bg-yellow-600 rounded hover:bg-yellow-700">

@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="flex items-center justify-center min-h-screen-with-nav bg-gray-50" id="app-container">
+  <div class="flex items-center justify-center min-h-screen bg-gray-50" id="app-container">
     <div class="w-full max-w-4xl p-8 bg-white shadow-lg rounded-2xl">
       <h2 class="mb-8 text-3xl font-semibold text-center text-gray-700">Pengaturan Website</h2>
 

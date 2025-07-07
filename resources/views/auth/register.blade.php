@@ -1,7 +1,7 @@
 <x-guest-layout>
     @section('title', 'Daftar - Pineus Tilu Riverside Camping Ground')
 
-    <div class="min-h-screen-with-nav flex items-center justify-center bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] px-4 py-8 relative overflow-hidden">
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] px-4 py-8 relative overflow-hidden">
         <!-- Mobile Back Button -->
         <div class="absolute z-20 md:hidden top-6 left-6">
             <a href="{{ route('login') }}" 

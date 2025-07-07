@@ -37,6 +37,12 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('/reservasi', [ReservasiController::class, 'showReservasi'])->name('reservasi');
 Route::post('/reservasi/store', [ReservasiController::class, 'storeReservasi'])->name('reservasi.store');
 
+// Booking Management
+Route::get('/booking/{booking_id}', [ReservasiController::class, 'showBookingDetail'])->name('booking.detail');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/my-bookings', [ReservasiController::class, 'showMyBookings'])->name('my.bookings');
+});
+
 // Pembayaran - mendukung GET dan POST
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
 Route::post('/pembayaran/process', [PembayaranController::class, 'process'])->name('pembayaran.process');
@@ -47,5 +53,10 @@ Route::post('/pembayaran/callback', [PembayaranController::class, 'callback'])->
 
 // Invoice PDF
 Route::get('/invoice/{booking_id}', [InvoiceController::class, 'generateInvoice'])->name('invoice');
+Route::get('/invoice/{booking_id}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
+Route::get('/invoice/{booking_id}/preview', [InvoiceController::class, 'previewInvoice'])->name('invoice.preview');
+
+// Test Invoice (for development only)
+Route::get('/test-invoice', fn() => view('test-invoice'))->name('test.invoice');
 
 

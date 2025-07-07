@@ -227,4 +227,43 @@ class ReservasiController extends Controller
         // Weekday: Minggu (0), Senin (1), Selasa (2), Rabu (3), Kamis (4)
         return 'weekday';
     }
+
+    /**
+     * Show booking details with invoice links
+     */
+    public function showBookingDetail($bookingId)
+    {
+        $booking = Booking::with([
+            'bookingDetail',
+            'unit.area',
+            'user',
+            'status'
+        ])->findOrFail($bookingId);
+
+        return view('booking-detail', compact('booking'));
+    }
+
+    /**
+     * Show user's booking history
+     */
+    public function showMyBookings()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $bookings = Booking::with([
+            'bookingDetail',
+            'unit.area',
+            'status'
+        ])
+        ->where('user_id', Auth::id())
+        ->orWhereHas('bookingDetail', function($query) {
+            $query->where('email', Auth::user()->email);
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        return view('my-bookings', compact('bookings'));
+    }
 }

@@ -18,7 +18,7 @@
 <!-- Add custom styles for better interaction -->
 <style>
     .modal-image {
-        cursor: grab;
+     s   cursor: grab;
     }
     .modal-image:active {
         cursor: grabbing;

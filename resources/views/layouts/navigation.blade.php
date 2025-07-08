@@ -29,7 +29,7 @@
                     class="absolute left-0 z-50 mt-2 w-52 bg-white border rounded shadow-md text-green-800 text-[18px] font-typewriter">
                     @foreach ($areas as $area)
                         <li>
-                            <a href="/fasilitas/{{ strtolower(str_replace([' ', '(', ')'], ['-', '', ''], $area->name)) }}"
+                            <a href="/fasilitas/{{ \Str::slug($area->name) }}"
                                 class="block px-4 py-2 hover:bg-gray-100">
                                 {{ $area->name }}
                             </a>
@@ -99,7 +99,7 @@
             </button>
             <div x-show="open" x-transition class="mt-1 ml-4 space-y-1">
                 @foreach ($areas as $area)
-                    <a href="/fasilitas/{{ strtolower(str_replace([' ', '(', ')'], ['-', '', ''], $area->name)) }}"
+                    <a href="/fasilitas/{{ \Str::slug($area->name) }}"
                         class="block hover:underline" @click="open = false">
                         {{ $area->name }}
                     </a>

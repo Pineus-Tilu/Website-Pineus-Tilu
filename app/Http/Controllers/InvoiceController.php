@@ -75,19 +75,4 @@ class InvoiceController extends Controller
 
         return $pdf->download($fileName);
     }
-
-    public function previewInvoice($id)
-    {
-        // Ambil booking beserta detailnya dan relasi yang diperlukan
-        $booking = Booking::with([
-            'bookingDetail',
-            'unit.area',
-            'user',
-            'status',
-            'payment'
-        ])->findOrFail($id);
-
-        // Return view langsung untuk preview
-        return view('invoice', compact('booking'));
-    }
 }

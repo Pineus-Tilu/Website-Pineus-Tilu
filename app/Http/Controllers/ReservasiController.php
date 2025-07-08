@@ -95,25 +95,34 @@ class ReservasiController extends Controller
             'total_harga' => 'required|numeric',
         ]);
 
+        $errors = [];
+        
         // Validasi waktu pemesanan untuk hari ini
         $now = Carbon::now('Asia/Jakarta');
         $bookingDate = Carbon::parse($request->tanggal_kunjungan);
         
         if ($bookingDate->isToday() && $now->hour >= 12) {
-            return back()->withErrors(['tanggal_kunjungan' => 'Pemesanan untuk hari ini sudah ditutup. Check-in dimulai pukul 14:00, pemesanan harus dilakukan sebelum pukul 12:00.'])->withInput();
+            $errors['tanggal_kunjungan'] = 'Pemesanan untuk hari ini sudah ditutup. Check-in dimulai pukul 14:00, pemesanan harus dilakukan sebelum pukul 12:00.';
         }
 
         // Cari unit_id berdasarkan area (fasilitas) dan deck
         $unit = AreaUnit::whereHas('area', function ($q) use ($request) {
             $q->where('name', $request->fasilitas);
-        })
-            ->where('unit_name', $request->deck)
-            ->first();
+        })->where('unit_name', $request->deck)->first();
 
         if (!$unit) {
-            return back()->withErrors(['deck' => 'Deck tidak ditemukan.'])->withInput();
+            $errors['deck'] = 'Deck tidak ditemukan.';
         }
 
+        if (!empty($errors)) {
+            return back()->withErrors($errors)->withInput();
+        }
+
+        return $this->processBooking($request, $unit);
+    }
+
+    private function processBooking(Request $request, $unit)
+    {
         // Validasi duplikasi yang lebih ketat dengan database lock
         DB::beginTransaction();
         
@@ -227,44 +236,5 @@ class ReservasiController extends Controller
         }
         // Weekday: Minggu (0), Senin (1), Selasa (2), Rabu (3), Kamis (4)
         return 'weekday';
-    }
-
-    /**
-     * Show booking details with invoice links
-     */
-    public function showBookingDetail($bookingId)
-    {
-        $booking = Booking::with([
-            'bookingDetail',
-            'unit.area',
-            'user',
-            'status'
-        ])->findOrFail($bookingId);
-
-        return view('booking-detail', compact('booking'));
-    }
-
-    /**
-     * Show user's booking history
-     */
-    public function showMyBookings()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
-        $bookings = Booking::with([
-            'bookingDetail',
-            'unit.area',
-            'status'
-        ])
-        ->where('user_id', Auth::id())
-        ->orWhereHas('bookingDetail', function($query) {
-            $query->where('email', Auth::user()->email);
-        })
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-
-        return view('my-bookings', compact('bookings'));
     }
 }

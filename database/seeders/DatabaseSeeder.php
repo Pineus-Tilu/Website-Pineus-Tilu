@@ -9,13 +9,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Test user
-        User::where('email', 'test@example.com')->delete();
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         $this->call([
             AreaSeeder::class,
             FacilitySeeder::class,

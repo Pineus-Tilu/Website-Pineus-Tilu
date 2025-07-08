@@ -8,16 +8,19 @@ use App\Models\Facility;
 use App\Models\AreaUnit;
 use App\Models\Price;
 use App\Models\Galeri;
+use Illuminate\Support\Str;
 
 class FacilityController extends Controller
 {
     public function show($slug)
     {
-        // Ambil area berdasarkan slug
-        $area = Area::with(['facilities', 'units.price'])->get()->first(function ($area) use ($slug) {
-            return $area->slug === $slug;
-        });
-        
+        // Ambil area berdasarkan slug yang dibuat dari name
+        $area = Area::with(['facilities', 'units.price'])
+            ->get()
+            ->first(function ($area) use ($slug) {
+                return Str::slug($area->name) === $slug;
+            });
+
         if (!$area) {
             abort(404);
         }
@@ -33,22 +36,22 @@ class FacilityController extends Controller
 
         // GALERI - Dari database storage
         $galeri = [];
-        
+
         $galeriData = Galeri::where('area_id', $area->id)
-                           ->where('type', 'facility')
-                           ->orderBy('sort_order', 'asc')
-                           ->orderBy('created_at', 'asc')
-                           ->get();
+            ->where('type', 'facility')
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('created_at', 'asc')
+            ->get();
 
         foreach ($galeriData as $item) {
             $imagePath = $item->image_path;
-            
+
             if (str_starts_with($imagePath, 'galeri/')) {
                 $imageUrl = asset('storage/' . $imagePath);
             } else {
                 $imageUrl = asset('storage/galeri/' . $imagePath);
             }
-            
+
             $galeri[] = $imageUrl;
         }
 
@@ -75,17 +78,17 @@ class FacilityController extends Controller
 
         return view('fasilitas', compact('data'));
     }
-    
+
     // METHOD DENAH - FIX untuk menggunakan file dari public/images
     private function getDenahImage($slug)
     {
         // Mapping slug ke file denah yang ada di public/images/galeri/denah/
         $denahMapping = [
             'pineus-tilu-i' => 'pineus1.jpg',
-            'pineus-tilu-ii' => 'pineus2.jpg', 
+            'pineus-tilu-ii' => 'pineus2.jpg',
             'pineus-tilu-iii' => 'pineus3.png',
             'pineus-tilu-iii-vip-kabin' => 'pineus3.png',
-            'pineus-tilu-iii-tenda' => 'pineus3.png',
+            'pineus-tilu-iii-vip-tenda' => 'pineus3.png',
             'pineus-tilu-iv' => 'pineus4.jpg',
         ];
 
@@ -94,7 +97,7 @@ class FacilityController extends Controller
 
         // Return URL lengkap ke file di public/images/galeri/denah/
         $denahPath = public_path('images/galeri/denah/' . $denahFile);
-        
+
         // Cek apakah file benar-benar ada
         if (file_exists($denahPath)) {
             return asset('images/galeri/denah/' . $denahFile);

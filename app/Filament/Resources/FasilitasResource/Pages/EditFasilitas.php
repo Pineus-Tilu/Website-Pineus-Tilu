@@ -35,17 +35,14 @@ class EditFasilitas extends EditRecord
                             ->label('Nama Area')
                             ->disabled()
                             ->dehydrated(false),
-                            
+
                         Forms\Components\TextInput::make('tipe_area')
-                            ->label('Tipe Area')
+                            ->label('Tipe Fasilitas')
                             ->disabled()
-                            ->dehydrated(false)
-                            ->default(function ($record) {
-                                return str_contains($record->name, 'VIP') ? 'VIP' : 'Reguler';
-                            }),
+                            ->dehydrated(false),
                     ])
                     ->columns(2),
-                    
+
                 Forms\Components\Section::make('Fasilitas Pribadi')
                     ->schema([
                         Forms\Components\Repeater::make('fasilitas_pribadi')
@@ -56,17 +53,17 @@ class EditFasilitas extends EditRecord
                                     ->required()
                                     ->rows(2)
                                     ->columnSpanFull(),
-                                    
+
                                 Forms\Components\Hidden::make('type')
                                     ->default('pribadi'),
-                                    
+
                                 Forms\Components\Hidden::make('area_id')
-                                    ->default(fn ($livewire) => $livewire->record->id),
+                                    ->default(fn($livewire) => $livewire->record->id),
                             ])
                             ->defaultItems(0)
                             ->addActionLabel('Tambah Fasilitas Pribadi')
                             ->deleteAction(
-                                fn (Forms\Components\Actions\Action $action) => $action
+                                fn(Forms\Components\Actions\Action $action) => $action
                                     ->requiresConfirmation()
                                     ->modalHeading('Hapus Fasilitas')
                                     ->modalDescription('Apakah Anda yakin ingin menghapus fasilitas ini?')
@@ -75,11 +72,11 @@ class EditFasilitas extends EditRecord
                             ->reorderable()
                             ->cloneable()
                             ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['description'] ?? null),
+                            ->itemLabel(fn(array $state): ?string => $state['description'] ?? null),
                     ])
                     ->collapsible()
                     ->collapsed(false),
-                    
+
                 Forms\Components\Section::make('Fasilitas Umum')
                     ->schema([
                         Forms\Components\Repeater::make('fasilitas_umum')
@@ -90,17 +87,17 @@ class EditFasilitas extends EditRecord
                                     ->required()
                                     ->rows(2)
                                     ->columnSpanFull(),
-                                    
+
                                 Forms\Components\Hidden::make('type')
                                     ->default('umum'),
-                                    
+
                                 Forms\Components\Hidden::make('area_id')
-                                    ->default(fn ($livewire) => $livewire->record->id),
+                                    ->default(fn($livewire) => $livewire->record->id),
                             ])
                             ->defaultItems(0)
                             ->addActionLabel('Tambah Fasilitas Umum')
                             ->deleteAction(
-                                fn (Forms\Components\Actions\Action $action) => $action
+                                fn(Forms\Components\Actions\Action $action) => $action
                                     ->requiresConfirmation()
                                     ->modalHeading('Hapus Fasilitas')
                                     ->modalDescription('Apakah Anda yakin ingin menghapus fasilitas ini?')
@@ -109,11 +106,11 @@ class EditFasilitas extends EditRecord
                             ->reorderable()
                             ->cloneable()
                             ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['description'] ?? null),
+                            ->itemLabel(fn(array $state): ?string => $state['description'] ?? null),
                     ])
                     ->collapsible()
                     ->collapsed(false),
-                    
+
                 Forms\Components\Section::make('Pengaturan yang Dapat Diubah')
                     ->schema([
                         Forms\Components\TextInput::make('jumlah_unit')
@@ -136,7 +133,7 @@ class EditFasilitas extends EditRecord
                                     }
                                 }
                             }),
-                            
+
                         Forms\Components\TextInput::make('extra_charge')
                             ->label('Extra Charge')
                             ->numeric()
@@ -145,7 +142,7 @@ class EditFasilitas extends EditRecord
                             ->minValue(0),
                     ])
                     ->columns(2),
-                    
+
                 Forms\Components\Section::make('Pengaturan Harga')
                     ->schema([
                         Forms\Components\TextInput::make('harga_weekday')
@@ -154,14 +151,14 @@ class EditFasilitas extends EditRecord
                             ->prefix('Rp')
                             ->required()
                             ->minValue(0),
-                            
+
                         Forms\Components\TextInput::make('harga_weekend')
                             ->label('Harga Weekend')
                             ->numeric()
                             ->prefix('Rp')
                             ->required()
                             ->minValue(0),
-                            
+
                         Forms\Components\TextInput::make('harga_highseason')
                             ->label('Harga High Season')
                             ->numeric()
@@ -184,7 +181,7 @@ class EditFasilitas extends EditRecord
         if (isset($data['fasilitas_pribadi'])) {
             // Hapus fasilitas pribadi yang lama
             Facility::where('area_id', $record->id)->where('type', 'pribadi')->delete();
-            
+
             // Tambah fasilitas pribadi yang baru
             foreach ($data['fasilitas_pribadi'] as $facility) {
                 if (!empty($facility['description'])) {
@@ -201,7 +198,7 @@ class EditFasilitas extends EditRecord
         if (isset($data['fasilitas_umum'])) {
             // Hapus fasilitas umum yang lama
             Facility::where('area_id', $record->id)->where('type', 'umum')->delete();
-            
+
             // Tambah fasilitas umum yang baru
             foreach ($data['fasilitas_umum'] as $facility) {
                 if (!empty($facility['description'])) {
@@ -334,6 +331,18 @@ class EditFasilitas extends EditRecord
             }
         }
 
+        // Set tipe area berdasarkan fasilitas yang ada
+        $facilities = Facility::where('area_id', $this->record->id)->pluck('type')->unique();
+        $tipeArea = 'Belum ada fasilitas';
+        
+        if (!$facilities->isEmpty()) {
+            if ($facilities->count() === 1) {
+                $tipeArea = ucfirst($facilities->first());
+            } else {
+                $tipeArea = 'Pribadi & Umum';
+            }
+        }
+
         // Set data ke form
         $data['fasilitas_pribadi'] = $fasilitasPribadi;
         $data['fasilitas_umum'] = $fasilitasUmum;
@@ -341,6 +350,7 @@ class EditFasilitas extends EditRecord
         $data['harga_weekday'] = $hargaWeekday;
         $data['harga_weekend'] = $hargaWeekend;
         $data['harga_highseason'] = $hargaHighseason;
+        $data['tipe_area'] = $tipeArea; // Tambah ini untuk set nilai tipe_area
 
         return $data;
     }

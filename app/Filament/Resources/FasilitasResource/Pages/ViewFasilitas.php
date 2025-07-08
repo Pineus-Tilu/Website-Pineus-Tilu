@@ -34,7 +34,7 @@ class ViewFasilitas extends ViewRecord
                             ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
                             ->weight('bold')
                             ->color('primary'),
-                            
+
                         Infolists\Components\TextEntry::make('jumlah_unit')
                             ->label('Jumlah Area Unit')
                             ->getStateUsing(function ($record) {
@@ -42,23 +42,33 @@ class ViewFasilitas extends ViewRecord
                             })
                             ->icon('heroicon-o-building-office-2')
                             ->color('success'),
-                            
+
                         Infolists\Components\TextEntry::make('tipe_area')
-                            ->label('Tipe Area')
-                            ->getStateUsing(function ($record) {
-                                // Tentukan tipe berdasarkan nama area
-                                if (str_contains($record->name, 'VIP')) {
-                                    return 'VIP';
-                                } else {
-                                    return 'Reguler';
+                            ->label('Tipe Fasilitas')
+                            ->getStateUsing(callback: function ($record) {
+                                // Ambil tipe fasilitas berdasarkan area_id
+                                $facilities = Facility::where('area_id', $record->id)->pluck('type')->unique();
+
+                                if ($facilities->isEmpty()) {
+                                    return 'Belum ada fasilitas';
                                 }
+
+                                // Jika hanya ada satu tipe, tampilkan tipe tersebut
+                                if ($facilities->count() === 1) {
+                                    return ucfirst($facilities->first());
+                                }
+
+                                // Jika ada kedua tipe, tampilkan "Pribadi & Umum"
+                                return 'Pribadi & Umum';
                             })
                             ->badge()
-                            ->color(fn (string $state): string => match ($state) {
-                                'VIP' => 'warning',
-                                'Reguler' => 'primary',
+                            ->color(fn(string $state): string => match ($state) {
+                                'Pribadi' => 'success',
+                                'Umum' => 'info',
+                                'Pribadi & Umum' => 'warning',
+                                default => 'gray',
                             }),
-                            
+
                         Infolists\Components\TextEntry::make('extra_charge')
                             ->label('Extra Charge')
                             ->money('IDR')
@@ -66,7 +76,7 @@ class ViewFasilitas extends ViewRecord
                             ->color('info'),
                     ])
                     ->columns(2),
-                    
+
                 Infolists\Components\Section::make('Fasilitas Pribadi')
                     ->schema([
                         Infolists\Components\TextEntry::make('fasilitas_pribadi_list')
@@ -75,11 +85,11 @@ class ViewFasilitas extends ViewRecord
                                 $facilities = Facility::where('area_id', $record->id)
                                     ->where('type', 'pribadi')
                                     ->pluck('description');
-                                    
+
                                 if ($facilities->isEmpty()) {
                                     return 'Tidak ada fasilitas pribadi yang tersedia';
                                 }
-                                
+
                                 return $facilities->map(function ($item, $index) {
                                     return ($index + 1) . '. ' . $item;
                                 })->implode("\n");
@@ -93,7 +103,7 @@ class ViewFasilitas extends ViewRecord
                     ])
                     ->collapsible()
                     ->collapsed(false),
-                    
+
                 Infolists\Components\Section::make('Fasilitas Umum')
                     ->schema([
                         Infolists\Components\TextEntry::make('fasilitas_umum_list')
@@ -102,11 +112,11 @@ class ViewFasilitas extends ViewRecord
                                 $facilities = Facility::where('area_id', $record->id)
                                     ->where('type', 'umum')
                                     ->pluck('description');
-                                    
+
                                 if ($facilities->isEmpty()) {
                                     return 'Tidak ada fasilitas umum yang tersedia';
                                 }
-                                
+
                                 return $facilities->map(function ($item, $index) {
                                     return ($index + 1) . '. ' . $item;
                                 })->implode("\n");
@@ -120,41 +130,44 @@ class ViewFasilitas extends ViewRecord
                     ])
                     ->collapsible()
                     ->collapsed(false),
-                    
+
                 Infolists\Components\Section::make('Informasi Harga')
                     ->schema([
                         Infolists\Components\TextEntry::make('harga_weekday')
                             ->label('Harga Weekday')
                             ->getStateUsing(function ($record) {
                                 $areaUnit = AreaUnit::where('area_id', $record->id)->first();
-                                if (!$areaUnit) return 'Belum diatur';
-                                
+                                if (!$areaUnit)
+                                    return 'Belum diatur';
+
                                 $price = Price::where('unit_id', $areaUnit->id)->first();
                                 return $price ? $price->weekday : 'Belum diatur';
                             })
                             ->money('IDR')
                             ->icon('heroicon-o-calendar-days')
                             ->color('primary'),
-                            
+
                         Infolists\Components\TextEntry::make('harga_weekend')
                             ->label('Harga Weekend')
                             ->getStateUsing(function ($record) {
                                 $areaUnit = AreaUnit::where('area_id', $record->id)->first();
-                                if (!$areaUnit) return 'Belum diatur';
-                                
+                                if (!$areaUnit)
+                                    return 'Belum diatur';
+
                                 $price = Price::where('unit_id', $areaUnit->id)->first();
                                 return $price ? $price->weekend : 'Belum diatur';
                             })
                             ->money('IDR')
                             ->icon('heroicon-o-calendar-days')
                             ->color('warning'),
-                            
+
                         Infolists\Components\TextEntry::make('harga_highseason')
                             ->label('Harga High Season')
                             ->getStateUsing(function ($record) {
                                 $areaUnit = AreaUnit::where('area_id', $record->id)->first();
-                                if (!$areaUnit) return 'Belum diatur';
-                                
+                                if (!$areaUnit)
+                                    return 'Belum diatur';
+
                                 $price = Price::where('unit_id', $areaUnit->id)->first();
                                 return $price ? $price->highseason : 'Belum diatur';
                             })

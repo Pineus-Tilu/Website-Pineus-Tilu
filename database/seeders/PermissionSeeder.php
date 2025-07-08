@@ -74,20 +74,6 @@ class PermissionSeeder extends Seeder
             echo "✅ Role '{$roleName}' created with " . count($permissionList) . " permissions.\n";
         }
 
-        // ✅ BUAT USER SUPER ADMIN
-        $admin = User::firstOrCreate(
-            ['email' => 'adminpineustilu@gmail.com'], // ✅ UBAH KE @gmail.com
-            [
-                'name' => 'Admin Pineus Tilu',
-                'password' => Hash::make('adminpineustilu'),
-                'email_verified_at' => now(),
-            ]
-        );
-        
-        // Assign role Super Admin
-        $admin->assignRole('Super Admin');
-        echo "✅ Super Admin user created: {$admin->email}\n";
-
         // ✅ ASSIGN ROLE 'USER' KE SEMUA USER YANG BELUM PUNYA ROLE
         $usersWithoutRoles = User::doesntHave('roles')->get();
         foreach ($usersWithoutRoles as $user) {

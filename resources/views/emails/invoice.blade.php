@@ -51,19 +51,19 @@
             <li>Harap tunjukkan invoice ini saat check-in</li>
             <li>Datang 15 menit sebelum waktu kunjungan</li>
             <li>Bawa identitas yang valid untuk verifikasi</li>
-            <li>Hubungi kami jika ada pertanyaan atau perubahan jadwal</li>
+            <li>Hubungi kami jika ada pertanyaan</li>
         </ul>
     </div>
 
     <div style="text-align: center; padding: 20px; border-top: 2px solid #2c5530; margin-top: 30px;">
-        <p style="margin: 0; color: #666;">Pineus Tilu Riverside</p>
-        <p style="margin: 5px 0; color: #666;">Jl. Raya Ciater, Subang, Jawa Barat</p>
-        <p style="margin: 5px 0; color: #666;">WhatsApp: +62 812-3456-7890 | Email: info@pineustilu.com</p>
+        <p style="margin: 0; color: #666;">Pineus Tilu</p>
+        <p style="margin: 5px 0; color: #666;">Pulosari, Pangalengan, Bandung Regency, West Java 40378</p>
+        <p style="margin: 5px 0; color: #666;">WhatsApp: +6287735482327/6281220413424| Email: pineust@gmail.com</p>
     </div>
 
     <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #999;">
         <p>Email ini dikirim otomatis. Harap tidak membalas email ini.</p>
-        <p>Jika Anda memiliki pertanyaan, silakan hubungi customer service kami.</p>
+        <p>Jika Anda memiliki pertanyaan, silakan hubungi admin kami.</p>
     </div>
 </body>
 </html>

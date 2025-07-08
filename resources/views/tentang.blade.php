@@ -29,7 +29,7 @@
                     Kami siap membantu Anda dengan segala pertanyaan dan kebutuhan Anda.
                 </p>
                 <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
-                    <a href="https://wa.me/nomor1" target="_blank"
+                    <a href="https://wa.me/6287735482327" target="_blank"
                         class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-typewriter"
                         data-aos="fade-right" data-aos-delay="400">
                         <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
                         </svg>
                         WhatsApp Admin 1
                     </a>
-                    <a href="https://wa.me/nomor2" target="_blank"
+                    <a href="https://wa.me/6281220413424" target="_blank"
                         class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-typewriter"
                         data-aos="fade-left" data-aos-delay="600">
                         <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">

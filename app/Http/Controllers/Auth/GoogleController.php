@@ -30,7 +30,7 @@ class GoogleController extends Controller
                 'name' => $googleUser->getName(),
                 'password' => bcrypt(Str::random(24)),
                 'google_id' => $googleUser->getId(),
-            ]);
+            ])->assignRole('User');
 
             Auth::login($user);
             DB::commit();

@@ -17,7 +17,7 @@ class DashboardController extends Controller
         foreach ($areas as $area) {
             $slug = $area->slug;
             $img = null;
-            
+
             // Prioritas: 1. Featured galeri, 2. Galeri dashboard pertama
             if ($area->featuredGaleri) {
                 // Gunakan featured galeri

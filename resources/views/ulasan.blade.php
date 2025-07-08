@@ -15,21 +15,21 @@
             <!-- Background Pattern -->
             <div class="absolute inset-0 opacity-10">
                 <div
-                    class="absolute top-10 left-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-white animate-pulse">
+                    class="absolute w-16 h-16 bg-white rounded-full top-10 left-10 sm:w-24 sm:h-24 md:w-32 md:h-32 animate-pulse">
                 </div>
                 <div
-                    class="absolute bottom-10 right-10 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full bg-white animate-pulse delay-1000">
+                    class="absolute w-12 h-12 delay-1000 bg-white rounded-full bottom-10 right-10 sm:w-16 sm:h-16 md:w-24 md:h-24 animate-pulse">
                 </div>
                 <div
-                    class="absolute top-1/2 left-1/3 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-white animate-pulse delay-500">
+                    class="absolute w-8 h-8 delay-500 bg-white rounded-full top-1/2 left-1/3 sm:w-12 sm:h-12 md:w-16 md:h-16 animate-pulse">
                 </div>
             </div>
 
-            <div class="relative z-10 text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl font-bold md:text-6xl jp-brush animate-fade-in text-center" data-aos="fade-down">
+            <div class="relative z-10 max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl font-bold text-center md:text-6xl jp-brush animate-fade-in" data-aos="fade-down">
                     Ulasan
                 </h1>
-                <p class="mt-4 text-lg md:text-xl font-typewriter opacity-90 text-center leading-relaxed" data-aos="fade-up"
+                <p class="mt-4 text-lg leading-relaxed text-center md:text-xl font-typewriter opacity-90" data-aos="fade-up"
                     data-aos-delay="300">
                     Tentang kami dari orang yang pernah mengunjungi pineus tilu
                 </p>
@@ -38,24 +38,25 @@
 
         <!-- Video Section -->
         <section class="py-16 md:py-20 bg-gray-50">
-            <div class="container mx-auto px-4 max-w-6xl">
+            <div class="container max-w-6xl px-4 mx-auto">
                 <!-- Section Header -->
-                <div class="text-center mb-12 md:mb-16">
+                <div class="mb-12 text-center md:mb-16">
                     <h2
                         class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] jp-brush mb-4">
                         Review YouTube
                     </h2>
-                    <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full"></div>
-                    <p class="mt-4 text-gray-600 text-lg">
+                    <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full">
+                    </div>
+                    <p class="mt-4 text-lg text-gray-600">
                         Lihat pengalaman nyata pengunjung melalui video review mereka
                     </p>
                 </div>
 
                 <!-- Video Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
                     <!-- Video 1 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/07QdgOaa_HE" title="Pineus Tilu Review Video 1"
                                 frameborder="0"
@@ -67,7 +68,7 @@
 
                     <!-- Video 2 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/8OwcRHyPZLQ" title="Pineus Tilu Review Video 2"
                                 frameborder="0"
@@ -79,7 +80,7 @@
 
                     <!-- Video 3 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/fHTkbNpdC4U" title="Pineus Tilu Review Video 3"
                                 frameborder="0"
@@ -91,7 +92,7 @@
 
                     <!-- Video 4 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/z0RaF18orEg" title="Pineus Tilu Review Video 4"
                                 frameborder="0"
@@ -103,7 +104,7 @@
 
                     <!-- Video 5 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/AWLCCG5-W6Y" title="Pineus Tilu Review Video 5"
                                 frameborder="0"
@@ -115,7 +116,7 @@
 
                     <!-- Video 6 -->
                     <div
-                        class="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                        class="relative overflow-hidden transition-shadow duration-300 shadow-lg rounded-xl hover:shadow-xl group">
                         <div class="aspect-video">
                             <iframe src="https://www.youtube.com/embed/o6Y_-gDp28Q" title="Pineus Tilu Review Video 6"
                                 frameborder="0"
@@ -129,16 +130,17 @@
         </section>
 
         <!-- Google Reviews Section -->
-        <section class="py-16 md:py-20 bg-white">
-            <div class="container mx-auto px-4 max-w-6xl">
+        <section class="py-16 bg-white md:py-20">
+            <div class="container max-w-6xl px-4 mx-auto">
                 <!-- Section Header -->
-                <div class="text-center mb-12 md:mb-16">
+                <div class="mb-12 text-center md:mb-16">
                     <h2
                         class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] jp-brush mb-4">
                         Testimoni Pengunjung
                     </h2>
-                    <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full"></div>
-                    <p class="mt-4 text-gray-600 text-lg">
+                    <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full">
+                    </div>
+                    <p class="mt-4 text-lg text-gray-600">
                         Tanggapan jujur mereka yang pernah mendapatkan pengalaman menakjubkan di Pineus Tilu
                     </p>
                 </div>

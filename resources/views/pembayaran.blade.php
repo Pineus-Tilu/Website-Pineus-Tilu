@@ -113,7 +113,8 @@
                     </div>
                     <div class="flex items-start mb-2">
                         <span class="inline-block w-2 h-2 mt-2 mr-2 bg-green-500 rounded-full"></span>
-                        <span><strong>Pembayaran Berhasil:</strong> Invoice PDF lengkap dikirim ke <strong>{{ $email }}</strong></span>
+                        <span><strong>Pembayaran Berhasil:</strong> Invoice PDF lengkap dikirim ke
+                            <strong>{{ $email }}</strong></span>
                     </div>
                     <div class="flex items-start">
                         <span class="inline-block w-2 h-2 mt-2 mr-2 bg-green-500 rounded-full"></span>
@@ -192,7 +193,8 @@
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Gagal Membatalkan Pesanan</h3>
-                    <p id="errorMessage" class="mb-6 text-gray-600">Terjadi kesalahan saat membatalkan pesanan. Silakan coba
+                    <p id="errorMessage" class="mb-6 text-gray-600">Terjadi kesalahan saat membatalkan pesanan. Silakan
+                        coba
                         lagi.</p>
 
                     <button id="errorOkBtn"
@@ -211,13 +213,14 @@
                 <div class="text-center">
                     <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full">
                         <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
                         </svg>
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Pembayaran Berhasil!</h3>
                     <p class="mb-4 text-gray-600">Terima kasih! Pembayaran Anda telah berhasil diproses.</p>
-                    
+
                     <div class="p-4 mb-4 rounded-lg bg-green-50">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
@@ -229,13 +232,15 @@
                             <div class="ml-3">
                                 <h4 class="text-sm font-medium text-green-800">Invoice PDF Telah Dikirim</h4>
                                 <p class="mt-1 text-sm text-green-700">
-                                    Invoice lengkap beserta detail booking telah dikirim ke email <strong>{{ $email ?? 'Anda' }}</strong>. 
-                                    Silakan cek email (termasuk folder spam) untuk invoice PDF yang dapat digunakan saat check-in.
+                                    Invoice lengkap beserta detail booking telah dikirim ke email
+                                    <strong>{{ $email ?? 'Anda' }}</strong>.
+                                    Silakan cek email (termasuk folder spam) untuk invoice PDF yang dapat digunakan saat
+                                    check-in.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="p-3 mb-4 rounded-lg bg-blue-50">
                         <h5 class="font-medium text-blue-800">📋 Yang Anda Terima:</h5>
                         <ul class="mt-2 text-sm text-blue-700">
@@ -245,10 +250,11 @@
                             <li>• Kebijakan pembatalan</li>
                         </ul>
                     </div>
-                    
+
                     <div class="p-3 mb-6 border-l-4 border-yellow-400 bg-yellow-50">
                         <p class="text-sm text-yellow-800">
-                            <strong>Penting:</strong> Harap tunjukkan invoice PDF ini saat check-in. Datang 15 menit sebelum waktu kunjungan dan bawa identitas yang valid.
+                            <strong>Penting:</strong> Harap tunjukkan invoice PDF ini saat check-in. Datang 15 menit sebelum
+                            waktu kunjungan dan bawa identitas yang valid.
                         </p>
                     </div>
 
@@ -268,13 +274,15 @@
                 <div class="text-center">
                     <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full">
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
                             </path>
                         </svg>
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Pembayaran Gagal</h3>
-                    <p class="mb-6 text-gray-600">Pembayaran gagal. Silahkan hubungi kontak admin untuk bantuan lebih lanjut.</p>
+                    <p class="mb-6 text-gray-600">Pembayaran gagal. Silahkan hubungi kontak admin untuk bantuan lebih
+                        lanjut.</p>
 
                     <button id="paymentErrorOkBtn"
                         class="w-full px-4 py-2 font-semibold text-white transition bg-red-600 rounded hover:bg-red-700">
@@ -292,13 +300,15 @@
                 <div class="text-center">
                     <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-yellow-100 rounded-full">
                         <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
 
                     <h3 class="mb-2 text-lg font-semibold text-gray-900">Pembayaran Sedang Diproses</h3>
-                    <p class="mb-4 text-gray-600">Pembayaran Anda sedang dalam proses verifikasi. Silakan selesaikan pembayaran Anda.</p>
-                    
+                    <p class="mb-4 text-gray-600">Pembayaran Anda sedang dalam proses verifikasi. Silakan selesaikan
+                        pembayaran Anda.</p>
+
                     <div class="p-4 mb-4 rounded-lg bg-yellow-50">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
@@ -310,16 +320,18 @@
                             <div class="ml-3">
                                 <h4 class="text-sm font-medium text-yellow-800">Notifikasi Email Dikirim</h4>
                                 <p class="mt-1 text-sm text-yellow-700">
-                                    Kami telah mengirim konfirmasi booking ke email <strong>{{ $email ?? 'Anda' }}</strong>. 
+                                    Kami telah mengirim konfirmasi booking ke email
+                                    <strong>{{ $email ?? 'Anda' }}</strong>.
                                     Invoice PDF lengkap akan dikirim setelah pembayaran berhasil diverifikasi.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="p-3 mb-6 border-l-4 border-blue-400 bg-blue-50">
                         <p class="text-sm text-blue-800">
-                            <strong>Selanjutnya:</strong> Selesaikan pembayaran Anda. Setelah berhasil, invoice PDF akan otomatis dikirim ke email Anda.
+                            <strong>Selanjutnya:</strong> Selesaikan pembayaran Anda. Setelah berhasil, invoice PDF akan
+                            otomatis dikirim ke email Anda.
                         </p>
                     </div>
 

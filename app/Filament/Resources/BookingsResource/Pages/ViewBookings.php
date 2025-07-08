@@ -15,9 +15,9 @@ class ViewBookings extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make()
-                ->label('Edit Booking')
-                ->icon('heroicon-o-pencil'),
+            // Actions\EditAction::make()
+            //     ->label('Edit Booking')
+            //     ->icon('heroicon-o-pencil'),
                 
             Actions\Action::make('download_invoice')
                 ->label('Download Invoice')
@@ -172,10 +172,10 @@ class ViewBookings extends ViewRecord
                                     ->suffix(' orang')
                                     ->icon('heroicon-o-users'),
                                     
-                                Infolists\Components\TextEntry::make('bookingDetail.notes')
-                                    ->label('Catatan Khusus')
-                                    ->default('Tidak ada catatan')
-                                    ->icon('heroicon-o-chat-bubble-left-ellipsis'),
+                                // Infolists\Components\TextEntry::make('bookingDetail.notes')
+                                //     ->label('Catatan Khusus')
+                                //     ->default('Tidak ada catatan')
+                                //     ->icon('heroicon-o-chat-bubble-left-ellipsis'),
                             ]),
                     ])
                     ->columns(1),

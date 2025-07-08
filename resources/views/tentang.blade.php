@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tentang - Pineus Tilu')
+
 @section('content')
     <div class="max-w-full overflow-hidden">
         <!-- Hero Section -->
@@ -16,12 +18,12 @@
         </section>
 
         <!-- Kontak Kami - HIJAU -->
-        <section class="bg-gradient-to-r from-[#00291F] to-[#004030] text-white px-6 py-16" data-aos="fade-up"
+        <section class="bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white px-6 py-16" data-aos="fade-up"
             data-aos-duration="800">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="mb-8" data-aos="fade-down" data-aos-delay="200">
                     <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">Kontak Kami</h2>
-                    <div class="w-24 h-1 mx-auto bg-green-400 rounded"></div>
+                    <div class="w-24 h-1 mx-auto bg-white rounded"></div>
                 </div>
                 <p class="max-w-2xl mx-auto mb-8 text-lg font-typewriter opacity-90" data-aos="fade-up"
                     data-aos-delay="300">
@@ -229,12 +231,12 @@
         </section>
 
         <!-- Informasi Biaya Parkir - HIJAU -->
-        <section class="px-6 py-20 text-white bg-gradient-to-r from-[#00291F] to-[#004030]" data-aos="fade-up"
+        <section class="px-6 py-20 text-white bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36]" data-aos="fade-up"
             data-aos-duration="800">
             <div class="max-w-5xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-down" data-aos-delay="200">
                     <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🚗 Informasi Biaya Parkir</h2>
-                    <div class="w-24 h-1 mx-auto bg-green-400 rounded"></div>
+                    <div class="w-24 h-1 mx-auto bg-white rounded"></div>
                 </div>
 
                 <div class="grid gap-8 md:grid-cols-2">
@@ -376,14 +378,14 @@
                                     <span class="text-lg font-bold text-yellow-600">Rp. 20.000.000,-</span>
                                 </div>
 
-                                <div class="p-4 border-l-4 border-green-500 rounded-lg shadow-sm bg-green-50"
+                                <div class="p-4 border-l-4 border-[#006C43] rounded-lg shadow-sm bg-gradient-to-r from-[#006C43]/10 via-[#00844D]/10 to-[#005A36]/10"
                                     data-aos="fade-left" data-aos-delay="1000">
                                     <div class="flex items-center gap-3 mb-2">
                                         <span class="text-2xl">🏥</span>
                                         <span class="text-sm font-typewriter">Biaya Perawatan/Pengobatan akibat
                                             kecelakaan</span>
                                     </div>
-                                    <span class="text-lg font-bold text-green-600">Rp. 3.000.000,-</span>
+                                    <span class="text-lg font-bold text-[#00844D]">Rp. 3.000.000,-</span>
                                 </div>
                             </div>
 

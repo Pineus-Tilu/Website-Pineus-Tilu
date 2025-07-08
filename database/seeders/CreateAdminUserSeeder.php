@@ -19,7 +19,7 @@ class CreateAdminUserSeeder extends Seeder
             'email' => 'adminpineustilu@gmail.com',
             'password' => Hash::make('adminpineustilu'),
             'email_verified_at' => now(),
-        ]);
+        ])->assignRole('Super Admin'); // Assign role Super Admin
 
         $this->command->info("User admin berhasil dibuat: {$user->email}");
     }

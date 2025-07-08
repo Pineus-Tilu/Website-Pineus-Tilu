@@ -59,8 +59,8 @@
             color: #7f1d1d !important;
         }
     </style>
-    <div class="flex items-center justify-center py-8 min-h-screen-with-nav"
-        style="background-image: url('/images/reservasi.JPG');" data-aos="fade-in" data-aos-duration="1500">
+    <div class="flex items-center justify-center py-8 min-h-screen-with-nav bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36]"
+        data-aos="fade-in" data-aos-duration="1500">
         <div class="w-full max-w-6xl px-4 py-6 mx-auto my-10 bg-white rounded-lg shadow-md">
             <nav class="flex items-center mb-4 space-x-2 text-sm text-green-700">
                 <span class="font-semibold text-green-900">Reservasi</span>
@@ -232,7 +232,7 @@
                                 berlaku</label>
                         </div>
                         <button type="submit" form="reservasi-form"
-                            class="w-full py-3 font-semibold text-white transition bg-green-600 rounded hover:bg-green-700 font-typewriter">Pesan
+                            class="w-full py-3 font-semibold text-white transition bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded hover:opacity-90 transform hover:scale-105 font-typewriter">Pesan
                             Sekarang</button>
                     </div>
                 </div>

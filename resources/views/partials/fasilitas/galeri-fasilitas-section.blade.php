@@ -1,5 +1,5 @@
 <!-- Galeri Section -->
-<section class="py-16 px-4 bg-[#0d2c25] font-typewriter" x-data="{ 
+<section class="py-16 px-4 bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36] font-typewriter" x-data="{ 
     showModal: false, 
     modalImg: '', 
     scale: 1,

@@ -172,10 +172,10 @@ class ViewBookings extends ViewRecord
                                     ->suffix(' orang')
                                     ->icon('heroicon-o-users'),
                                     
-                                Infolists\Components\TextEntry::make('bookingDetail.notes')
-                                    ->label('Catatan Khusus')
-                                    ->default('Tidak ada catatan')
-                                    ->icon('heroicon-o-chat-bubble-left-ellipsis'),
+                                // Infolists\Components\TextEntry::make('bookingDetail.notes')
+                                //     ->label('Catatan Khusus')
+                                //     ->default('Tidak ada catatan')
+                                //     ->icon('heroicon-o-chat-bubble-left-ellipsis'),
                             ]),
                     ])
                     ->columns(1),

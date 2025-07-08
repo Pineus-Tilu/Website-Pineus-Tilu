@@ -54,3 +54,4 @@ Route::get('/invoice/{id}/generate', [App\Http\Controllers\InvoiceController::cl
 // Invoice PDF
 Route::get('/invoice/{booking_id}', [InvoiceController::class, 'generateInvoice'])->name('invoice');
 Route::get('/invoice/{booking_id}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
+Route::get('/invoice/{booking_id}/preview', [InvoiceController::class, 'previewInvoice'])->name('invoice.preview');

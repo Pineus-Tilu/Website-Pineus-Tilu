@@ -15,9 +15,9 @@ class ViewBookings extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make()
-                ->label('Edit Booking')
-                ->icon('heroicon-o-pencil'),
+            // Actions\EditAction::make()
+            //     ->label('Edit Booking')
+            //     ->icon('heroicon-o-pencil'),
                 
             Actions\Action::make('download_invoice')
                 ->label('Download Invoice')

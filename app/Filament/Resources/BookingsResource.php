@@ -274,7 +274,7 @@ class BookingsResource extends Resource
         return [
             'index' => Pages\ListBookings::route('/'),
             'view' => Pages\ViewBookings::route('/{record}'),
-            'edit' => Pages\EditBookings::route('/{record}/edit'),
+            // 'edit' => Pages\EditBookings::route('/{record}/edit'),
         ];
     }
 

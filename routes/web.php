@@ -48,6 +48,9 @@ Route::post('/pembayaran/cancel', [PembayaranController::class, 'cancel'])->name
 // Midtrans callback
 Route::post('/pembayaran/callback', [PembayaranController::class, 'callback'])->name('pembayaran.callback');
 
+// Invoice routes
+Route::get('/invoice/{id}/generate', [App\Http\Controllers\InvoiceController::class, 'generateInvoice'])->name('invoice.generate');
+
 // Invoice PDF
 Route::get('/invoice/{booking_id}', [InvoiceController::class, 'generateInvoice'])->name('invoice');
 Route::get('/invoice/{booking_id}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');

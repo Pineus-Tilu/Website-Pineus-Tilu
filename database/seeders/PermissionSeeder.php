@@ -16,31 +16,92 @@ class PermissionSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    
     {
-        $permission['Super Admin'] = [];
-        $permission['User'] = [];
+        // ✅ CLEAR CACHE PERMISSION DULU
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        foreach ($permission as $key => $value) {
-            foreach ($value as $p) {
-                Permission::findOrCreate($p, 'web');
-            }
-            $role = Role::findOrCreate($key, 'web');
-            $role->syncPermissions($value);
+        // ✅ BUAT PERMISSIONS YANG DIPERLUKAN
+        $permissions = [
+            'view_dashboard',
+            'manage_users',
+            'manage_bookings',
+            'manage_areas',
+            'manage_galleries', 
+            'view_reports',
+            'create_bookings',
+            'edit_bookings',
+            'delete_bookings',
+        ];
+
+        // Buat semua permissions
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission,
+                'guard_name' => 'web'
+            ]);
         }
 
-        $role = Role::findOrCreate('Super Admin', 'web');
-        $role->syncPermissions($permission['Super Admin']);
-        
+        // ✅ DEFINISIKAN ROLE DAN PERMISSIONS
+        $rolePermissions = [
+            'Super Admin' => [
+                'view_dashboard',
+                'manage_users', 
+                'manage_bookings',
+                'manage_areas',
+                'manage_galleries',
+                'view_reports',
+                'create_bookings',
+                'edit_bookings',
+                'delete_bookings',
+            ],
+            'User' => [ // ✅ KASIH PERMISSION BASIC UNTUK USER
+                'view_dashboard',
+                'create_bookings',
+            ],
+        ];
+
+        // ✅ BUAT ROLE DAN ASSIGN PERMISSIONS
+        foreach ($rolePermissions as $roleName => $permissionList) {
+            echo "Creating role: {$roleName}\n";
+            
+            $role = Role::firstOrCreate([
+                'name' => $roleName,
+                'guard_name' => 'web'
+            ]);
+            
+            $role->syncPermissions($permissionList);
+            
+            echo "✅ Role '{$roleName}' created with " . count($permissionList) . " permissions.\n";
+        }
+
+        // ✅ BUAT USER SUPER ADMIN
         $admin = User::firstOrCreate(
-            ['email' => 'adminpineustilu@example.com'],
+            ['email' => 'adminpineustilu@gmail.com'], // ✅ UBAH KE @gmail.com
             [
-                'name' => 'Admin Pineustilu',
-                'password' => Hash::make('adminpineustilu'), // password = adminpineustilu
+                'name' => 'Admin Pineus Tilu',
+                'password' => Hash::make('adminpineustilu'),
+                'email_verified_at' => now(),
             ]
         );
-        $admin->assignRole(['Super Admin']);
+        
+        // Assign role Super Admin
+        $admin->assignRole('Super Admin');
+        echo "✅ Super Admin user created: {$admin->email}\n";
 
+        // ✅ ASSIGN ROLE 'USER' KE SEMUA USER YANG BELUM PUNYA ROLE
+        $usersWithoutRoles = User::doesntHave('roles')->get();
+        foreach ($usersWithoutRoles as $user) {
+            $user->assignRole('User');
+            echo "✅ Assigned 'User' role to: {$user->email}\n";
+        }
+
+        echo "\n🎉 All roles and permissions seeded successfully!\n";
+        echo "📊 Total roles: " . Role::count() . "\n";
+        echo "📋 Total permissions: " . Permission::count() . "\n";
+        echo "👥 Total users with roles: " . User::has('roles')->count() . "\n";
+        
+        // Clear cache
         Artisan::call('cache:clear');
+        Artisan::call('permission:cache-reset');
     }
 }

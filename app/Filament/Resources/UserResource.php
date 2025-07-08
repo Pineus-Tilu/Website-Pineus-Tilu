@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,8 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserResource extends Resource
@@ -28,46 +25,52 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informasi User')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->label('Nama')
-                            ->required()
-                            ->maxLength(255),
-                        
-                        Forms\Components\TextInput::make('email')
-                            ->label('Email')
-                            ->email()
-                            ->required()
-                            ->unique(User::class, 'email', ignoreRecord: true)
-                            ->maxLength(255),
-                        
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nama')
+                                    ->required()
+                                    ->maxLength(255),
+
+                                Forms\Components\TextInput::make('email')
+                                    ->label('Email')
+                                    ->email()
+                                    ->required()
+                                    ->unique(User::class, 'email', ignoreRecord: true)
+                                    ->maxLength(255),
+                            ]),
+
                         Forms\Components\TextInput::make('password')
                             ->label('Password')
                             ->password()
-                            ->required(fn (string $context): bool => $context === 'create')
-                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                             ->dehydrated(fn ($state) => filled($state))
+                            ->required(fn (string $context): bool => $context === 'create')
                             ->minLength(8)
-                            ->maxLength(255),
-                    ])
-                    ->columns(2),
-                
+                            ->helperText('Kosongkan jika tidak ingin mengubah password'),
+                    ]),
+
                 Forms\Components\Section::make('Role & Permissions')
                     ->schema([
-                        Forms\Components\Select::make('roles')
-                            ->label('Role')
-                            ->multiple()
-                            ->relationship('roles', 'name')
-                            ->options(Role::all()->pluck('name', 'id'))
-                            ->searchable()
-                            ->preload(),
-                        
-                        Forms\Components\TextInput::make('google_id')
-                            ->label('Google ID')
-                            ->maxLength(255)
-                            ->disabled()
-                            ->dehydrated(false),
-                    ])
-                    ->columns(2),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\Select::make('role')
+                                    ->label('Role')
+                                    ->options(function () {
+                                        return Role::all()->pluck('name', 'name')->toArray();
+                                    })
+                                    ->default(function ($record) {
+                                        return $record?->getRoleNames()->first() ?? null;
+                                    })
+                                    ->searchable()
+                                    ->preload()
+                                    ->helperText('Pilih role untuk user ini'),
+
+                                Forms\Components\TextInput::make('google_id')
+                                    ->label('Google ID')
+                                    ->disabled()
+                                    ->helperText('ID Google untuk login via Google'),
+                            ]),
+                    ]),
             ]);
     }
 
@@ -79,146 +82,123 @@ class UserResource extends Resource
                     ->label('Nama')
                     ->searchable()
                     ->sortable()
-                    ->size('sm')
-                    ->weight('medium')
-                    ->wrap(),
-                
+                    ->weight('medium'),
+
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')
                     ->searchable()
                     ->sortable()
-                    ->size('sm')
-                    ->copyable()
-                    ->wrap(),
-                
-                Tables\Columns\BadgeColumn::make('roles.name')
+                    ->copyable(),
+
+                // ✅ TAMPILKAN ROLE DI TABLE
+                Tables\Columns\BadgeColumn::make('role')
                     ->label('Role')
+                    ->getStateUsing(fn (User $record): string => 
+                        $record->getRoleNames()->first() ?? 'No Role'
+                    )
                     ->colors([
                         'danger' => 'Super Admin',
                         'warning' => 'Admin',
                         'success' => 'User',
-                        'info' => 'Moderator',
+                        'gray' => 'No Role',
                     ])
-                    ->size('sm')
-                    ->separator(', ')
-                    ->wrap(),
-                
+                    ->icons([
+                        'heroicon-o-shield-check' => 'Super Admin',
+                        'heroicon-o-user-circle' => 'Admin',
+                        'heroicon-o-user' => 'User',
+                        'heroicon-o-question-mark-circle' => 'No Role',
+                    ]),
+
                 Tables\Columns\IconColumn::make('google_id')
                     ->label('Google')
                     ->boolean()
-                    ->size('sm')
                     ->getStateUsing(fn (User $record): bool => !is_null($record->google_id))
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
-                    ->falseColor('gray')
-                    ->tooltip(fn (User $record): string => 
-                        $record->google_id ? 'Login dengan Google' : 'Login manual'
-                    ),
-                
-                Tables\Columns\IconColumn::make('email_verified_at')
-                    ->label('Verified')
-                    ->boolean()
-                    ->size('sm')
-                    ->getStateUsing(fn (User $record): bool => !is_null($record->email_verified_at))
-                    ->trueIcon('heroicon-o-shield-check')
-                    ->falseIcon('heroicon-o-shield-exclamation')
-                    ->trueColor('success')
-                    ->falseColor('warning')
-                    ->tooltip(fn (User $record): string => 
-                        $record->email_verified_at ? 'Email terverifikasi' : 'Email belum terverifikasi'
-                    ),
-                
-                Tables\Columns\TextColumn::make('bookings_count')
-                    ->label('Bookings')
-                    ->counts('bookings')
-                    ->size('sm')
-                    ->alignCenter()
-                    ->color('info')
-                    ->toggleable(isToggledHiddenByDefault: true),
-                
+                    ->falseColor('gray'),
+
+                // ✅ KOLOM VERIFIED DIHAPUS
+                // Tables\Columns\IconColumn::make('email_verified_at')
+                //     ->label('Verified')
+                //     ->boolean()
+                //     ->trueIcon('heroicon-o-check-circle')
+                //     ->falseIcon('heroicon-o-x-circle')
+                //     ->trueColor('success')
+                //     ->falseColor('warning'),
+
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Bergabung')
-                    ->since()
-                    ->size('sm')
-                    ->toggleable(isToggledHiddenByDefault: true),
-                
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update Terakhir')
-                    ->since()
-                    ->size('sm')
+                    ->label('Dibuat')
+                    ->dateTime('d M Y, H:i')
+                    ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('roles')
-                    ->label('Role')
-                    ->relationship('roles', 'name')
-                    ->multiple()
-                    ->searchable(),
-                
+                // ✅ FILTER BERDASARKAN ROLE
+                Tables\Filters\SelectFilter::make('role')
+                    ->label('Filter Role')
+                    ->options(function () {
+                        $roles = Role::all()->pluck('name', 'name')->toArray();
+                        $roles['No Role'] = 'No Role';
+                        return $roles;
+                    })
+                    ->query(function (Builder $query, array $data): Builder {
+                        if (filled($data['value'])) {
+                            if ($data['value'] === 'No Role') {
+                                return $query->doesntHave('roles');
+                            }
+                            return $query->whereHas('roles', function (Builder $query) use ($data) {
+                                $query->where('name', $data['value']);
+                            });
+                        }
+                        return $query;
+                    }),
+
+                // ✅ FILTER VERIFIED JUGA DIHAPUS (OPSIONAL)
+                // Tables\Filters\Filter::make('verified')
+                //     ->label('Email Verified')
+                //     ->query(fn (Builder $query): Builder => $query->whereNotNull('email_verified_at'))
+                //     ->toggle(),
+
                 Tables\Filters\Filter::make('google_users')
                     ->label('Google Users')
                     ->query(fn (Builder $query): Builder => $query->whereNotNull('google_id'))
                     ->toggle(),
-                
-                Tables\Filters\Filter::make('verified_users')
-                    ->label('Email Verified')
-                    ->query(fn (Builder $query): Builder => $query->whereNotNull('email_verified_at'))
-                    ->toggle(),
-                
-                Tables\Filters\Filter::make('with_bookings')
-                    ->label('Memiliki Booking')
-                    ->query(fn (Builder $query): Builder => $query->whereHas('bookings'))
-                    ->toggle(),
-                
-                Tables\Filters\Filter::make('created_range')
-                    ->form([
-                        Forms\Components\DatePicker::make('created_from')
-                            ->label('Bergabung Dari'),
-                        Forms\Components\DatePicker::make('created_until')
-                            ->label('Bergabung Sampai'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['created_from'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
-                            )
-                            ->when(
-                                $data['created_until'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
-                            );
-                    }),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    
-                    Tables\Actions\Action::make('send_email_verification')
-                        ->label('Kirim Verifikasi Email')
-                        ->icon('heroicon-o-envelope')
-                        ->color('warning')
-                        ->action(function (User $record) {
-                            $record->sendEmailVerificationNotification();
-                        })
-                        ->visible(fn (User $record) => is_null($record->email_verified_at))
-                        ->requiresConfirmation(),
-                    
-                    Tables\Actions\Action::make('view_bookings')
-                        ->label('Lihat Booking')
-                        ->icon('heroicon-o-calendar-days')
-                        ->color('info')
-                        ->url(fn (User $record): string => route('filament.admin.resources.bookings.index', [
-                            'tableFilters' => [
-                                'user_id' => ['value' => $record->id]
-                            ]
-                        ]))
-                        ->visible(fn (User $record) => $record->bookings()->exists()),
-                    
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ViewAction::make()
+                        ->label('Lihat Detail')
+                        ->icon('heroicon-o-eye'),
+
+                    Tables\Actions\EditAction::make()
+                        ->label('Edit User')
+                        ->icon('heroicon-o-pencil')
+                        ->using(function (User $record, array $data): User {
+                            // Update data user
+                            $record->update([
+                                'name' => $data['name'],
+                                'email' => $data['email'],
+                            ]);
+
+                            // Update password jika diisi
+                            if (filled($data['password'])) {
+                                $record->update(['password' => bcrypt($data['password'])]);
+                            }
+
+                            // Update role
+                            if (filled($data['role'])) {
+                                $record->syncRoles([$data['role']]);
+                            }
+
+                            return $record;
+                        }),
+
+                    Tables\Actions\DeleteAction::make()
+                        ->label('Hapus User')
+                        ->icon('heroicon-o-trash'),
                 ])
-                ->label('Actions')
+                ->label('Aksi')
                 ->icon('heroicon-m-ellipsis-vertical')
                 ->size('sm')
                 ->color('gray')
@@ -228,43 +208,29 @@ class UserResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     
+                    // ✅ BULK ACTION UNTUK ASSIGN ROLE
                     Tables\Actions\BulkAction::make('assign_role')
                         ->label('Assign Role')
                         ->icon('heroicon-o-user-group')
+                        ->color('warning')
                         ->form([
                             Forms\Components\Select::make('role')
-                                ->label('Role')
+                                ->label('Pilih Role')
                                 ->options(Role::all()->pluck('name', 'name'))
                                 ->required(),
                         ])
                         ->action(function (array $data, $records) {
-                            $records->each(function ($record) use ($data) {
-                                $record->assignRole($data['role']);
-                            });
+                            foreach ($records as $record) {
+                                $record->syncRoles([$data['role']]);
+                            }
                         })
-                        ->requiresConfirmation(),
-                    
-                    Tables\Actions\BulkAction::make('verify_email')
-                        ->label('Verifikasi Email')
-                        ->icon('heroicon-o-shield-check')
-                        ->color('success')
-                        ->action(function ($records) {
-                            $records->each(function ($record) {
-                                if (is_null($record->email_verified_at)) {
-                                    $record->update(['email_verified_at' => now()]);
-                                }
-                            });
-                        })
-                        ->requiresConfirmation(),
+                        ->requiresConfirmation()
+                        ->modalHeading('Assign Role ke User Terpilih')
+                        ->modalDescription('Assign role yang sama ke semua user yang dipilih?'),
                 ]),
             ])
             ->defaultSort('created_at', 'desc')
-            ->striped()
-            ->paginated([10, 25, 50, 100])
-            ->defaultPaginationPageOption(25)
-            ->persistSortInSession()
-            ->persistSearchInSession()
-            ->persistFiltersInSession();
+            ->searchPlaceholder('Cari nama atau email...');
     }
 
     public static function getRelations(): array

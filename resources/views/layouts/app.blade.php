@@ -87,7 +87,9 @@
     <script src="{{ asset('js/aos.js') }}"></script>
     <script>
         window.addEventListener('load', function() {
-            AOS.init();
+            setTimeout(() => {
+                AOS.init();
+            }, 100);
         });
     </script>
     <script src="{{ asset('js/flatpickr.js') }}"></script>

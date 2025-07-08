@@ -12,9 +12,9 @@
     <div class="container relative z-10 px-4 mx-auto max-w-7xl">
         <!-- Header -->
         <div class="text-center mb-12 md:mb-16">
-            <h2 class="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 sm:text-4xl md:text-5xl jp-brush md:mb-6" 
+            <h2 class="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] sm:text-4xl md:text-5xl jp-brush md:mb-6" 
                 data-aos="fade-down" data-aos-delay="200">
-                📍 Lokasi & Akses
+                Lokasi & Akses
             </h2>
             <div class="w-20 h-1 mx-auto mb-6 bg-gradient-to-r from-green-500 via-blue-500 to-green-600 rounded-full sm:w-24 md:w-32 md:mb-8" 
                  data-aos="fade-up" data-aos-delay="300"></div>

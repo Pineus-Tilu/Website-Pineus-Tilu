@@ -30,7 +30,7 @@ class BookingsResource extends Resource
                     ->options(User::all()->pluck('name', 'id'))
                     ->searchable()
                     ->nullable(),
-                
+
                 Forms\Components\Select::make('unit_id')
                     ->label('Unit/Deck')
                     ->options(AreaUnit::with('area')->get()->mapWithKeys(function ($unit) {
@@ -38,7 +38,7 @@ class BookingsResource extends Resource
                     }))
                     ->required()
                     ->searchable(),
-                
+
                 Forms\Components\DatePicker::make('booking_for_date')
                     ->label('Tanggal Booking')
                     ->required()
@@ -63,12 +63,13 @@ class BookingsResource extends Resource
                     ->size('sm')
                     ->weight('medium')
                     ->wrap()
-                    ->description(fn (Booking $record): ?string => 
-                        $record->bookingDetail ? 
-                        'Email: ' . ($record->bookingDetail->email ?? '-') . ' | Tel: ' . ($record->bookingDetail->telepon ?? '-') : 
+                    ->description(
+                        fn(Booking $record): ?string =>
+                        $record->bookingDetail ?
+                        'Email: ' . ($record->bookingDetail->email ?? '-') . ' | Tel: ' . ($record->bookingDetail->telepon ?? '-') :
                         null
                     ),
-                
+
                 Tables\Columns\TextColumn::make('unit.area.name')
                     ->label('Area')
                     ->sortable()
@@ -82,26 +83,27 @@ class BookingsResource extends Resource
                     ->size('sm')
                     ->color('primary')
                     ->weight('medium'),
-                
+
                 Tables\Columns\TextColumn::make('unit.unit_name')
                     ->label('Unit')
                     ->sortable()
                     ->searchable()
                     ->size('sm')
                     ->color('secondary'),
-                
+
                 Tables\Columns\TextColumn::make('check_in_out')
                     ->label('Check In - Check Out')
                     ->getStateUsing(function (Booking $record): string {
                         if ($record->bookingDetail) {
-                            $checkIn = \Carbon\Carbon::parse($record->bookingDetail->check_in)->format('d/m/Y');
-                            $checkOut = \Carbon\Carbon::parse($record->bookingDetail->check_out)->format('d/m/Y');
-                            $nights = \Carbon\Carbon::parse($record->bookingDetail->check_in)
-                                ->diffInDays(\Carbon\Carbon::parse($record->bookingDetail->check_out));
+                            // Pastikan konversi ke string terlebih dahulu
+                            $checkIn = \Carbon\Carbon::parse((string) $record->bookingDetail->check_in)->format('d/m/Y');
+                            $checkOut = \Carbon\Carbon::parse((string) $record->bookingDetail->check_out)->format('d/m/Y');
+                            $nights = \Carbon\Carbon::parse((string) $record->bookingDetail->check_in)
+                                ->diffInDays(\Carbon\Carbon::parse((string) $record->bookingDetail->check_out));
                             return $checkIn . ' - ' . $checkOut . ' (' . $nights . ' malam)';
                         }
-                        return $record->booking_for_date ? 
-                            \Carbon\Carbon::parse($record->booking_for_date)->format('d/m/Y') . ' (1 malam)' : 
+                        return $record->booking_for_date ?
+                            \Carbon\Carbon::parse((string) $record->booking_for_date)->format('d/m/Y') . ' (1 malam)' :
                             '-';
                     })
                     ->size('sm')
@@ -121,7 +123,7 @@ class BookingsResource extends Resource
                     ])
                     ->size('sm')
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('bookingDetail.total_price')
                     ->label('Total')
                     ->money('IDR')
@@ -132,9 +134,10 @@ class BookingsResource extends Resource
                     ->getStateUsing(function (Booking $record): ?float {
                         return $record->bookingDetail ? $record->bookingDetail->total_price : null;
                     })
-                    ->description(fn (Booking $record): ?string => 
-                        $record->bookingDetail && $record->bookingDetail->number_of_people ? 
-                        $record->bookingDetail->number_of_people . ' orang' : 
+                    ->description(
+                        fn(Booking $record): ?string =>
+                        $record->bookingDetail && $record->bookingDetail->number_of_people ?
+                        $record->bookingDetail->number_of_people . ' orang' :
                         null
                     ),
             ])
@@ -157,7 +160,7 @@ class BookingsResource extends Resource
                     ->label('Status')
                     ->options(BookingStatus::all()->pluck('name', 'id'))
                     ->multiple(),
-                
+
                 Tables\Filters\Filter::make('check_in_date')
                     ->label('Tanggal Check In')
                     ->form([
@@ -179,7 +182,7 @@ class BookingsResource extends Resource
                                 });
                             });
                     }),
-                
+
                 Tables\Filters\Filter::make('today')
                     ->label('Check In Hari Ini')
                     ->query(function (Builder $query): Builder {
@@ -188,7 +191,7 @@ class BookingsResource extends Resource
                         });
                     })
                     ->toggle(),
-                    
+
                 Tables\Filters\Filter::make('this_week')
                     ->label('Check In Minggu Ini')
                     ->query(function (Builder $query): Builder {
@@ -207,23 +210,24 @@ class BookingsResource extends Resource
                         ->label('Lihat Detail')
                         ->icon('heroicon-o-eye')
                         ->color('info'),
-                        
+
                     Tables\Actions\Action::make('download_invoice')
                         ->label('Download Invoice PDF')
                         ->icon('heroicon-o-document-arrow-down')
                         ->color('success')
-                        ->url(fn (Booking $record): string => route('invoice.download', $record->id))
+                        ->url(fn(Booking $record): string => route('invoice.download', $record->id))
                         ->openUrlInNewTab()
-                        ->visible(fn (Booking $record): bool => 
-                            $record->bookingDetail && 
+                        ->visible(
+                            fn(Booking $record): bool =>
+                            $record->bookingDetail &&
                             in_array($record->status->name, ['success', 'pending'])
                         ),
                 ])
-                ->label('Aksi')
-                ->icon('heroicon-m-ellipsis-vertical')
-                ->size('sm')
-                ->color('gray')
-                ->button(),
+                    ->label('Aksi')
+                    ->icon('heroicon-m-ellipsis-vertical')
+                    ->size('sm')
+                    ->color('gray')
+                    ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -273,24 +277,24 @@ class BookingsResource extends Resource
             'edit' => Pages\EditBookings::route('/{record}/edit'),
         ];
     }
-    
+
     // Disable create page karena booking dibuat dari frontend
     public static function canCreate(): bool
     {
         return false;
     }
-    
+
     // Global search configuration
     public static function getGloballySearchableAttributes(): array
     {
         return ['bookingDetail.nama', 'unit.area.name', 'unit.unit_name'];
     }
-    
+
     public static function getGlobalSearchResultTitle(\Illuminate\Database\Eloquent\Model $record): string
     {
         return $record->bookingDetail?->nama ?? 'Guest - Booking #' . $record->id;
     }
-    
+
     public static function getGlobalSearchResultDetails(\Illuminate\Database\Eloquent\Model $record): array
     {
         return [

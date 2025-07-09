@@ -41,23 +41,23 @@ class ReservasiController extends Controller
                         'max_people' => (int) $unit->max_people,
                     ];
                 }
-                
+
                 // Gunakan key unik (area + deck)
                 $uniqueKey = $areaName . " - " . $unit->unit_name;
-                
+
                 $bookings = Booking::where('unit_id', $unit->id)
                     ->whereIn('status_id', [1, 2])
                     ->where('booking_for_date', '>=', $now->format('Y-m-d'))
                     ->get();
-                
+
                 $disabledDates = $bookings->pluck('booking_for_date')
-                    ->map(function($date) {
+                    ->map(function ($date) {
                         return Carbon::parse($date)->format('Y-m-d');
                     })
                     ->unique()
                     ->values()
                     ->toArray();
-                
+
                 // Tambahkan hari ini jika sudah lewat jam 12:00
                 if ($now->hour >= 12) {
                     $today = $now->format('Y-m-d');
@@ -65,7 +65,7 @@ class ReservasiController extends Controller
                         $disabledDates[] = $today;
                     }
                 }
-                
+
                 sort($disabledDates);
                 $bookedDates[$uniqueKey] = array_values($disabledDates);
             }
@@ -96,11 +96,11 @@ class ReservasiController extends Controller
         ]);
 
         $errors = [];
-        
+
         // Validasi waktu pemesanan untuk hari ini
         $now = Carbon::now('Asia/Jakarta');
         $bookingDate = Carbon::parse($request->tanggal_kunjungan);
-        
+
         if ($bookingDate->isToday() && $now->hour >= 12) {
             $errors['tanggal_kunjungan'] = 'Pemesanan untuk hari ini sudah ditutup. Check-in dimulai pukul 14:00, pemesanan harus dilakukan sebelum pukul 12:00.';
         }
@@ -125,7 +125,7 @@ class ReservasiController extends Controller
     {
         // Validasi duplikasi yang lebih ketat dengan database lock
         DB::beginTransaction();
-        
+
         try {
             // Lock dan cek lagi untuk mencegah race condition
             $existingBooking = Booking::where('unit_id', $unit->id)
@@ -205,7 +205,6 @@ class ReservasiController extends Controller
                 'subtotal' => $total,
                 'status' => 'pending'
             ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error("Booking creation failed: " . $e->getMessage());

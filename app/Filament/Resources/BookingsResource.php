@@ -66,8 +66,8 @@ class BookingsResource extends Resource
                     ->description(
                         fn(Booking $record): ?string =>
                         $record->bookingDetail ?
-                        'Email: ' . ($record->bookingDetail->email ?? '-') . ' | Tel: ' . ($record->bookingDetail->telepon ?? '-') :
-                        null
+                            'Email: ' . ($record->bookingDetail->email ?? '-') . ' | Tel: ' . ($record->bookingDetail->telepon ?? '-') :
+                            null
                     ),
 
                 Tables\Columns\TextColumn::make('unit.area.name')
@@ -137,8 +137,8 @@ class BookingsResource extends Resource
                     ->description(
                         fn(Booking $record): ?string =>
                         $record->bookingDetail && $record->bookingDetail->number_of_people ?
-                        $record->bookingDetail->number_of_people . ' orang' :
-                        null
+                            $record->bookingDetail->number_of_people . ' orang' :
+                            null
                     ),
             ])
             ->filters([
@@ -220,7 +220,7 @@ class BookingsResource extends Resource
                         ->visible(
                             fn(Booking $record): bool =>
                             $record->bookingDetail &&
-                            in_array($record->status->name, ['success', 'pending'])
+                                in_array($record->status->name, ['success', 'pending'])
                         ),
                 ])
                     ->label('Aksi')

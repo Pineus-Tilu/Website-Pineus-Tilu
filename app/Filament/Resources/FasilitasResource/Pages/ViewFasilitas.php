@@ -19,7 +19,7 @@ class ViewFasilitas extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
-            Actions\DeleteAction::make(),
+            // Actions\DeleteAction::make(),
         ];
     }
 

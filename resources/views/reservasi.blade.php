@@ -43,8 +43,6 @@
             pointer-events: none !important;
         }
 
-        /* Tambahkan di bagian <style> yang sudah ada */
-
         /* Styling untuk tanggal yang sudah dibooking */
         .flatpickr-day.booked-date {
             background-color: #fca5a5 !important;
@@ -115,7 +113,10 @@
 
                             <!-- Jumlah Orang -->
                             <div class="mb-4 font-typewriter">
-                                <label class="block mb-2 font-medium text-green-800">Jumlah Orang</label>
+                                <div class="flex items-center justify-between mb-2">
+                                    <label class="font-medium text-green-800">Jumlah Orang</label>
+                                    <button type="button" id="info-btn" class="text-sm text-green-700 hover:underline">❔ Info</button>
+                                </div>
                                 <div class="flex items-center space-x-2">
                                     <button type="button" id="minus-btn"
                                         class="px-3 py-1 bg-gray-200 rounded">&minus;</button>
@@ -123,6 +124,22 @@
                                         min="1" max="10" readonly
                                         class="w-16 px-2 py-1 text-center bg-gray-100 border border-green-300 rounded cursor-default focus:outline-none">
                                     <button type="button" id="plus-btn" class="px-3 py-1 bg-gray-200 rounded">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Modal Informasi Jumlah Orang -->
+                            <div id="info-modal"
+                                class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+                                <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow-lg">
+                                    <h2 class="mb-2 text-lg font-semibold text-green-800">Informasi Jumlah Orang</h2>
+                                    <p class="text-sm text-green-700">
+                                        Jika Anda menambah jumlah orang lebih dari batas normal area yang dipilih,
+                                        akan dikenakan biaya tambahan (extra charge) per orang sesuai ketentuan area.
+                                    </p>
+                                    <div class="flex justify-end mt-4">
+                                        <button id="close-info-btn"
+                                            class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded hover:bg-green-700">Tutup</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -166,27 +183,31 @@
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <div class="text-sm text-green-700">Tanggal Check-in</div>
+                                    <div class="text-sm text-green-700">🕓 Tanggal Check-in</div>
                                     <div class="font-medium" id="detail-checkin">-</div>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-green-700">Tanggal Check-out</div>
+                                    <div class="text-sm text-green-700">🕘 Tanggal Check-out</div>
                                     <div class="font-medium" id="detail-checkout">-</div>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <div class="text-sm text-green-700">Area</div>
+                                    <div class="text-sm text-green-700">📍 Area</div>
                                     <div class="font-medium" id="detail-area">-</div>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-green-700">Deck</div>
+                                    <div class="text-sm text-green-700">🛏️ Deck</div>
                                     <div class="font-medium" id="detail-deck">-</div>
                                 </div>
                             </div>
                             <div>
-                                <div class="text-sm text-green-700">Jumlah Orang</div>
+                                <div class="text-sm text-green-700">👥 Jumlah Orang</div>
                                 <div class="font-medium" id="detail-jumlah">-</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-green-700">⚖️ Batas Normal / Maksimal</div>
+                                <div class="font-medium" id="detail-batas-orang">-</div>
                             </div>
                         </div>
                     </div>
@@ -196,16 +217,16 @@
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <div class="text-sm text-green-700">Nama Lengkap</div>
+                                    <div class="text-sm text-green-700">🙍 Nama Lengkap</div>
                                     <div class="font-medium" id="detail-nama">-</div>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-green-700">Nomor Telepon</div>
+                                    <div class="text-sm text-green-700">📞 Nomor Telepon</div>
                                     <div class="font-medium" id="detail-telepon">-</div>
                                 </div>
                             </div>
                             <div>
-                                <div class="text-sm text-green-700">Email</div>
+                                <div class="text-sm text-green-700">✉️ Email</div>
                                 <div class="font-medium" id="detail-email">-</div>
                             </div>
                         </div>
@@ -213,27 +234,29 @@
 
                     <div class="pt-4 border-t font-typewriter">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm text-green-700">Harga Dasar</span>
+                            <span class="text-sm text-green-700">💰 Harga Dasar</span>
                             <span class="text-sm" id="harga-dasar">Rp 0</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-sm text-green-700">Tambahan</span>
-                            <span class="text-sm" id="tambahan-harga">Rp 0</span>
+                        <div class="flex flex-col justify-between mb-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-green-700">➕ Tambahan <span class="text-xs text-gray-500">(extra charge)</span></span>
+                                <span class="text-sm" id="tambahan-harga">Rp 0</span>
+                            </div>
+                            <span class="mt-1 text-xs text-gray-500">⚠️ Dikenakan jika jumlah orang melebihi batas normal area.</span>
                         </div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-lg font-bold text-green-900">Total Harga</span>
+                            <span class="text-lg font-bold text-green-900">🧾 Total Harga</span>
                             <span class="text-lg font-bold text-green-900" id="total-harga">Rp 0</span>
                         </div>
 
                         <div class="flex items-center mb-4 font-typewriter">
-                            <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required
-                                form="reservasi-form">
-                            <label for="syarat" class="text-sm text-green-800">Saya menyetujui syarat & ketentuan yang
-                                berlaku</label>
+                            <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required form="reservasi-form">
+                            <label for="syarat" class="text-sm text-green-800">✔️ Saya menyetujui syarat & ketentuan yang berlaku</label>
                         </div>
                         <button type="submit" form="reservasi-form"
-                            class="w-full py-3 font-semibold text-white transition bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded hover:opacity-90 transform hover:scale-105 font-typewriter">Pesan
-                            Sekarang</button>
+                            class="w-full py-3 font-semibold text-white transition bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded hover:opacity-90 transform hover:scale-105 font-typewriter">
+                            🛎️ Pesan Sekarang
+                        </button>
                     </div>
                 </div>
             </div>
@@ -254,10 +277,28 @@
             isSubmitting = true;
             console.log("✅ Form submission allowed");
 
-            // Reset flag setelah 30 detik (fallback)
             setTimeout(() => {
                 isSubmitting = false;
             }, 30000);
+        });
+
+        // Modal jumlah orang info
+        const infoBtn = document.getElementById('info-btn');
+        const infoModal = document.getElementById('info-modal');
+        const closeInfoBtn = document.getElementById('close-info-btn');
+
+        infoBtn.addEventListener('click', () => {
+            infoModal.classList.remove('hidden');
+        });
+
+        closeInfoBtn.addEventListener('click', () => {
+            infoModal.classList.add('hidden');
+        });
+
+        infoModal.addEventListener('click', (e) => {
+            if (e.target === infoModal) {
+                infoModal.classList.add('hidden');
+            }
         });
     </script>
 
@@ -265,5 +306,31 @@
         window.areaUnits = @json($areaUnits);
         window.prices = @json($prices);
         window.bookedDates = @json($bookedDates);
+
+        const fasilitasSelect = document.getElementById('fasilitas-select');
+        const deckSelect = document.getElementById('deck-select');
+        const detailBatasOrang = document.getElementById('detail-batas-orang');
+
+        function updateDetailBatasOrang() {
+            const selectedArea = fasilitasSelect.value;
+            const selectedDeck = deckSelect.value;
+
+            if (!selectedArea || !selectedDeck || !window.areaUnits[selectedArea]) {
+                detailBatasOrang.textContent = '-';
+                return;
+            }
+
+            const units = window.areaUnits[selectedArea];
+            const unit = units.find(u => u.unit_name === selectedDeck);
+
+            if (unit) {
+                detailBatasOrang.textContent = `${unit.default_people} / ${unit.max_people} orang`;
+            } else {
+                detailBatasOrang.textContent = '-';
+            }
+        }
+
+        fasilitasSelect.addEventListener('change', updateDetailBatasOrang);
+        deckSelect.addEventListener('change', updateDetailBatasOrang);
     </script>
 @endsection

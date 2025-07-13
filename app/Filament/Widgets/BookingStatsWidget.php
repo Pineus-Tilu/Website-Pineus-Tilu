@@ -47,8 +47,8 @@ class BookingStatsWidget extends BaseWidget
                 ->descriptionIcon('heroicon-o-check-circle')
                 ->color('success'),
 
-            Stat::make('Total Revenue', 'Rp ' . number_format($totalRevenue, 0, ',', '.'))
-                ->description('Revenue dari booking sukses')
+            Stat::make('Total Pendapatan', 'Rp ' . number_format($totalRevenue, 0, ',', '.'))
+                ->description('Total pendapatan dari booking sukses')
                 ->descriptionIcon('heroicon-o-banknotes')
                 ->color('success'),
 

@@ -66,6 +66,8 @@ class AdminPanelProvider extends PanelProvider
                 
                 // Widget tabel (baris ketiga - full width)
                 \App\Filament\Widgets\RecentBookingsWidget::class,
+
+                \App\Filament\Widgets\AreaReportWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

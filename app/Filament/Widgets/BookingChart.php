@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class BookingChart extends ChartWidget
 {
     protected static ?string $heading = 'Booking Per Hari (7 Hari Terakhir)';
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 3;
     protected int | string | array $columnSpan = [
         'md' => 2,
         'xl' => 3,

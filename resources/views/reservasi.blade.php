@@ -183,11 +183,11 @@
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <div class="text-sm text-green-700">🕓 Tanggal Check-in</div>
+                                    <div class="text-sm text-green-700">🕓 Tanggal Check - in</div>
                                     <div class="font-medium" id="detail-checkin">-</div>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-green-700">🕘 Tanggal Check-out</div>
+                                    <div class="text-sm text-green-700">🕘 Tanggal Check - out</div>
                                     <div class="font-medium" id="detail-checkout">-</div>
                                 </div>
                             </div>

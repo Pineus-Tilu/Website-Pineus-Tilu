@@ -30,14 +30,16 @@ class UserResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Nama')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->disabled(fn ($record, $context) => ($record && !is_null($record->google_id)) || $context === 'view'),
 
                                 Forms\Components\TextInput::make('email')
                                     ->label('Email')
                                     ->email()
                                     ->required()
                                     ->unique(User::class, 'email', ignoreRecord: true)
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->disabled(fn ($record, $context) => ($record && !is_null($record->google_id)) || $context === 'view'),
                             ]),
 
                         Forms\Components\TextInput::make('password')
@@ -46,29 +48,33 @@ class UserResource extends Resource
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $context): bool => $context === 'create')
                             ->minLength(8)
-                            ->helperText('Kosongkan jika tidak ingin mengubah password'),
+                            ->disabled(fn ($record) => $record && !is_null($record->google_id))
+                            ->helperText(fn ($record) => 
+                                $record && !is_null($record->google_id) 
+                                    ? 'Password tidak dapat diubah untuk pengguna Google' 
+                                    : 'Kosongkan jika tidak ingin mengubah password'
+                            )
+                            ->visible(fn (string $context): bool => $context !== 'view'), // Hide password in view mode
                     ]),
 
                 Forms\Components\Section::make('Role & Permissions')
                     ->schema([
                         Forms\Components\Grid::make(2)
                             ->schema([
-                                Forms\Components\Select::make('role')
+                                Forms\Components\Select::make('roles')
                                     ->label('Role')
-                                    ->options(function () {
-                                        return Role::all()->pluck('name', 'name')->toArray();
-                                    })
-                                    ->default(function ($record) {
-                                        return $record?->getRoleNames()->first() ?? null;
-                                    })
-                                    ->searchable()
+                                    ->relationship('roles', 'name')
                                     ->preload()
+                                    ->searchable()
+                                    ->disabled(fn (string $context): bool => $context === 'view')
+                                    ->dehydrated(fn (string $context): bool => $context !== 'view')
                                     ->helperText('Pilih role untuk user ini'),
 
                                 Forms\Components\TextInput::make('google_id')
                                     ->label('Google ID')
                                     ->disabled()
-                                    ->helperText('ID Google untuk login via Google'),
+                                    ->helperText('ID Google untuk login via Google')
+                                    ->visible(fn ($record) => $record && !is_null($record->google_id)),
                             ]),
                     ]),
             ]);
@@ -93,7 +99,8 @@ class UserResource extends Resource
                 // ✅ TAMPILKAN ROLE DI TABLE
                 Tables\Columns\BadgeColumn::make('role')
                     ->label('Role')
-                    ->getStateUsing(fn (User $record): string => 
+                    ->getStateUsing(
+                        fn(User $record): string =>
                         $record->getRoleNames()->first() ?? 'No Role'
                     )
                     ->colors([
@@ -112,7 +119,7 @@ class UserResource extends Resource
                 Tables\Columns\IconColumn::make('google_id')
                     ->label('Google')
                     ->boolean()
-                    ->getStateUsing(fn (User $record): bool => !is_null($record->google_id))
+                    ->getStateUsing(fn(User $record): bool => !is_null($record->google_id))
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
@@ -162,7 +169,7 @@ class UserResource extends Resource
 
                 Tables\Filters\Filter::make('google_users')
                     ->label('Google Users')
-                    ->query(fn (Builder $query): Builder => $query->whereNotNull('google_id'))
+                    ->query(fn(Builder $query): Builder => $query->whereNotNull('google_id'))
                     ->toggle(),
             ])
             ->actions([
@@ -198,16 +205,16 @@ class UserResource extends Resource
                         ->label('Hapus User')
                         ->icon('heroicon-o-trash'),
                 ])
-                ->label('Aksi')
-                ->icon('heroicon-m-ellipsis-vertical')
-                ->size('sm')
-                ->color('gray')
-                ->button(),
+                    ->label('Aksi')
+                    ->icon('heroicon-m-ellipsis-vertical')
+                    ->size('sm')
+                    ->color('gray')
+                    ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    
+
                     // ✅ BULK ACTION UNTUK ASSIGN ROLE
                     Tables\Actions\BulkAction::make('assign_role')
                         ->label('Assign Role')

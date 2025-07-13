@@ -3,8 +3,8 @@
 @section('title', 'Pembayaran - Pineus Tilu')
 
 @section('content')
-    <div class="flex items-center justify-center py-8 min-h-screen-with-nav"
-        style="background-image: url('/images/reservasi.JPG');">
+    <div
+        class="flex items-center justify-center py-8 min-h-screen-with-nav bg-gradient-to-br from-[#006C43] via-[#00844D] to-[#005A36]">
         <div class="w-full max-w-2xl px-4 py-6 mx-auto my-16 bg-white rounded-lg shadow-md">
             <h2 class="mb-6 text-2xl font-bold text-green-900">Pembayaran</h2>
 

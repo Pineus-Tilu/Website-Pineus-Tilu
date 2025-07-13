@@ -5,7 +5,7 @@
 @section('content')
     <div class="max-w-full overflow-hidden">
         <!-- Hero Section -->
-        <section class="relative flex items-center justify-center h-[60vh] px-6 text-white bg-center bg-cover"
+        <section class="relative flex items-center justify-center h-[60vh] px-6 text-white bg-center bg-cover mt-14 sm:mt-18 md:mt-22 lg:mt-26"
             style="background-image: url('/images/tentang.jpg')" data-aos="fade-in" data-aos-duration="1000">
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             <div class="relative z-10 text-center">

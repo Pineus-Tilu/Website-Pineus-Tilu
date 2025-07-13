@@ -241,14 +241,14 @@ class FasilitasResource extends Resource
                         ->icon('heroicon-o-pencil')
                         ->color('warning'),
                         
-                    Tables\Actions\DeleteAction::make()
-                        ->label('Hapus Area')
-                        ->icon('heroicon-o-trash')
-                        ->color('danger')
-                        ->requiresConfirmation()
-                        ->modalHeading('Hapus Area')
-                        ->modalDescription('Apakah Anda yakin ingin menghapus area ini? Data yang terkait akan ikut terhapus.')
-                        ->modalSubmitActionLabel('Ya, Hapus'),
+                    // Tables\Actions\DeleteAction::make()
+                    //     ->label('Hapus Area')
+                    //     ->icon('heroicon-o-trash')
+                    //     ->color('danger')
+                    //     ->requiresConfirmation()
+                    //     ->modalHeading('Hapus Area')
+                    //     ->modalDescription('Apakah Anda yakin ingin menghapus area ini? Data yang terkait akan ikut terhapus.')
+                    //     ->modalSubmitActionLabel('Ya, Hapus'),
                 ])
                 ->label('Aksi')
                 ->icon('heroicon-m-ellipsis-vertical')
@@ -256,15 +256,15 @@ class FasilitasResource extends Resource
                 ->color('gray')
                 ->button(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->requiresConfirmation()
-                        ->modalHeading('Hapus Area Terpilih')
-                        ->modalDescription('Apakah Anda yakin ingin menghapus semua area yang dipilih?')
-                        ->modalSubmitActionLabel('Ya, Hapus Semua'),
-                ]),
-            ])
+            // ->bulkActions([
+            //     Tables\Actions\BulkActionGroup::make([
+            //         Tables\Actions\DeleteBulkAction::make()
+            //             ->requiresConfirmation()
+            //             ->modalHeading('Hapus Area Terpilih')
+            //             ->modalDescription('Apakah Anda yakin ingin menghapus semua area yang dipilih?')
+            //             ->modalSubmitActionLabel('Ya, Hapus Semua'),
+            //     ]),
+            // ])
             ->defaultSort('id', 'asc')
             ->striped()
             ->paginated([10, 25, 50])

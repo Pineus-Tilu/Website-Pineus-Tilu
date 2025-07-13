@@ -6,7 +6,7 @@
     <div class="max-w-full overflow-hidden">
         <!-- Hero Section -->
         <section
-            class="relative flex items-center justify-center h-[55vh] px-6 text-white bg-center bg-cover overflow-hidden">
+            class="relative flex items-center justify-center h-[55vh] px-6 text-white bg-center bg-cover overflow-hidden mt-14 sm:mt-18 md:mt-22 lg:mt-26">
 
             <!-- Background Image -->
             <img src="{{ asset('images/reservasi.JPG') }}" alt="Pineus Tilu"

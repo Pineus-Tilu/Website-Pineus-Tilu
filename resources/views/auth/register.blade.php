@@ -63,7 +63,7 @@
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                     </div>
 
-                    <!-- Password Field with Show/Hide -->
+                    <!-- Password Field with Single Icon -->
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,22 +74,19 @@
                                class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
                                placeholder="Password" />
                         
-                        <!-- Show/Hide Password Button -->
+                        <!-- Single Toggle Button -->
                         <button type="button" id="togglePassword" 
-                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition-colors hover:text-gray-600">
+                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition-colors hover:text-gray-600 focus:outline-none">
                             <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                            <svg id="eyeSlashIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
                             </svg>
                         </button>
                         
                         <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-600" />
                     </div>
 
-                    <!-- Confirm Password with Show/Hide -->
+                    <!-- Confirm Password with Single Icon -->
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,15 +97,12 @@
                                class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
                                placeholder="Konfirmasi password" />
                         
-                        <!-- Show/Hide Password Button -->
+                        <!-- Single Toggle Button -->
                         <button type="button" id="togglePasswordConfirmation" 
-                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition-colors hover:text-gray-600">
+                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition-colors hover:text-gray-600 focus:outline-none">
                             <svg id="eyeIconConfirm" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                            <svg id="eyeSlashIconConfirm" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
                             </svg>
                         </button>
                         
@@ -136,36 +130,102 @@
 
     <!-- JavaScript for Show/Hide Password -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password field toggle
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordField = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove any existing event listeners
+    const cleanupElement = (element) => {
+        if (element) {
+            const newElement = element.cloneNode(true);
+            element.parentNode.replaceChild(newElement, element);
+            return newElement;
+        }
+        return null;
+    };
 
-            togglePassword.addEventListener('click', function() {
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-                eyeIcon.classList.toggle('hidden');
-                eyeSlashIcon.classList.toggle('hidden');
-            });
+    // Password field toggle
+    const togglePassword = cleanupElement(document.getElementById('togglePassword'));
+    const passwordField = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
 
-            // Password confirmation field toggle
-            const togglePasswordConfirmation = document.getElementById('togglePasswordConfirmation');
-            const passwordConfirmationField = document.getElementById('password_confirmation');
-            const eyeIconConfirm = document.getElementById('eyeIconConfirm');
-            const eyeSlashIconConfirm = document.getElementById('eyeSlashIconConfirm');
-
-            togglePasswordConfirmation.addEventListener('click', function() {
-                const type = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordConfirmationField.setAttribute('type', type);
-                eyeIconConfirm.classList.toggle('hidden');
-                eyeSlashIconConfirm.classList.toggle('hidden');
-            });
+    if (togglePassword && passwordField && eyeIcon) {
+        togglePassword.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                `;
+                togglePassword.setAttribute('aria-label', 'Sembunyikan password');
+            } else {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `;
+                togglePassword.setAttribute('aria-label', 'Tampilkan password');
+            }
         });
+    }
+
+    // Password confirmation field toggle
+    const togglePasswordConfirmation = cleanupElement(document.getElementById('togglePasswordConfirmation'));
+    const passwordConfirmationField = document.getElementById('password_confirmation');
+    const eyeIconConfirm = document.getElementById('eyeIconConfirm');
+
+    if (togglePasswordConfirmation && passwordConfirmationField && eyeIconConfirm) {
+        togglePasswordConfirmation.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const type = passwordConfirmationField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordConfirmationField.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIconConfirm.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                `;
+                togglePasswordConfirmation.setAttribute('aria-label', 'Sembunyikan konfirmasi password');
+            } else {
+                eyeIconConfirm.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                `;
+                togglePasswordConfirmation.setAttribute('aria-label', 'Tampilkan konfirmasi password');
+            }
+        });
+    }
+});
     </script>
 
+    <!-- CSS untuk menghilangkan duplikat password toggle dari browser -->
     <style>
+        /* Pastikan hanya ada satu toggle button */
+        #togglePassword,
+        #togglePasswordConfirmation {
+            z-index: 10;
+        }
+
+        /* Hide any potential duplicate icons from browser */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
+
+        /* Remove browser default password toggle */
+        input[type="password"]::-webkit-credentials-auto-fill-button {
+            visibility: hidden;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+        }
+
+        /* Remove any webkit reveal button */
+        input[type="password"]::-webkit-textfield-decoration-container {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Float animation tetap sama */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }

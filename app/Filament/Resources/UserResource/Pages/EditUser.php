@@ -17,24 +17,24 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\Action::make('assign_role')
-                ->label('Ubah Role')
-                ->icon('heroicon-o-user-group')
-                ->color('warning')
-                ->form([
-                    Forms\Components\Select::make('role')
-                        ->label('Pilih Role Baru')
-                        ->options(Role::all()->pluck('name', 'name'))
-                        ->default($this->record->getRoleNames()->first())
-                        ->required(),
-                ])
-                ->action(function (array $data) {
-                    $this->record->syncRoles([$data['role']]);
-                    $this->notify('success', 'Role berhasil diubah!');
+            // Actions\Action::make('assign_role')
+            //     ->label('Ubah Role')
+            //     ->icon('heroicon-o-user-group')
+            //     ->color('warning')
+            //     ->form([
+            //         Forms\Components\Select::make('role')
+            //             ->label('Pilih Role Baru')
+            //             ->options(Role::all()->pluck('name', 'name'))
+            //             ->default($this->record->getRoleNames()->first())
+            //             ->required(),
+            //     ])
+            //     ->action(function (array $data) {
+            //         $this->record->syncRoles([$data['role']]);
+            //         $this->notify('success', 'Role berhasil diubah!');
                     
-                    // ✅ REDIRECT KE INDEX UNTUK REFRESH TABLE
-                    return redirect($this->getResource()::getUrl('index'));
-                }),
+            //         // ✅ REDIRECT KE INDEX UNTUK REFRESH TABLE
+            //         return redirect($this->getResource()::getUrl('index'));
+            //     }),
 
             Actions\DeleteAction::make(),
         ];

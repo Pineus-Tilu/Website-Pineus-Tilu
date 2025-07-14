@@ -28,7 +28,7 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
                              class="object-contain w-full h-full drop-shadow-lg">
                     </div>
-                    <p class="text-sm italic text-gray-600 font-typewriter">
+                    <p class="text-sm italic text-gray-600 font-body">
                         "Daftarkan dirimu untuk memulai petualangan alam bersama kami."
                     </p>
                 </div>
@@ -45,7 +45,7 @@
                             </svg>
                         </div>
                         <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
-                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Nama lengkap" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2 text-sm text-red-600" />
                     </div>
@@ -58,7 +58,7 @@
                             </svg>
                         </div>
                         <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
-                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Alamat email" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                     </div>
@@ -71,7 +71,7 @@
                             </svg>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="new-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Password" />
                         
                         <!-- Single Toggle Button -->
@@ -94,7 +94,7 @@
                             </svg>
                         </div>
                         <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Konfirmasi password" />
                         
                         <!-- Single Toggle Button -->
@@ -110,14 +110,14 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                         Daftar Sekarang
                     </button>
                 </form>
 
                 <!-- Login Link -->
                 <div class="pt-4 text-center border-t border-gray-200">
-                    <p class="text-gray-600 font-typewriter">
+                    <p class="text-gray-600 font-body">
                         Sudah punya akun? 
                         <a href="{{ route('login') }}" class="text-[#006C43] hover:text-[#005A36] font-bold transition-colors">
                             Masuk di sini

@@ -12,13 +12,13 @@
     <div class="container relative z-10 px-4 mx-auto max-w-7xl">
         <!-- Header -->
         <div class="text-center mb-12 md:mb-16">
-            <h2 class="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] sm:text-4xl md:text-5xl jp-brush md:mb-6" 
+            <h2 class="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] sm:text-4xl md:text-5xl  md:mb-6" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" 
                 data-aos="fade-down" data-aos-delay="200">
                 Lokasi & Akses
             </h2>
             <div class="w-20 h-1 mx-auto mb-6 bg-gradient-to-r from-green-500 via-blue-500 to-green-600 rounded-full sm:w-24 md:w-32 md:mb-8" 
                  data-aos="fade-up" data-aos-delay="300"></div>
-            <p class="text-lg text-gray-600 font-typewriter max-w-3xl mx-auto sm:text-xl leading-relaxed" 
+            <p class="text-lg text-gray-600 font-body max-w-3xl mx-auto sm:text-xl leading-relaxed" 
                data-aos="fade-up" data-aos-delay="400">
                 Temukan kami di jantung keindahan alam Pangalengan dengan akses mudah dan pemandangan yang memukau
             </p>
@@ -37,8 +37,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2 md:mb-3 font-typewriter">📍 Alamat Lengkap</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-base md:text-lg mb-4">
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2 md:mb-3 font-body">📍 Alamat Lengkap</h3>
+                            <p class="text-gray-600 leading-relaxed font-body text-base md:text-lg mb-4">
                                 Pulosari, Kec. Pangalengan, Kabupaten Bandung, Jawa Barat 40378
                             </p>
                             <div class="flex items-center space-x-2 text-sm text-green-600">
@@ -55,19 +55,19 @@
                 <div class="grid grid-cols-2 gap-4 md:gap-6">
                     <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl md:rounded-2xl p-4 md:p-6 text-white text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         <div class="text-2xl md:text-3xl mb-2">🚗</div>
-                        <div class="font-bold font-typewriter text-sm md:text-base">2 Jam dari Bandung</div>
+                        <div class="font-bold font-body text-sm md:text-base">2 Jam dari Bandung</div>
                     </div>
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl md:rounded-2xl p-4 md:p-6 text-white text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         <div class="text-2xl md:text-3xl mb-2">🏔️</div>
-                        <div class="font-bold font-typewriter text-sm md:text-base">1,200 MDPL</div>
+                        <div class="font-bold font-body text-sm md:text-base">1,200 MDPL</div>
                     </div>
                     <div class="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl md:rounded-2xl p-4 md:p-6 text-white text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         <div class="text-2xl md:text-3xl mb-2">🌡️</div>
-                        <div class="font-bold font-typewriter text-sm md:text-base">18-25°C</div>
+                        <div class="font-bold font-body text-sm md:text-base">18-25°C</div>
                     </div>
                     <div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl md:rounded-2xl p-4 md:p-6 text-white text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         <div class="text-2xl md:text-3xl mb-2">🏕️</div>
-                        <div class="font-bold font-typewriter text-sm md:text-base">50+ Spot Camping</div>
+                        <div class="font-bold font-body text-sm md:text-base">50+ Spot Camping</div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                         </svg>
                                     </div>
-                                    <p class="font-bold text-lg font-typewriter">Klik untuk Melihat Google Maps</p>
+                                    <p class="font-bold text-lg font-body">Klik untuk Melihat Google Maps</p>
                                 </div>
                             </div>
                         </div>
@@ -100,11 +100,11 @@
                         <div class="grid grid-cols-2 gap-2 md:gap-3 mt-3 md:mt-4">
                             <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-3 text-white text-center">
                                 <div class="text-lg md:text-xl mb-1">📍</div>
-                                <div class="text-xs md:text-sm font-bold font-typewriter">Lokasi Tepat</div>
+                                <div class="text-xs md:text-sm font-bold font-body">Lokasi Tepat</div>
                             </div>
                             <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-3 text-white text-center">
                                 <div class="text-lg md:text-xl mb-1">🗺️</div>
-                                <div class="text-xs md:text-sm font-bold font-typewriter">Peta Interaktif</div>
+                                <div class="text-xs md:text-sm font-bold font-body">Peta Interaktif</div>
                             </div>
                         </div>
                     </div>
@@ -119,14 +119,14 @@
                 <div class="flex justify-center">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-md">
                         <a href="https://maps.google.com/?q=Pineus+Tilu" target="_blank" 
-                           class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-green-600 text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-green-700 hover:scale-105 transition-all duration-300 font-typewriter">
+                           class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-green-600 text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-green-700 hover:scale-105 transition-all duration-300 font-body">
                             <svg class="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"></path>
                             </svg>
                             Petunjuk Arah
                         </a>
                         <button @click="openMapModal()" 
-                                class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-blue-600 text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-typewriter">
+                                class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-blue-600 text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-body">
                             <svg class="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>

@@ -34,8 +34,8 @@
     }
 }">
     <div class="max-w-4xl mx-auto">
-        <h2 class="mb-4 text-4xl font-bold text-green-700 jp-brush" data-aos="fade-right">Denah Lokasi</h2>
-        <p class="mb-8 text-lg text-gray-600 font-typewriter" data-aos="fade-left">
+        <h2 class="mb-4 text-4xl font-bold text-green-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-right">Denah Lokasi</h2>
+        <p class="mb-8 text-lg text-gray-600 font-body" data-aos="fade-left">
             Denah area {{ $data['title'] }} untuk memudahkan pengunjung memahami lokasi fasilitas yang tersedia.
         </p>
         
@@ -46,7 +46,7 @@
                     alt="Denah {{ $data['title'] }}" 
                     data-aos="zoom-in">
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20 rounded-xl">
-                    <span class="px-4 py-2 text-white bg-green-600 rounded-lg font-typewriter">Klik untuk memperbesar</span>
+                    <span class="px-4 py-2 text-white bg-green-600 rounded-lg font-body">Klik untuk memperbesar</span>
                 </div>
             </div>
         </div>

@@ -91,7 +91,7 @@
                                 </button>
                                 <!-- Dropdown menu hapus akun -->
                                 <div x-show="open" @click.away="open = false"
-                                    class="absolute right-0 mt-2 w-52 bg-white border border-red-100 rounded-lg shadow z-50 p-3 text-left"
+                                    class="absolute right-0 z-50 p-3 mt-2 text-left bg-white border border-red-100 rounded-lg shadow w-52"
                                     x-transition:enter="transition ease-out duration-100"
                                     x-transition:enter-start="opacity-0 scale-95"
                                     x-transition:enter-end="opacity-100 scale-100"
@@ -100,7 +100,7 @@
                                     x-transition:leave-end="opacity-0 scale-95"
                                     style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;">
                                     <div class="flex items-start gap-2">
-                                        <div class="flex-shrink-0 flex items-center justify-center w-7 h-7 bg-gradient-to-br from-red-400 to-red-600 rounded-md">
+                                        <div class="flex items-center justify-center flex-shrink-0 rounded-md w-7 h-7 bg-gradient-to-br from-red-400 to-red-600">
                                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -109,17 +109,17 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-red-700 mb-1"
+                                            <h4 class="mb-1 text-sm font-bold text-red-700"
                                                 style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight:700;">
                                                 Hapus Akun
                                             </h4>
-                                            <div class="mb-2 p-1 border border-red-100 bg-white/80 rounded">
+                                            <div class="p-1 mb-2 border border-red-100 rounded bg-white/80">
                                                 <p class="text-xs text-red-800"
                                                     style="font-family: 'Roboto Mono', 'Consolas', monospace;">
                                                     @if(Auth::user()->google_id)
-                                                        Hapus akun Google Anda. Semua data yang terkait akan dihapus permanen dari sistem kami.
+                                                        Hapus akun. Semua data yang terkait akan dihapus permanen dari sistem kami.
                                                     @else
-                                                        Hapus akun Anda. Semua data dan sumber daya yang terkait akan dihapus secara permanen dari sistem kami.
+                                                        Hapus akun. Semua data dan sumber daya yang terkait akan dihapus secara permanen dari sistem kami.
                                                     @endif
                                                 </p>
                                             </div>
@@ -208,7 +208,7 @@
 
                         <!-- Update Password -->
                         @if (Auth::user()->password && !Auth::user()->google_id)
-                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                            <div class="p-6 transition-all duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl">
                                 <div class="flex items-center gap-3 mb-6">
                                     <div class="w-12 h-12 bg-gradient-to-br from-[#00844D] to-[#005A36] rounded-xl flex items-center justify-center shadow-lg">
                                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,7 +231,7 @@
                                 @include('profile.partials.update-password-form')
                             </div>
                         @else
-                            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+                            <div class="p-6 transition-all duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="flex items-center justify-center w-12 h-12 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
                                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

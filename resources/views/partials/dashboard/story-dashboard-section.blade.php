@@ -33,11 +33,11 @@
     <div class="container relative z-10 max-w-7xl px-4 mx-auto">
         <!-- Header Section -->
         <div class="text-center mb-16 md:mb-20">
-            <h2 class="mb-6 text-4xl font-bold text-green-800 sm:text-5xl md:text-6xl jp-brush" data-aos="fade-down" data-aos-delay="200">
+            <h2 class="mb-6 text-4xl font-bold text-green-800 sm:text-5xl md:text-6xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-down" data-aos-delay="200">
                 Awal Mula Pineus Tilu
             </h2>
             <div class="w-24 h-1.5 mx-auto mb-8 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 rounded-full sm:w-32 md:w-40 md:mb-10" data-aos="fade-up" data-aos-delay="300"></div>
-            <p class="text-xl text-gray-600 font-typewriter max-w-4xl mx-auto sm:text-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-xl text-gray-600 font-body max-w-4xl mx-auto sm:text-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="400">
                 Sebuah perjalanan dari pencarian pengalaman baru menuju penciptaan surga alam
             </p>
         </div>
@@ -54,8 +54,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Mei 2020</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-body">Mei 2020</h3>
+                            <p class="text-gray-600 leading-relaxed font-body text-lg">
                                 Pada masa awal pandemi, saya dan keluarga praktis tak pernah keluar rumah. Namun di akhir Agustus, karena bosan, kami nekat jalan-jalan ke daerah sepi—gunung dan hutan.
                             </p>
                         </div>
@@ -71,8 +71,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Malam Pertama</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-body">Malam Pertama</h3>
+                            <p class="text-gray-600 leading-relaxed font-body text-lg">
                                 Setelah menjelajah Ciwidey dan Pangalengan, kami bingung mencari penginapan. Akhirnya, kami ditawari menginap di tepi Sungai Palayangan dengan tenda Arpenaz Family 4.0.
                             </p>
                         </div>
@@ -88,8 +88,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold mb-3 font-typewriter">Pagi yang Menginspirasi</h3>
-                            <p class="leading-relaxed font-typewriter text-lg text-white/95">
+                            <h3 class="text-2xl font-bold mb-3 font-body">Pagi yang Menginspirasi</h3>
+                            <p class="leading-relaxed font-body text-lg text-white/95">
                                 Pengalaman tidur di tengah hutan dengan suara sungai yang menenangkan ternyata luar biasa. Pemandangan sinar matahari di antara pepohonan pinus sangat indah dan menyentuh.
                             </p>
                         </div>
@@ -105,8 +105,8 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-typewriter">Ide Brilian</h3>
-                            <p class="text-gray-600 leading-relaxed font-typewriter text-lg">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3 font-body">Ide Brilian</h3>
+                            <p class="text-gray-600 leading-relaxed font-body text-lg">
                                 Dari situlah lahir ide untuk menciptakan sebuah tempat yang menggabungkan keindahan alam dengan kenyamanan modern. Sebuah tempat di mana orang bisa merasakan kedamaian alam.
                             </p>
                         </div>
@@ -118,15 +118,15 @@
             <div class="space-y-6 md:space-y-8" data-aos="fade-left" data-aos-delay="600">
                 <!-- Quote & Story -->
                 <div class="bg-white rounded-2xl p-8 shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500">
-                    <blockquote class="text-3xl font-bold text-gray-800 mb-6 italic font-typewriter text-center leading-tight">
+                    <blockquote class="text-3xl font-bold text-gray-800 mb-6 italic font-body text-center leading-tight">
                         "Andai punya tempat sendiri di sini..."
                     </blockquote>
                     <div class="h-1 w-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mb-6"></div>
-                    <p class="text-gray-600 leading-relaxed font-typewriter mb-8 text-lg">
+                    <p class="text-gray-600 leading-relaxed font-body mb-8 text-lg">
                         Dari situlah lahir <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">PINEUS TILU Riverside Camping Ground</span>—tempat yang menawarkan pengalaman ruang yang menenangkan, visual alami yang indah, dan suasana privat dengan tiga pohon pinus ikonik yang menjorok ke sungai.
                     </p>
                     <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border-l-4 border-green-500 shadow-inner">
-                        <p class="text-green-800 font-bold font-typewriter text-lg text-center">
+                        <p class="text-green-800 font-bold font-body text-lg text-center">
                             Feel the awesome space, feel the incredible experience.
                         </p>
                     </div>
@@ -135,13 +135,13 @@
                 <!-- Statistics Cards -->
                 <div class="grid grid-cols-2 gap-6">
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">7</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Deck Kayu Tahap Awal</div>
+                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-body">7</div>
+                        <div class="text-gray-600 font-body text-lg font-medium">Deck Kayu Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                     <div class="bg-white rounded-xl p-6 text-center shadow-xl border border-green-100/50 hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-typewriter">9</div>
-                        <div class="text-gray-600 font-typewriter text-lg font-medium">Tenda Tahap Awal</div>
+                        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2 font-body">9</div>
+                        <div class="text-gray-600 font-body text-lg font-medium">Tenda Tahap Awal</div>
                         <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-3"></div>
                     </div>
                 </div>
@@ -155,9 +155,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold font-typewriter">Visi Kami</h3>
+                        <h3 class="text-xl font-bold font-body">Visi Kami</h3>
                     </div>
-                    <p class="leading-relaxed font-typewriter text-white/95">
+                    <p class="leading-relaxed font-body text-white/95">
                         Menjadi destinasi camping ground terbaik yang memadukan keindahan alam dengan fasilitas modern, memberikan pengalaman tak terlupakan bagi setiap pengunjung.
                     </p>
                 </div>
@@ -166,9 +166,9 @@
                 <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl p-8 text-white shadow-2xl border border-gray-700/50">
                     <div class="text-right space-y-2">
                         <div class="h-1 w-24 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full ml-auto mb-4"></div>
-                        <p class="font-bold text-lg font-typewriter text-gray-200">Bandung, 24 Juni 2021</p>
-                        <p class="text-gray-400 font-typewriter">BSBarchitect</p>
-                        <p class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-bold font-typewriter text-lg">
+                        <p class="font-bold text-lg font-body text-gray-200">Bandung, 24 Juni 2021</p>
+                        <p class="text-gray-400 font-body">BSBarchitect</p>
+                        <p class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-bold font-body text-lg">
                             PINEUS TILU Riverside Camping Ground
                         </p>
                     </div>

@@ -9,9 +9,9 @@
             style="background-image: url('/images/tentang.jpg')" data-aos="fade-in" data-aos-duration="1000">
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             <div class="relative z-10 text-center">
-                <h1 class="text-4xl font-bold md:text-6xl jp-brush animate-fade-in" data-aos="fade-up" data-aos-delay="300">
+                <h1 class="text-4xl font-bold md:text-6xl  animate-fade-in" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-up" data-aos-delay="300">
                     Tentang Kami Untuk Lebih Lanjut</h1>
-                <p class="mt-4 text-lg md:text-xl font-typewriter opacity-90" data-aos="fade-up" data-aos-delay="500">
+                <p class="mt-4 text-lg md:text-xl font-body opacity-90" data-aos="fade-up" data-aos-delay="500">
                     Dapatkan informasi lengkap tentang layanan camping terbaik kami
                 </p>
             </div>
@@ -22,17 +22,17 @@
             data-aos-duration="800">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="mb-8" data-aos="fade-down" data-aos-delay="200">
-                    <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">Kontak Kami</h2>
+                    <h2 class="mb-4 text-3xl font-bold md:text-4xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Kontak Kami</h2>
                     <div class="w-24 h-1 mx-auto bg-white rounded"></div>
                 </div>
-                <p class="max-w-2xl mx-auto mb-8 text-lg font-typewriter opacity-90" data-aos="fade-up"
+                <p class="max-w-2xl mx-auto mb-8 text-lg font-body opacity-90" data-aos="fade-up"
                     data-aos-delay="300">
                     Hubungi kami untuk informasi lebih lanjut tentang pengalaman camping yang kami tawarkan.
                     Kami siap membantu Anda dengan segala pertanyaan dan kebutuhan Anda.
                 </p>
                 <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
                     <a href="https://wa.me/6287735482327" target="_blank"
-                        class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-typewriter"
+                        class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-body"
                         data-aos="fade-right" data-aos-delay="400">
                         <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -41,7 +41,7 @@
                         WhatsApp Admin 1
                     </a>
                     <a href="https://wa.me/6281220413424" target="_blank"
-                        class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-typewriter"
+                        class="flex items-center gap-3 px-8 py-4 text-green-800 transition-all duration-300 bg-white shadow-lg rounded-xl hover:bg-green-50 hover:shadow-xl hover:-translate-y-1 font-body"
                         data-aos="fade-left" data-aos-delay="600">
                         <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -58,22 +58,22 @@
             <div class="max-w-6xl mx-auto">
                 <!-- Header Section -->
                 <div class="mb-12 text-center" data-aos="fade-down" data-aos-delay="200">
-                    <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">Peraturan & Ketentuan</h2>
+                    <h2 class="mb-4 text-3xl font-bold md:text-4xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Peraturan & Ketentuan</h2>
                     <div class="w-24 h-1 mx-auto bg-green-600 rounded"></div>
-                    <p class="mt-4 text-lg text-gray-600 font-typewriter">
+                    <p class="mt-4 text-lg text-gray-600 font-body">
                         Pastikan Anda memahami dan mematuhi semua peraturan berikut
                     </p>
                 </div>
 
                 <!-- Peraturan Umum -->
                 <div class="mb-16" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">📋 Peraturan Umum</h3>
+                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">📋 Peraturan Umum</h3>
                     <div class="grid gap-8 md:grid-cols-2">
                         <!-- Yang Diperbolehkan -->
                         <div class="p-6 border-l-4 border-green-600 rounded-lg shadow-lg bg-gray-50" data-aos="fade-right"
                             data-aos-delay="400">
-                            <h4 class="mb-4 font-bold text-green-700 jp-brush">✅ Yang Diperbolehkan</h4>
-                            <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                            <h4 class="mb-4 font-bold text-green-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">✅ Yang Diperbolehkan</h4>
+                            <ul class="space-y-3 text-sm md:text-base font-body">
                                 <li class="flex items-start gap-3">
                                     <span class="mt-1 text-green-600">✓</span>
                                     <span>Check-in pukul 14.00 WIB & Check-out pukul 12.00 WIB</span>
@@ -96,8 +96,8 @@
                         <!-- Yang Dilarang -->
                         <div class="p-6 border-l-4 border-red-500 rounded-lg shadow-lg bg-gray-50" data-aos="fade-left"
                             data-aos-delay="600">
-                            <h4 class="mb-4 font-bold text-red-700 jp-brush">❌ Yang Dilarang</h4>
-                            <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                            <h4 class="mb-4 font-bold text-red-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">❌ Yang Dilarang</h4>
+                            <ul class="space-y-3 text-sm md:text-base font-body">
                                 <li class="flex items-start gap-3">
                                     <span class="mt-1 text-red-500">✗</span>
                                     <span>Menggunakan Narkoba & Alkohol</span>
@@ -121,14 +121,14 @@
 
                 <!-- Peraturan Lingkungan & Suara -->
                 <div class="mb-16" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">🌿 Peraturan Lingkungan & Suara
+                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🌿 Peraturan Lingkungan & Suara
                     </h3>
                     <div class="p-8 shadow-lg bg-gray-50 rounded-xl" data-aos="zoom-in" data-aos-delay="400">
                         <div class="grid gap-8 lg:grid-cols-2">
                             <!-- Kolom Kiri -->
                             <div data-aos="fade-right" data-aos-delay="500">
-                                <h4 class="mb-4 font-bold text-orange-700 jp-brush">⚠️ Lingkungan & Keamanan</h4>
-                                <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                                <h4 class="mb-4 font-bold text-orange-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">⚠️ Lingkungan & Keamanan</h4>
+                                <ul class="space-y-3 text-sm md:text-base font-body">
                                     <li class="flex items-start gap-3 p-3 rounded-lg bg-orange-50">
                                         <span class="mt-1 text-orange-500">🚭</span>
                                         <span>Tidak merokok di dalam tenda</span>
@@ -142,8 +142,8 @@
 
                             <!-- Kolom Kanan -->
                             <div data-aos="fade-left" data-aos-delay="700">
-                                <h4 class="mb-4 font-bold text-red-700 jp-brush">🔇 Peraturan Suara</h4>
-                                <ul class="space-y-3 text-sm md:text-base font-typewriter">
+                                <h4 class="mb-4 font-bold text-red-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🔇 Peraturan Suara</h4>
+                                <ul class="space-y-3 text-sm md:text-base font-body">
                                     <li class="flex items-start gap-3 p-3 rounded-lg bg-red-50">
                                         <span class="mt-1 text-red-500">📢</span>
                                         <span>Tidak boleh ada pengeras suara atau speaker</span>
@@ -168,31 +168,31 @@
 
                 <!-- Kebijakan Pembatalan -->
                 <div class="mb-16" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 jp-brush">📅 Kebijakan Pembatalan</h3>
+                    <h3 class="mb-8 text-2xl font-bold text-center text-green-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">📅 Kebijakan Pembatalan</h3>
                     <div class="grid gap-8 lg:grid-cols-2">
                         <!-- Tabel Pembatalan -->
                         <div class="p-6 border-t-4 border-red-500 shadow-lg bg-gray-50 rounded-xl" data-aos="fade-right"
                             data-aos-delay="400">
-                            <h4 class="mb-6 text-xl font-bold text-center text-red-700 jp-brush">❌ Biaya Pembatalan</h4>
+                            <h4 class="mb-6 text-xl font-bold text-center text-red-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">❌ Biaya Pembatalan</h4>
                             <div class="space-y-3">
                                 <div
                                     class="flex items-center justify-between p-4 border border-green-200 rounded-lg bg-green-50">
-                                    <span class="font-typewriter">Sebelum H-7</span>
+                                    <span class="font-body">Sebelum H-7</span>
                                     <span class="text-lg font-bold text-green-600">Potong 25%</span>
                                 </div>
                                 <div
                                     class="flex items-center justify-between p-4 border border-yellow-200 rounded-lg bg-yellow-50">
-                                    <span class="font-typewriter">H-7 sampai H-4</span>
+                                    <span class="font-body">H-7 sampai H-4</span>
                                     <span class="text-lg font-bold text-yellow-600">Potong 50%</span>
                                 </div>
                                 <div
                                     class="flex items-center justify-between p-4 border border-orange-200 rounded-lg bg-orange-50">
-                                    <span class="font-typewriter">H-3 sampai H-2</span>
+                                    <span class="font-body">H-3 sampai H-2</span>
                                     <span class="text-lg font-bold text-orange-600">Potong 75%</span>
                                 </div>
                                 <div
                                     class="flex items-center justify-between p-4 border border-red-200 rounded-lg bg-red-50">
-                                    <span class="font-typewriter">H-1 sampai H</span>
+                                    <span class="font-body">H-1 sampai H</span>
                                     <span class="text-lg font-bold text-red-600">Potong 100%</span>
                                 </div>
                             </div>
@@ -201,8 +201,8 @@
                         <!-- Keterangan Penting -->
                         <div class="p-6 border border-blue-200 shadow-lg bg-blue-50 rounded-xl" data-aos="fade-left"
                             data-aos-delay="600">
-                            <h4 class="mb-4 text-lg font-bold text-blue-800 jp-brush">📌 Keterangan Penting</h4>
-                            <ul class="space-y-3 text-sm leading-relaxed text-blue-700 font-typewriter">
+                            <h4 class="mb-4 text-lg font-bold text-blue-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">📌 Keterangan Penting</h4>
+                            <ul class="space-y-3 text-sm leading-relaxed text-blue-700 font-body">
                                 <li class="flex items-start gap-2">
                                     <span class="mt-1 text-blue-500">•</span>
                                     <span>Kelebihan biaya/refund akan ditransfer paling lambat 14 hari kerja setelah
@@ -235,7 +235,7 @@
             data-aos-duration="800">
             <div class="max-w-5xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-down" data-aos-delay="200">
-                    <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🚗 Informasi Biaya Parkir</h2>
+                    <h2 class="mb-4 text-3xl font-bold md:text-4xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🚗 Informasi Biaya Parkir</h2>
                     <div class="w-24 h-1 mx-auto bg-white rounded"></div>
                 </div>
 
@@ -243,13 +243,13 @@
                     <!-- Parkir Menginap -->
                     <div class="p-8 bg-white border border-gray-200 shadow-lg rounded-xl" data-aos="fade-right"
                         data-aos-delay="300">
-                        <h3 class="mb-6 text-2xl font-bold text-center text-blue-800 jp-brush">🌙 Parkir Menginap</h3>
+                        <h3 class="mb-6 text-2xl font-bold text-center text-blue-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🌙 Parkir Menginap</h3>
                         <div class="space-y-4">
                             <div
                                 class="flex items-center justify-between p-4 border border-blue-100 rounded-lg shadow-sm bg-blue-50">
                                 <div class="flex items-center gap-3">
                                     <span class="text-2xl">🚗</span>
-                                    <span class="font-medium text-gray-800 font-typewriter">Mobil & Mini Bus</span>
+                                    <span class="font-medium text-gray-800 font-body">Mobil & Mini Bus</span>
                                 </div>
                                 <span class="text-xl font-bold text-blue-600">60K/malam</span>
                             </div>
@@ -257,7 +257,7 @@
                                 class="flex items-center justify-between p-4 border border-blue-100 rounded-lg shadow-sm bg-blue-50">
                                 <div class="flex items-center gap-3">
                                     <span class="text-2xl">🚌</span>
-                                    <span class="font-medium text-gray-800 font-typewriter">Bus Medium</span>
+                                    <span class="font-medium text-gray-800 font-body">Bus Medium</span>
                                 </div>
                                 <span class="text-xl font-bold text-blue-600">100K/malam</span>
                             </div>
@@ -267,13 +267,13 @@
                     <!-- Parkir Transit -->
                     <div class="p-8 bg-white border border-gray-200 shadow-lg rounded-xl" data-aos="fade-left"
                         data-aos-delay="500">
-                        <h3 class="mb-6 text-2xl font-bold text-center text-green-800 jp-brush">☀️ Parkir Transit</h3>
+                        <h3 class="mb-6 text-2xl font-bold text-center text-green-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">☀️ Parkir Transit</h3>
                         <div class="space-y-4">
                             <div
                                 class="flex items-center justify-between p-4 border border-green-100 rounded-lg shadow-sm bg-green-50">
                                 <div class="flex items-center gap-3">
                                     <span class="text-2xl">🚗</span>
-                                    <span class="font-medium text-gray-800 font-typewriter">Mobil & Mini Bus</span>
+                                    <span class="font-medium text-gray-800 font-body">Mobil & Mini Bus</span>
                                 </div>
                                 <span class="text-xl font-bold text-green-600">10K/hari</span>
                             </div>
@@ -281,7 +281,7 @@
                                 class="flex items-center justify-between p-4 border border-green-100 rounded-lg shadow-sm bg-green-50">
                                 <div class="flex items-center gap-3">
                                     <span class="text-2xl">🚌</span>
-                                    <span class="font-medium text-gray-800 font-typewriter">Bus Medium</span>
+                                    <span class="font-medium text-gray-800 font-body">Bus Medium</span>
                                 </div>
                                 <span class="text-xl font-bold text-green-600">30K/hari</span>
                             </div>
@@ -294,9 +294,9 @@
                     data-aos="zoom-in" data-aos-delay="700">
                     <div class="flex items-center justify-center gap-2 mb-2">
                         <span class="text-2xl">⚠️</span>
-                        <span class="text-lg font-bold text-yellow-800 jp-brush">Penting untuk Diketahui</span>
+                        <span class="text-lg font-bold text-yellow-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Penting untuk Diketahui</span>
                     </div>
-                    <p class="text-sm leading-relaxed text-yellow-800 font-typewriter">
+                    <p class="text-sm leading-relaxed text-yellow-800 font-body">
                         Harga tenda <strong>tidak termasuk biaya parkir</strong>. Biaya parkir dibayarkan langsung ke
                         pengelola parkir ketika sampai di lokasi.
                     </p>
@@ -308,15 +308,15 @@
         <section class="px-6 py-20 text-green-900 bg-white" data-aos="fade-up" data-aos-duration="800">
             <div class="max-w-5xl mx-auto">
                 <div class="mb-12 text-center" data-aos="fade-down" data-aos-delay="200">
-                    <h2 class="mb-4 text-3xl font-bold md:text-4xl jp-brush">🛡️ Informasi Asuransi</h2>
+                    <h2 class="mb-4 text-3xl font-bold md:text-4xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🛡️ Informasi Asuransi</h2>
                     <div class="w-24 h-1 mx-auto bg-green-600 rounded"></div>
                 </div>
 
                 <div class="overflow-hidden shadow-2xl bg-gray-50 rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
                     <!-- Header -->
                     <div class="bg-gradient-to-r from-[#006C43] to-[#008854] text-white text-center py-8">
-                        <h3 class="text-2xl font-bold jp-brush">📋 PERNYATAAN PERSETUJUAN</h3>
-                        <p class="mt-2 text-sm opacity-90 font-typewriter">Berlaku untuk semua pengunjung mulai Januari
+                        <h3 class="text-2xl font-bold " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">📋 PERNYATAAN PERSETUJUAN</h3>
+                        <p class="mt-2 text-sm opacity-90 font-body">Berlaku untuk semua pengunjung mulai Januari
                             2022</p>
                     </div>
 
@@ -324,7 +324,7 @@
                         <!-- Pernyataan -->
                         <div class="p-6 mb-8 bg-white border border-gray-200 rounded-xl" data-aos="fade-up"
                             data-aos-delay="400">
-                            <p class="leading-relaxed text-center text-gray-700 font-typewriter">
+                            <p class="leading-relaxed text-center text-gray-700 font-body">
                                 Setiap pengunjung yang camping di <strong class="text-green-700">Pineus Tilu Camping
                                     Ground</strong>
                                 wajib menyetujui bahwa apabila terjadi kecelakaan/musibah atau bencana selama camping,
@@ -336,8 +336,8 @@
                         <!-- Penyedia Asuransi -->
                         <div class="p-6 mb-8 border-l-4 border-blue-500 rounded-lg bg-blue-50" data-aos="fade-right"
                             data-aos-delay="500">
-                            <h4 class="mb-3 text-lg font-bold text-blue-800 jp-brush">🏢 Penyedia Asuransi</h4>
-                            <div class="text-blue-700 font-typewriter">
+                            <h4 class="mb-3 text-lg font-bold text-blue-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">🏢 Penyedia Asuransi</h4>
+                            <div class="text-blue-700 font-body">
                                 <p class="text-lg font-bold">ASURANSI SYARIAH AMANAH GITHA</p>
                                 <p class="mt-1 text-sm">Polis Induk No. <strong>8009000050100188</strong></p>
                             </div>
@@ -345,14 +345,14 @@
 
                         <!-- Besaran Jaminan -->
                         <div data-aos="fade-up" data-aos-delay="600">
-                            <h4 class="mb-6 text-xl font-bold text-center text-green-800 jp-brush">💰 Besaran Jaminan
+                            <h4 class="mb-6 text-xl font-bold text-center text-green-800 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">💰 Besaran Jaminan
                                 Asuransi</h4>
                             <div class="grid gap-4 md:grid-cols-2">
                                 <div class="p-4 border-l-4 border-red-500 rounded-lg shadow-sm bg-red-50"
                                     data-aos="fade-right" data-aos-delay="700">
                                     <div class="flex items-center gap-3 mb-2">
                                         <span class="text-2xl">☠️</span>
-                                        <span class="text-sm font-typewriter">Meninggal Dunia akibat kecelakaan (1 x 24
+                                        <span class="text-sm font-body">Meninggal Dunia akibat kecelakaan (1 x 24
                                             Jam)</span>
                                     </div>
                                     <span class="text-lg font-bold text-red-600">Rp. 15.000.000,-</span>
@@ -362,7 +362,7 @@
                                     data-aos="fade-left" data-aos-delay="800">
                                     <div class="flex items-center gap-3 mb-2">
                                         <span class="text-2xl">💀</span>
-                                        <span class="text-sm font-typewriter">Meninggal Dunia bukan akibat
+                                        <span class="text-sm font-body">Meninggal Dunia bukan akibat
                                             kecelakaan</span>
                                     </div>
                                     <span class="text-lg font-bold text-orange-600">Rp. 3.000.000,-</span>
@@ -372,7 +372,7 @@
                                     data-aos="fade-right" data-aos-delay="900">
                                     <div class="flex items-center gap-3 mb-2">
                                         <span class="text-2xl">♿</span>
-                                        <span class="text-sm font-typewriter">Cacat tetap sesuai persentase
+                                        <span class="text-sm font-body">Cacat tetap sesuai persentase
                                             (maksimum)</span>
                                     </div>
                                     <span class="text-lg font-bold text-yellow-600">Rp. 20.000.000,-</span>
@@ -382,7 +382,7 @@
                                     data-aos="fade-left" data-aos-delay="1000">
                                     <div class="flex items-center gap-3 mb-2">
                                         <span class="text-2xl">🏥</span>
-                                        <span class="text-sm font-typewriter">Biaya Perawatan/Pengobatan akibat
+                                        <span class="text-sm font-body">Biaya Perawatan/Pengobatan akibat
                                             kecelakaan</span>
                                     </div>
                                     <span class="text-lg font-bold text-[#00844D]">Rp. 3.000.000,-</span>
@@ -392,7 +392,7 @@
                             <!-- Catatan -->
                             <div class="p-4 mt-6 bg-white border border-gray-300 rounded-lg shadow-sm" data-aos="fade-up"
                                 data-aos-delay="1100">
-                                <p class="text-sm text-center text-gray-600 font-typewriter">
+                                <p class="text-sm text-center text-gray-600 font-body">
                                     <strong>📝 Catatan:</strong> Jaminan asuransi berlaku sejak memasuki pintu masuk hingga
                                     keluar dari lokasi camping.
                                 </p>

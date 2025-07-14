@@ -27,7 +27,7 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
                              class="w-full h-full object-contain drop-shadow-lg">
                     </div>
-                    <p class="text-sm text-gray-600 font-typewriter italic">
+                    <p class="text-sm text-gray-600 font-body italic">
                         "Buat password baru untuk akun Anda."
                     </p>
                 </div>
@@ -44,7 +44,7 @@
                             </svg>
                         </div>
                         <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" required autofocus autocomplete="username"
-                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Email" readonly />
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 text-sm" />
                     </div>
@@ -57,7 +57,7 @@
                             </svg>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="new-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Password baru" />
                         
                         <!-- Show/Hide Password Button -->
@@ -83,7 +83,7 @@
                             </svg>
                         </div>
                         <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Konfirmasi password baru" />
                         
                         <!-- Show/Hide Password Button -->
@@ -102,14 +102,14 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                         Reset Password
                     </button>
                 </form>
 
                 <!-- Back to Login -->
                 <div class="text-center pt-4 border-t border-gray-200">
-                    <p class="text-gray-600 font-typewriter">
+                    <p class="text-gray-600 font-body">
                         Ingat password Anda? 
                         <a href="{{ route('login') }}" class="text-[#006C43] hover:text-[#005A36] font-bold transition-colors">
                             Masuk di sini

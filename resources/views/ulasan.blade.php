@@ -26,10 +26,10 @@
             </div>
 
             <div class="relative z-10 max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl font-bold text-center md:text-6xl jp-brush animate-fade-in" data-aos="fade-down">
+                <h1 class="text-4xl font-bold text-center md:text-6xl  animate-fade-in" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-down">
                     Ulasan
                 </h1>
-                <p class="mt-4 text-lg leading-relaxed text-center md:text-xl font-typewriter opacity-90" data-aos="fade-up"
+                <p class="mt-4 text-lg leading-relaxed text-center md:text-xl font-body opacity-90" data-aos="fade-up"
                     data-aos-delay="300">
                     Tentang kami dari orang yang pernah mengunjungi pineus tilu
                 </p>
@@ -42,7 +42,7 @@
                 <!-- Section Header -->
                 <div class="mb-12 text-center md:mb-16">
                     <h2
-                        class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] jp-brush mb-4">
+                        class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36]  mb-4" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">
                         Review YouTube
                     </h2>
                     <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full">
@@ -135,7 +135,7 @@
                 <!-- Section Header -->
                 <div class="mb-12 text-center md:mb-16">
                     <h2
-                        class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] jp-brush mb-4">
+                        class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36]  mb-4" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">
                         Testimoni Pengunjung
                     </h2>
                     <div class="w-20 h-1 mx-auto bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded-full">

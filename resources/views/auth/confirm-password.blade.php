@@ -27,14 +27,14 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
                              class="w-full h-full object-contain drop-shadow-lg">
                     </div>
-                    <p class="text-sm text-gray-600 font-typewriter italic text-center">
+                    <p class="text-sm text-gray-600 font-body italic text-center">
                         "Ini adalah area aman. Silakan konfirmasi password Anda untuk melanjutkan."
                     </p>
                 </div>
 
                 <!-- Session Status -->
                 @if (session('status'))
-                    <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-sm font-typewriter">
+                    <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-sm font-body">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -50,7 +50,7 @@
                             </svg>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Masukkan password Anda" />
                         
                         <!-- Show/Hide Password Button -->
@@ -69,14 +69,14 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                         Konfirmasi
                     </button>
                 </form>
 
                 <!-- Back Link -->
                 <div class="text-center pt-4 border-t border-gray-200">
-                    <a href="{{ route('dashboard') }}" class="text-[#006C43] hover:text-[#005A36] font-bold font-typewriter transition-colors">
+                    <a href="{{ route('dashboard') }}" class="text-[#006C43] hover:text-[#005A36] font-bold font-body transition-colors">
                         ← Kembali ke Dashboard
                     </a>
                 </div>

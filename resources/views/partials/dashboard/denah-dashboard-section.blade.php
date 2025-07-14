@@ -11,11 +11,11 @@
     <div class="container relative z-10 px-4 mx-auto text-center text-white max-w-6xl">
         <!-- Header -->
         <div class="mb-12 md:mb-16">
-            <h2 class="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl jp-brush md:mb-6" data-aos="fade-down" data-aos-delay="200">
+            <h2 class="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl  md:mb-6" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-down" data-aos-delay="200">
                 Denah Pineus Tilu
             </h2>
             <div class="w-20 h-1 mx-auto mb-6 bg-white rounded-full sm:w-24 md:w-32 md:mb-8" data-aos="fade-up" data-aos-delay="300"></div>
-            <p class="text-lg text-green-100 font-typewriter max-w-3xl mx-auto sm:text-xl" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-lg text-green-100 font-body max-w-3xl mx-auto sm:text-xl" data-aos="fade-up" data-aos-delay="400">
                 Eksplorasi layout lengkap area camping dan fasilitas yang tersedia di Pineus Tilu
             </p>
         </div>
@@ -39,7 +39,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                                     </svg>
                                 </div>
-                                <p class="text-white font-bold text-base md:text-lg font-typewriter">Klik untuk Melihat</p>
+                                <p class="text-white font-bold text-base md:text-lg font-body">Klik untuk Melihat</p>
                             </div>
                         </div>
 
@@ -53,25 +53,25 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-4 md:mb-6">
                         <div class="bg-white/10 rounded-lg md:rounded-xl p-3 md:p-4 text-center backdrop-blur-sm border border-white/20">
                             <div class="text-lg md:text-2xl mb-1 md:mb-2">🏕️</div>
-                            <div class="text-xs md:text-sm font-bold font-typewriter">Area Camping</div>
+                            <div class="text-xs md:text-sm font-bold font-body">Area Camping</div>
                         </div>
                         <div class="bg-white/10 rounded-lg md:rounded-xl p-3 md:p-4 text-center backdrop-blur-sm border border-white/20">
                             <div class="text-lg md:text-2xl mb-1 md:mb-2">🌊</div>
-                            <div class="text-xs md:text-sm font-bold font-typewriter">Sungai Palayangan</div>
+                            <div class="text-xs md:text-sm font-bold font-body">Sungai Palayangan</div>
                         </div>
                         <div class="bg-white/10 rounded-lg md:rounded-xl p-3 md:p-4 text-center backdrop-blur-sm border border-white/20">
                             <div class="text-lg md:text-2xl mb-1 md:mb-2">🌲</div>
-                            <div class="text-xs md:text-sm font-bold font-typewriter">Hutan Pinus</div>
+                            <div class="text-xs md:text-sm font-bold font-body">Hutan Pinus</div>
                         </div>
                         <div class="bg-white/10 rounded-lg md:rounded-xl p-3 md:p-4 text-center backdrop-blur-sm border border-white/20">
                             <div class="text-lg md:text-2xl mb-1 md:mb-2">🚻</div>
-                            <div class="text-xs md:text-sm font-bold font-typewriter">Fasilitas Umum</div>
+                            <div class="text-xs md:text-sm font-bold font-body">Fasilitas Umum</div>
                         </div>
                     </div>
 
                     <!-- CTA Button -->
                     <button @click="openDenah()" 
-                        class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-white text-green-600 rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 font-typewriter">
+                        class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-white text-green-600 rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 font-body">
                         <svg class="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                         </svg>

@@ -28,14 +28,14 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
                              class="w-full h-full object-contain drop-shadow-lg">
                     </div>
-                    <p class="text-sm text-gray-600 font-typewriter italic text-center leading-relaxed">
+                    <p class="text-sm text-gray-600 font-body italic text-center leading-relaxed">
                         "Terima kasih telah mendaftar! Silakan periksa email Anda dan klik link verifikasi untuk mengaktifkan akun."
                     </p>
                 </div>
 
                 <!-- Info Message -->
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <p class="text-sm text-blue-800 font-typewriter text-center">
+                    <p class="text-sm text-blue-800 font-body text-center">
                         {{ __('Kami telah mengirimkan link verifikasi ke email Anda. Silakan cek kotak masuk atau folder spam.') }}
                     </p>
                 </div>
@@ -43,7 +43,7 @@
                 <!-- Success Message -->
                 @if (session('status') == 'verification-link-sent')
                     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <p class="text-sm text-green-800 font-typewriter text-center">
+                        <p class="text-sm text-green-800 font-body text-center">
                             {{ __('Link verifikasi baru telah dikirim ke alamat email Anda.') }}
                         </p>
                     </div>
@@ -54,7 +54,7 @@
                     <!-- Resend Button -->
                     <form method="POST" action="{{ route('verification.send') }}">
                         @csrf
-                        <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                        <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                             Kirim Ulang Email Verifikasi
                         </button>
                     </form>
@@ -62,7 +62,7 @@
                     <!-- Logout Button -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="w-full bg-white border-2 border-gray-200 text-gray-700 font-medium py-3 px-6 rounded-xl hover:bg-gray-50 transition-all duration-300 font-typewriter">
+                        <button type="submit" class="w-full bg-white border-2 border-gray-200 text-gray-700 font-medium py-3 px-6 rounded-xl hover:bg-gray-50 transition-all duration-300 font-body">
                             Keluar
                         </button>
                     </form>
@@ -70,8 +70,8 @@
 
                 <!-- Email Tips -->
                 <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 class="text-sm font-bold text-yellow-800 font-typewriter mb-2">💡 Tips:</h4>
-                    <ul class="text-xs text-yellow-700 font-typewriter space-y-1">
+                    <h4 class="text-sm font-bold text-yellow-800 font-body mb-2">💡 Tips:</h4>
+                    <ul class="text-xs text-yellow-700 font-body space-y-1">
                         <li>• Periksa folder spam/junk mail</li>
                         <li>• Tunggu beberapa menit untuk email masuk</li>
                         <li>• Pastikan email address sudah benar</li>

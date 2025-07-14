@@ -27,7 +27,8 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" 
                              class="w-full h-full object-contain drop-shadow-lg">
                     </div>
-                    <p class="text-sm text-gray-600 font-typewriter italic text-center">
+                    <p class="text-sm text-gray-600 italic text-center"
+                       style="font-family: 'Roboto Mono', 'Consolas', monospace;">
                         "Jangan khawatir! Masukkan email Anda dan kami akan mengirimkan link untuk reset password."
                     </p>
                 </div>
@@ -46,20 +47,20 @@
                             </svg>
                         </div>
                         <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Masukkan email terdaftar" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 text-sm" />
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                         Kirim Link Reset Password
                     </button>
                 </form>
 
                 <!-- Back to Login -->
                 <div class="text-center pt-4 border-t border-gray-200">
-                    <p class="text-gray-600 font-typewriter">
+                    <p class="text-gray-600 font-body">
                         Ingat password Anda? 
                         <a href="{{ route('login') }}" class="text-[#006C43] hover:text-[#005A36] font-bold transition-colors">
                             Masuk di sini

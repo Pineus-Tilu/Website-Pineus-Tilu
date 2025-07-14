@@ -37,14 +37,14 @@
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($isGoogleUser)
-                <p class="text-sm text-gray-600 mt-2 font-typewriter bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                <p class="text-sm text-gray-600 mt-2 font-body bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                     {{ __('You are logged in using a Google account. Email cannot be changed.') }}
                 </p>
             @endif
 
             @if (!$isGoogleUser && $user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div class="mt-4 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
-                    <p class="text-sm text-yellow-800 font-typewriter">
+                    <p class="text-sm text-yellow-800 font-body">
                         {{ __('Your email address is unverified.') }}
                         <button form="send-verification"
                                 class="underline text-sm text-[#006C43] hover:text-[#00844D] font-semibold">
@@ -72,7 +72,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-green-600 font-typewriter bg-green-50 px-3 py-2 rounded-lg"
+                    class="text-sm text-green-600 font-body bg-green-50 px-3 py-2 rounded-lg"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

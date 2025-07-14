@@ -10,7 +10,8 @@
 
         <!-- Menu Desktop -->
         <ul
-            class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[18px] lg:text-[20px] font-medium text-green-800 font-typewriter">
+            class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[18px] lg:text-[20px] font-medium text-green-800"
+            style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 500;">
             
             <li>
                 <a href="/" class="{{ request()->is('/') ? 'underline underline-offset-4 font-semibold' : 'hover:underline underline-offset-4' }}">Beranda</a>
@@ -26,7 +27,8 @@
                     </svg>
                 </button>
                 <ul x-show="open" x-transition @click.away="open = false"
-                    class="absolute left-0 z-50 mt-2 w-52 bg-white border rounded shadow-md text-green-800 text-[18px] font-typewriter">
+                    class="absolute left-0 z-50 mt-2 w-52 bg-white border rounded shadow-md text-green-800 text-[18px]"
+                    style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;">
                     @foreach ($areas as $area)
                         <li>
                             <a href="/fasilitas/{{ \Str::slug($area->name) }}"
@@ -65,7 +67,7 @@
                         </svg>
                     </button>
                     <ul x-show="userMenuOpen" x-transition @click.away="userMenuOpen = false"
-                        class="absolute right-0 z-50 mt-2 w-48 bg-white border rounded shadow-md text-green-800 text-[16px] font-typewriter">
+                        class="absolute right-0 z-50 mt-2 w-48 bg-white border rounded shadow-md text-green-800 text-[16px] font-body">
                         <li><a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">Profil</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
@@ -87,7 +89,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div x-show="mobileOpen" x-transition class="px-4 pt-2 pb-4 space-y-2 text-green-800 bg-white border-t md:hidden font-typewriter">
+    <div x-show="mobileOpen" x-transition class="px-4 pt-2 pb-4 space-y-2 text-green-800 bg-white border-t md:hidden font-body">
         <a href="/" class="block hover:underline">Beranda</a>
         <!-- Mobile Dropdown Fasilitas -->
         <div x-data="{ open: false }">

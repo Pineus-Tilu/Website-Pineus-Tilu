@@ -12,8 +12,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
     
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/fonts.css'])
@@ -27,27 +28,51 @@
             font-style: normal;
         }
 
+        /* Custom Fonts */
         @font-face {
-            font-family: 'veterantypewriter';
-            src: url("{{ asset('fonts/veterantypewriter.ttf') }}") format('truetype');
+            font-family: 'JapaneseBrush';
+            src: url("{{ asset('fonts/japanesebrush.ttf') }}") format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
-        .veteran {
-            font-family: 'veterantypewriter', sans-serif;
+        @font-face {
+            font-family: 'font-bodyTypewriter';
+            src: url("{{ asset('fonts/font-bodytypewriter.ttf') }}") format('truetype');
+            font-weight: normal;
+            font-style: normal;
         }
 
-        .jp-brush {
-            font-family: 'jp_brush', sans-serif;
+        /* Global Font Configuration */
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        }
+
+        /* Custom Font Classes */
+        .font-heading {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        .font-body {
+            font-family: 'Roboto Mono', 'Consolas', monospace;
+        }
+
+        .font-heading {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;
         }
 
         .font-typewriter {
-            font-family: 'veterantypewriter', sans-serif;
+            font-family: 'font-bodyTypewriter', monospace;
+        }
+
+        /* Legacy support */
+        .font-body {
+            font-family: 'font-bodyTypewriter', monospace;
         }
     </style>
 </head>
-<body class="font-sans text-gray-900 antialiased">
+<body class="font-sans text-gray-900 antialiased" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;">
     {{ $slot }}
 </body>
 </html>

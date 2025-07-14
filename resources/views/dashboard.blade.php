@@ -241,7 +241,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold md:text-2xl font-typewriter">Peta Lokasi Pineus Tilu</h3>
+                            <h3 class="text-xl font-bold md:text-2xl" style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Peta Lokasi Pineus Tilu</h3>
                             <p class="text-sm md:text-base opacity-90">Pulosari, Pangalengan, Kabupaten Bandung</p>
                         </div>
                     </div>

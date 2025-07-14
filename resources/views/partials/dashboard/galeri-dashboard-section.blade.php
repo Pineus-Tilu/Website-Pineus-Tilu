@@ -12,11 +12,11 @@
     <div class="relative z-10 mx-auto text-center max-w-7xl">
         <!-- Section Header -->
         <div class="mb-10 md:mb-16">
-            <h2 class="mb-4 text-2xl font-bold tracking-widest sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl jp-brush" data-aos="fade-down" data-aos-delay="200">
+            <h2 class="mb-4 text-2xl font-bold tracking-widest sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;" data-aos="fade-down" data-aos-delay="200">
                 Galeri Pineus Tilu
             </h2>
             <div class="w-16 h-1 mx-auto mb-4 bg-white rounded-full sm:w-20 md:w-24 md:mb-6" data-aos="fade-up" data-aos-delay="300"></div>
-            <p class="max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-typewriter text-green-100" data-aos="fade-up" data-aos-delay="400">
+            <p class="max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-body text-green-100" data-aos="fade-up" data-aos-delay="400">
                 Jelajahi keindahan alam dan fasilitas yang menawan di Pineus Tilu
             </p>
         </div>
@@ -61,7 +61,7 @@
 
                                     <!-- Content Section -->
                                     <div class="p-4 sm:p-6">
-                                        <h3 class="text-lg font-bold text-center transition-colors duration-300 sm:text-xl text-slate-800 group-hover:text-green-600 font-typewriter">
+                                        <h3 class="text-lg font-bold text-center transition-colors duration-300 sm:text-xl text-slate-800 group-hover:text-green-600 font-body">
                                             {{ $slide['title'] }}
                                         </h3>
                                         

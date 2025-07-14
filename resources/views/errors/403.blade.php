@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>403 - Akses Ditolak | Pineus Tilu </title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        .font-dancing { font-family: 'Dancing Script', cursive; }
-        .font-typewriter { font-family: 'Fira Code', monospace; }
+        .font-heading { font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700; }
+        .font-body { font-family: 'Roboto Mono', 'Consolas', monospace; }
         
         .floating-animation {
             animation: floating 3s ease-in-out infinite;
@@ -74,7 +74,7 @@
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 font-dancing">
                 🚫 Akses Ditolak
             </h2>
-            <p class="text-lg text-gray-600 font-typewriter leading-relaxed max-w-lg mx-auto">
+            <p class="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto font-body">
                 Maaf, Anda tidak memiliki izin untuk mengakses halaman ini. Silakan hubungi administrator jika Anda yakin ini adalah kesalahan.
             </p>
         </div>
@@ -103,7 +103,7 @@
             <h3 class="text-lg font-bold text-gray-800 mb-3 font-dancing">
                 🤔 Mengapa ini terjadi?
             </h3>
-            <div class="text-sm text-gray-600 font-typewriter space-y-2 text-left max-w-md mx-auto">
+            <div class="text-sm text-gray-600 space-y-2 text-left max-w-md mx-auto font-body">
                 <p>• Anda tidak memiliki hak akses yang diperlukan</p>
                 <p>• Halaman ini dibatasi untuk pengguna tertentu</p>
                 <p>• Session Anda mungkin telah berakhir</p>
@@ -113,7 +113,7 @@
 
         <!-- Contact Info -->
         <div class="mt-8 text-center">
-            <p class="text-sm text-gray-500 font-typewriter">
+            <p class="text-sm text-gray-500 font-body">
                 Butuh bantuan? Hubungi tim support kami di 
                 <a href="mailto:support@getyourtrip.com" class="text-[#006C43] hover:text-[#00844D] font-semibold transition-colors">
                     pineustilu@gmail.com

@@ -5,9 +5,9 @@
 
 <section class="space-y-6">
     <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-        class="px-6 py-3 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-typewriter">
+        class="px-6 py-3 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-body">
         @if ($isGoogleUser)
-            Hapus Akun Google
+            Hapus Akun
         @else
             Hapus Akun
         @endif
@@ -44,9 +44,10 @@
                                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold text-gray-900 jp-brush">
+                    <h2 class="text-xl font-bold text-gray-900"
+                        style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">
                         @if ($isGoogleUser)
-                            Konfirmasi Hapus Akun Google
+                            Konfirmasi Hapus Akun
                         @else
                             Konfirmasi Hapus Akun
                         @endif
@@ -54,13 +55,13 @@
                 </div>
 
                 @if ($hasPassword)
-                    <p class="mt-1 mb-4 text-sm text-gray-600 font-typewriter">
+                    <p class="mt-1 mb-4 text-sm text-gray-600 font-body">
                         Setelah akun Anda dihapus, semua data dan sumber daya akan dihapus secara permanen. Masukkan
                         password Anda untuk mengonfirmasi penghapusan akun.
                     </p>
 
                     <div class="p-4 mb-4 border border-red-200 rounded-lg bg-red-50">
-                        <p class="text-sm text-red-800 font-typewriter">
+                        <p class="text-sm text-red-800 font-body">
                             ⚠️ Semua data Anda akan dihapus permanen
                         </p>
                     </div>
@@ -73,7 +74,7 @@
                         <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
                     </div>
                 @else
-                    <p class="mt-1 mb-4 text-sm text-gray-600 font-typewriter">
+                    <p class="mt-1 mb-4 text-sm text-gray-600 font-body">
                         @if ($isGoogleUser)
                             Anda login menggunakan akun Google. Tidak diperlukan password untuk menghapus akun. Apakah
                             Anda yakin ingin menghapus akun ini?
@@ -84,22 +85,22 @@
                     </p>
 
                     <div class="p-4 mb-4 border border-red-200 rounded-lg bg-red-50">
-                        <p class="text-sm text-red-800 font-typewriter">
-                            ⚠️ Semua data Anda akan dihapus permanen, termasuk:
+                        <p class="text-sm text-red-800 font-body">
+                            ⚠️ Semua data Anda akan dihapus permanen
                         </p>
                     </div>
                 @endif
 
                 <div class="flex gap-3 mt-6">
                     <button type="button" x-on:click="$dispatch('close')"
-                        class="justify-center flex-1 px-4 py-2 text-center text-gray-700 transition-colors bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-300 font-typewriter">
+                        class="justify-center flex-1 px-4 py-2 text-center text-gray-700 transition-colors bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-300 font-body">
                         Batal
                     </button>
 
                     <button type="submit"
-                        class="justify-center flex-1 px-4 py-2 text-center text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-typewriter">
+                        class="justify-center flex-1 px-4 py-2 text-center text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-body">
                         @if ($isGoogleUser)
-                            Ya, Hapus Akun Google
+                            Ya, Hapus Akun
                         @else
                             Ya, Hapus Akun
                         @endif

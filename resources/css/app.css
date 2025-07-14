@@ -6,6 +6,52 @@
 @plugin "flowbite/plugin";
 @source "../../node_modules/flowbite";
 
+/* Global Font Configuration */
+@layer base {
+    html {
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    
+    body {
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    
+    /* Heading styles */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        font-weight: 700;
+    }
+    
+    /* Monospace untuk code dan description */
+    .font-mono, 
+    code, 
+    pre,
+    .description,
+    .caption {
+        font-family: 'Roboto Mono', 'Consolas', monospace;
+    }
+}
+
+/* Custom Font Classes */
+@layer components {
+    .font-heading {
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        font-weight: 700;
+    }
+    
+    .font-body {
+        font-family: 'Roboto Mono', 'Consolas', monospace;
+    }
+    
+    .font-jp-brush {
+        font-family: 'JapaneseBrush', monospace;
+    }
+    
+    .font-typewriter {
+        font-family: 'VeteranTypewriter', monospace;
+    }
+}
+
 /* Space untuk fixed navigation */
 .page-content {
     padding-top: 120px; /* Sesuaikan dengan tinggi navbar */

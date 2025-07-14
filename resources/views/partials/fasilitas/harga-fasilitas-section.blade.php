@@ -1,7 +1,7 @@
 <!-- Harga Section -->
-<section class="py-16 px-4 bg-gradient-to-br from-gray-50 to-white font-typewriter" data-aos="fade-up">
+<section class="py-16 px-4 bg-gradient-to-br from-gray-50 to-white font-body" data-aos="fade-up">
     <div class="max-w-5xl mx-auto">
-        <h2 class="mb-12 text-4xl font-bold text-center text-green-700 jp-brush">Daftar Harga</h2>
+        <h2 class="mb-12 text-4xl font-bold text-center text-green-700 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Daftar Harga</h2>
         <div class="grid gap-6 md:grid-cols-3">
             <!-- Hari Biasa -->
             <div class="p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="100">

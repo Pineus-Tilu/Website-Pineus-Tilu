@@ -80,8 +80,8 @@
                     <form action="{{ route('reservasi.store') }}" method="POST" id="reservasi-form">
                         @csrf
                         <div class="mb-6">
-                            <h2 class="mb-4 text-lg font-bold text-green-900 jp-brush">Informasi Reservasi</h2>
-                            <div class="mb-4 font-typewriter">
+                            <h2 class="mb-4 text-lg font-bold text-green-900 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Informasi Reservasi</h2>
+                            <div class="mb-4 font-body">
                                 <label class="block mb-2 font-medium text-green-800">Pilih Area</label>
                                 <select name="fasilitas" id="fasilitas-select"
                                     class="w-full px-3 py-2 border border-green-300 rounded focus:outline-none focus:ring focus:border-green-500"
@@ -94,7 +94,7 @@
                             </div>
 
                             <!-- Deck / Plot -->
-                            <div id="deck-container" class="hidden mb-4 font-typewriter">
+                            <div id="deck-container" class="hidden mb-4 font-body">
                                 <label class="block mb-2 font-medium text-green-800">Pilih Deck</label>
                                 <select id="deck-select" name="deck"
                                     class="w-full px-3 py-2 border border-green-300 rounded focus:outline-none focus:ring focus:border-green-500"
@@ -104,7 +104,7 @@
                             </div>
 
                             <!-- Tanggal Kunjungan -->
-                            <div class="mb-4 font-typewriter">
+                            <div class="mb-4 font-body">
                                 <label class="block mb-2 font-medium text-green-800">Tanggal Kunjungan</label>
                                 <input name="tanggal_kunjungan" type="text" id="tanggal-kunjungan"
                                     class="w-full px-3 py-2 bg-gray-100 border border-green-300 rounded cursor-not-allowed focus:outline-none focus:ring focus:border-green-500"
@@ -112,7 +112,7 @@
                             </div>
 
                             <!-- Jumlah Orang -->
-                            <div class="mb-4 font-typewriter">
+                            <div class="mb-4 font-body">
                                 <div class="flex items-center justify-between mb-2">
                                     <label class="font-medium text-green-800">Jumlah Orang</label>
                                     <button type="button" id="info-btn" class="text-sm text-green-700 hover:underline">❔ Info</button>
@@ -148,7 +148,7 @@
                         </div>
 
                         <!-- Informasi Pengunjung -->
-                        <div class="mb-4 font-typewriter">
+                        <div class="mb-4 font-body">
                             <h2 class="mb-4 text-lg font-bold text-green-900">Informasi Pengunjung</h2>
                             <div class="mb-4">
                                 <label class="block mb-2 font-medium text-green-800">Nama Lengkap</label>
@@ -176,9 +176,9 @@
 
                 <!-- Detail Reservasi (Kanan) -->
                 <div class="p-6 rounded-lg bg-gray-50">
-                    <h2 class="mb-6 text-xl font-bold text-green-900 jp-brush">Detail Reservasi</h2>
+                    <h2 class="mb-6 text-xl font-bold text-green-900 " style="font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; font-weight: 700;">Detail Reservasi</h2>
 
-                    <div class="mb-6 font-typewriter">
+                    <div class="mb-6 font-body">
                         <h3 class="mb-4 font-semibold text-green-800">Data Reservasi</h3>
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-4">
@@ -212,7 +212,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-6 font-typewriter">
+                    <div class="mb-6 font-body">
                         <h3 class="mb-4 font-semibold text-green-800">Data Pengunjung</h3>
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-4">
@@ -232,7 +232,7 @@
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t font-typewriter">
+                    <div class="pt-4 border-t font-body">
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-sm text-green-700">💰 Harga Dasar</span>
                             <span class="text-sm" id="harga-dasar">Rp 0</span>
@@ -249,12 +249,12 @@
                             <span class="text-lg font-bold text-green-900" id="total-harga">Rp 0</span>
                         </div>
 
-                        <div class="flex items-center mb-4 font-typewriter">
+                        <div class="flex items-center mb-4 font-body">
                             <input type="checkbox" id="syarat" name="syarat" class="mr-2 accent-green-600" required form="reservasi-form">
                             <label for="syarat" class="text-sm text-green-800">✔️ Saya menyetujui syarat & ketentuan yang berlaku</label>
                         </div>
                         <button type="submit" form="reservasi-form"
-                            class="w-full py-3 font-semibold text-white transition bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded hover:opacity-90 transform hover:scale-105 font-typewriter">
+                            class="w-full py-3 font-semibold text-white transition bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] rounded hover:opacity-90 transform hover:scale-105 font-body">
                             🛎️ Pesan Sekarang
                         </button>
                     </div>

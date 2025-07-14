@@ -30,7 +30,7 @@
                              class="object-contain w-full h-full drop-shadow-lg">
                     </div>
                     
-                    <p class="max-w-sm mx-auto text-sm italic text-gray-600 font-typewriter">
+                    <p class="max-w-sm mx-auto text-sm italic text-gray-600 font-body">
                         "Masuk untuk menikmati pengalaman alam yang tak terlupakan."
                     </p>
                 </div>
@@ -50,7 +50,7 @@
                             </svg>
                         </div>
                         <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username"
-                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Masukkan email Anda" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                     </div>
@@ -63,7 +63,7 @@
                             </svg>
                         </div>
                         <input id="password" type="password" name="password" required autocomplete="current-password"
-                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-typewriter"
+                               class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#006C43] focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm font-body"
                                placeholder="Masukkan password" />
                         
                         <!-- Single Toggle Button - Pastikan hanya ada satu -->
@@ -83,17 +83,17 @@
                     <div class="flex items-center justify-between text-sm">
                         <label class="flex items-center space-x-2 cursor-pointer">
                             <input type="checkbox" name="remember" class="w-4 h-4 text-[#006C43] border-gray-300 rounded focus:ring-[#006C43]">
-                            <span class="text-gray-600 font-typewriter">Ingat Saya</span>
+                            <span class="text-gray-600 font-body">Ingat Saya</span>
                         </label>
                         @if (Route::has('password.request'))
-                            {{-- <a href="{{ route('password.request') }}" class="text-[#006C43] hover:text-[#005A36] font-medium font-typewriter transition-colors">
+                            {{-- <a href="{{ route('password.request') }}" class="text-[#006C43] hover:text-[#005A36] font-medium font-body transition-colors">
                                 Lupa kata sandi?
                             </a> --}}
                         @endif
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-typewriter">
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#006C43] via-[#00844D] to-[#005A36] text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-body">
                         Masuk
                     </button>
 
@@ -103,20 +103,20 @@
                             <div class="w-full border-t border-gray-300"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-4 text-gray-500 bg-white font-typewriter">atau</span>
+                            <span class="px-4 text-gray-500 bg-white font-body">atau</span>
                         </div>
                     </div>
 
                     <!-- Google Login -->
                     <a href="{{ route('google.login') }}" class="flex items-center justify-center w-full px-6 py-3 transition-all duration-300 border-2 border-gray-200 rounded-xl hover:bg-gray-50 group">
                         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5 mr-3">
-                        <span class="font-medium text-gray-700 font-typewriter group-hover:text-gray-900">Masuk dengan Google</span>
+                        <span class="font-medium text-gray-700 font-body group-hover:text-gray-900">Masuk dengan Google</span>
                     </a>
                 </form>
 
                 <!-- Register Link -->
                 <div class="pt-4 text-center border-t border-gray-200">
-                    <p class="text-gray-600 font-typewriter">
+                    <p class="text-gray-600 font-body">
                         Belum punya akun? 
                         <a href="{{ route('register') }}" class="text-[#006C43] hover:text-[#005A36] font-bold transition-colors">
                             Daftar di sini

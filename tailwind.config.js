@@ -12,11 +12,17 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Segoe UI', 'Roboto', 'Arial', ...defaultTheme.fontFamily.sans],
+                mono: ['Roboto Mono', 'Consolas', 'Monaco', ...defaultTheme.fontFamily.mono],
                 japanese: ['JapaneseBrush', 'sans-serif'],
                 jp_brush: ['JapaneseBrush', 'monospace'],
                 typewriter: ['VeteranTypewriter', 'monospace'],
+                heading: ['Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+                body: ['Roboto Mono', 'Consolas', 'monospace'],
             },
+            fontWeight: {
+                'extra-bold': '700',
+            }
         },
     },
 

@@ -6,11 +6,4 @@ Akan tetapi, banyak platform pariwisata yang ada saat ini belum mampu memberikan
 
 Untuk menjawab tantangan ini, kami ingin melakukan pengembangan website pariwisata global dengan fitur informasi destinasi, pemesanan trip, serta hotel diharapkan dapat memberikan solusi yang lebih komprehensif. Website ini bertujuan untuk menyediakan platform terintegrasi yang tidak hanya memberi informasi mendalam mengenai destinasi wisata di seluruh dunia, tetapi juga memungkinkan pengguna untuk melakukan pemesanan perjalanan dan akomodasi secara langsung.
 
-### Susunan Tim
 
-Nama|Username Github|Posisi
----|---|---
-Tri Brotoharsono|tbshno|Pembimbing
-Rizza Indah Mega Mandasari|rizzamandasari|Reviewer
-Muhammad Ihsan Firjatulloh Al Khasaf|mihsnfaa|Mahasiswa
-Rizqy Nurfauzella|RizqyNurfauzella|Mahasiswa
